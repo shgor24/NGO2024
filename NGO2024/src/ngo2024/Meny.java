@@ -8,7 +8,7 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 /**
  *
- * @author sheny, hej
+ * @author sheny
  */
 public class Meny extends javax.swing.JFrame {
 private InfDB idb;
