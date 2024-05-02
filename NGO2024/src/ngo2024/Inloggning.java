@@ -117,7 +117,7 @@ private InfDB idb;
        String losen= tfLosenord.getText();
        try{
           String sqlFraga = "SELECT losenord FROM anstalld WHERE epost= '" + ePost+"'";
-          System.out.println(sqlFraga);
+          //System.out.println(sqlFraga);
           String dbLosen= idb.fetchSingle(sqlFraga);
           if(losen.equals(dbLosen)){
               new Meny(idb,ePost).setVisible(true);
