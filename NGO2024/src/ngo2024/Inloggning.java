@@ -128,6 +128,7 @@ private InfDB idb;
           }
        }catch(InfException ex){
        System.out.println(ex.getMessage());
+       System.out.println("HEJ");
        }
     }//GEN-LAST:event_btnLoggaInActionPerformed
 
