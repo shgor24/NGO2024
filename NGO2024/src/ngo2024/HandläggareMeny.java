@@ -4,16 +4,24 @@
  */
 package ngo2024;
 
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
 /**
  *
  * @author sheny
  */
 public class HandläggareMeny extends javax.swing.JFrame {
+    
+    private InfDB idb;
+    private String aid;
 
     /**
      * Creates new form HandläggareMeny
      */
-    public HandläggareMeny() {
+    public HandläggareMeny(String aid, InfDB idb) {
+        this.aid = aid;
+        this.idb = idb;
         initComponents();
     }
 
@@ -27,6 +35,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
+        bAnsProjekt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,13 +46,25 @@ public class HandläggareMeny extends javax.swing.JFrame {
             }
         });
 
+        bAnsProjekt.setText("Se mina projekt");
+        bAnsProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAnsProjektActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(bAnsProjekt)))
                 .addContainerGap(117, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -51,7 +72,9 @@ public class HandläggareMeny extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(bAnsProjekt)
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         pack();
@@ -60,6 +83,12 @@ public class HandläggareMeny extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void bAnsProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAnsProjektActionPerformed
+        ProjektMenyAnstalld projektMeny = new ProjektMenyAnstalld(idb, aid);
+        projektMeny.hamtaAllaProjekt();
+        projektMeny.setVisible(true);
+    }//GEN-LAST:event_bAnsProjektActionPerformed
 
     /**
      * @param args the command line arguments
@@ -91,12 +120,13 @@ public class HandläggareMeny extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HandläggareMeny().setVisible(true);
+                //new HandläggareMeny().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bAnsProjekt;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

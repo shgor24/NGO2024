@@ -113,6 +113,7 @@ public class Inloggning extends javax.swing.JFrame {
             String sqlFraga2 = "SELECT anstalld.epost, anstalld.losenord, anstalld.aid FROM anstalld JOIN handlaggare ON anstalld.aid = handlaggare.aid and anstalld.epost= '" + ePost + "'";
             String sqlFraga3 = "SELECT anstalld.epost, anstalld.losenord, anstalld.aid FROM anstalld JOIN admin ON anstalld.aid = admin.aid and anstalld.epost = '" + ePost + "'";
             String sqlFraga4 = "SELECT DISTINCT projekt.projektchef, projekt.projektnamn, projekt.pid, anstalld.epost, anstalld.losenord FROM projekt JOIN handlaggare ON projekt.projektchef = handlaggare.mentor JOIN anstalld ON projekt.pid = anstalld.aid and anstalld.ePost = '" + ePost + "'";
+            String sqlFraga5 = "SELECT aid from anstalld where epost = '" + ePost + "'";
             
             // Utför anropen mot databasen, returnera värden i variablerna
             String userLosen = idb.fetchSingle(sqlFraga1);
@@ -122,16 +123,21 @@ public class Inloggning extends javax.swing.JFrame {
             
             // Loggar in som ProjektChef/Ledare (Högst behörighet)
             if (losen.equals(userLosen) && isProjektChef != null) {
-                new ProjektledareMeny().setVisible(true);
+                setVisible(false);
+                String aid = idb.fetchSingle(sqlFraga5);
+                new ProjektledareMeny(idb, aid).setVisible(true);
                 return;
             }
             //Loggar in som handläggare
             if (losen.equals(userLosen) && isHandlaggare != null) {
-                new HandläggareMeny().setVisible(true);
+                setVisible(false);
+                String aid = idb.fetchSingle(sqlFraga5);
+                new HandläggareMeny(aid, idb).setVisible(true);
                 return;
             }
             // Loggar in som administratör
             if (losen.equals(userLosen) && isAdminstrator != null) {
+                setVisible(false);
                 new AdministratorMeny().setVisible(true);
             }
             else {
