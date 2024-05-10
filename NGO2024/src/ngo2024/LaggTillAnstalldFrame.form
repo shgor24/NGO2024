@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="231" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnLaggTill" min="-2" pref="116" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="adressText" min="-2" pref="197" max="-2" attributes="0"/>
+                          <Component id="epostText" min="-2" pref="197" max="-2" attributes="0"/>
+                          <Component id="efternamnText" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+                          <Component id="lblFornamn" alignment="0" min="-2" pref="73" max="-2" attributes="0"/>
+                          <Component id="lblEpost" alignment="0" min="-2" pref="84" max="-2" attributes="0"/>
+                          <Component id="fornamnText" min="-2" pref="197" max="-2" attributes="0"/>
+                          <Component id="lblAdress" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="56" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="anstallningsDatumText" pref="197" max="32767" attributes="0"/>
+                          <Component id="avdelningIdText" pref="197" max="32767" attributes="0"/>
+                          <Component id="telefonText" pref="197" max="32767" attributes="0"/>
+                          <Component id="lblAnstallningsdatum" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                          <Component id="lblAvdelning" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
+                          <Component id="lblLosenord" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
+                          <Component id="losenordText" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblTelefonnummer" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                      <Component id="lblFornamn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="lblLosenord" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="losenordText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fornamnText" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAnstallningsdatum" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="efternamnText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="anstallningsDatumText" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblAdress" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAvdelning" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="adressText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="avdelningIdText" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblEpost" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTelefonnummer" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="epostText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="telefonText" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Component id="btnLaggTill" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="54" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fyll i uppgifter f&#xf6;r den nya anst&#xe4;llda"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblFornamn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="F&#xf6;rnamn"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Efternamn"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAdress">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Adress"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblLosenord">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="L&#xf6;senord"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblEpost">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Epost"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="adressText">
+    </Component>
+    <Component class="javax.swing.JTextField" name="fornamnText">
+    </Component>
+    <Component class="javax.swing.JTextField" name="epostText">
+    </Component>
+    <Component class="javax.swing.JTextField" name="efternamnText">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAnstallningsdatum">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Anst&#xe4;llningsdatum"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAvdelning">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Avdelning (ID)"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTelefonnummer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Telefonnummer"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="anstallningsDatumText">
+    </Component>
+    <Component class="javax.swing.JTextField" name="avdelningIdText">
+    </Component>
+    <Component class="javax.swing.JTextField" name="telefonText">
+    </Component>
+    <Component class="javax.swing.JTextField" name="losenordText">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnLaggTill">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="L&#xe4;gg till"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLaggTillActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>

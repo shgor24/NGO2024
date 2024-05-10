@@ -56,7 +56,7 @@ private InfDB idb;
 
         jLabel5.setText("Land");
 
-        cbValdAnstalld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till/Ta bort anställd", "Generera lösenord för ny anställd" }));
+        cbValdAnstalld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till anställd", "Ta bort anställd", "Generera lösenord för ny anställd" }));
         cbValdAnstalld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbValdAnstalldActionPerformed(evt);
@@ -138,8 +138,12 @@ private InfDB idb;
     private void cbValdAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValdAnstalldActionPerformed
               
           String detValdaAlternativet = (String) cbValdAnstalld.getSelectedItem();
-       if(detValdaAlternativet.equals("Lägg till/Ta bort anställd" + "")){
-        new LaggTillTaBortAnstalldFrame().setVisible(true);
+       if(detValdaAlternativet.equals("Lägg till anställd" +"")){
+        new LaggTillAnstalldFrame(idb).setVisible(true);
+    }
+       else if(detValdaAlternativet.equals("Ta bort anställd"+"")){
+        new TaBortAnstalldFrame().setVisible (true);
+    
     }
         else if (detValdaAlternativet.equals("Generera lösenord för ny anställd"+ "")) {
                     new GenereraLosenordFrame().setVisible(true);
