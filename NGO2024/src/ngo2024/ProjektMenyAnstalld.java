@@ -8,6 +8,7 @@ package ngo2024;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.DefaultListModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -36,27 +37,37 @@ public class ProjektMenyAnstalld extends javax.swing.JFrame {
      */
     public void hamtaAllaProjekt() {
         try {
-            String sqlFraga = "select projekt.projektnamn from projekt join ans_proj on projekt.pid = ans_proj.pid where ans_proj.aid =" + aid;
+            //Hämtar pid och namn på projekt som en viss anställd tillhör
+            String sqlFraga = "select projekt.pid, projekt.projektnamn from projekt join ans_proj on projekt.pid = ans_proj.pid where ans_proj.aid =" + aid;
 
-            ArrayList<String> pidLista = idb.fetchColumn(sqlFraga);
-            //Skapar en ArrayList av alla pid som kommer upp för en viss anställd
+            //Skapar en ArrayList av HashMap av Strings med alla hämtade pid och namn
+            ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
 
-            DefaultListModel<String> lista = new DefaultListModel<>();
-            /**
-             * Skapar ett objekt av DefaultListModel som gör att man kan lägga
-             * till och ta bort saker från en JList
-             */
+            //Skapar en ny HashMap för pid och projektnamn
+            HashMap<String, String> projektLista = new HashMap<>();
 
-            for (String pid : pidLista) {
-                lista.addElement(pid);
-                //lägger till varje pid i listan
+            //Fyller HashMapen projektLista med de hämtade pid som nycklar och projektnamnen som värden
+            for (HashMap<String, String> rad : resultatLista) {
+                String pid = rad.get("pid");
+                String projektNamn = rad.get("projektnamn");
+                projektLista.put(pid, projektNamn);
             }
 
+            //Skapar ett objekt av DefaultListModel som gör att man kan lägga till saker i JListan
+            DefaultListModel<String> lista = new DefaultListModel<>();
+
+            //Itererar igenom HashMapens alla pid
+            for (String pid : projektLista.keySet()) {
+
+                //Hämtar projektnamn för en viss pid
+                String namn = projektLista.get(pid);
+
+                //Lägger till varje projektnamn och pid i listan för att lättare identifiera varje projekt även om de skulle ha samma namn
+                lista.addElement(namn + " ID: " + pid);
+            }
+
+            //Sätter listan ovan till modellen för listaProjekt, vilket ändrar dess innehåll
             listaProjekt.setModel(lista);
-            /**
-             * Sätter listan ovan till modellen för listaProjekt, vilket ändrar
-             * dess innehåll
-             */
 
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
@@ -70,18 +81,21 @@ public class ProjektMenyAnstalld extends javax.swing.JFrame {
             //När användaren har valt ett projekt i listan kommer detta att köras, tack vare valueChanged() metoden
             public void valueChanged(ListSelectionEvent e) {
 
+                //Anropar en metod från ListSelectionEvent som returnerar true om användaren har valt något i listan
                 if (!e.getValueIsAdjusting()) {
                     int valtIndex = listaProjekt.getSelectedIndex();
 
-                    //Kontrollerar om något verkligen har valts i listan
+                    //Kontrollerar om användaren har valt ett giltigt värde i listan
                     if (valtIndex != -1) {
-                        //hämtar projektnamnet som valdes i listan
-                        String valtProjektNamn = listaProjekt.getSelectedValue();
+                        //Hämtar projektnamnet som valdes i listan
+                        String valtProjekt = listaProjekt.getSelectedValue();
 
-                        //gömmer detta meny-fönster och öppnar ett fönster med info om projektet som valts
-                        setVisible(false);
-                        ProjektInfo projektInfo = new ProjektInfo(valtProjektNamn, idb);
-                        projektInfo.laggText();
+                        //Hämtar pid från listnamnet med hjälp av substring() metoden
+                        String pid = valtProjekt.substring(valtProjekt.lastIndexOf(" ") + 1);
+
+                        //Öppnar ett fönster med info om projektet som valts genom ProjektInfo
+                        ProjektInfo projektInfo = new ProjektInfo(pid, idb);
+                        projektInfo.laggTillText();
                         projektInfo.setVisible(true);
 
                     }

@@ -119,7 +119,11 @@ public class HandläggareMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_bAnsProjektActionPerformed
 
     private void bAvdProjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAvdProjActionPerformed
-        // TODO add your handling code here:
+       Projektstatus projektstatus = new Projektstatus (idb,aid);
+       projektstatus.hamtaAllaProjekt();
+       projektstatus.setVisible(true);
+        
+// TODO add your handling code here:
     }//GEN-LAST:event_bAvdProjActionPerformed
 
     private void personalPaAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personalPaAvdelningActionPerformed

@@ -17,6 +17,10 @@ public class Projektstatus extends javax.swing.JFrame {
     
     private InfDB idb;
     private String aid;
+    private javax.swing.JList<String> projekt;
+    private String selectedStatus;
+    
+    
 
     /**
      * Creates new form Projektstatus
@@ -27,14 +31,48 @@ public class Projektstatus extends javax.swing.JFrame {
         this.aid = "1";
         
         initComponents();
+        
+        
+   
+
+        cbstatus = new javax.swing.JComboBox<>();
+ 
+        cbstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Alla", "Pågående", "Avslutad", "Planerat"}));
+        cbstatus.addActionListener(new java.awt.event.ActionListener(){
+        
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbstatusActionPerformed(evt);
+                
+
+      
+        }
+    });
+        cbstatus.setSelectedItem("Alla");
+        btnVisastatus = new javax.swing.JButton();
+    btnVisastatus.setText("Visa projekt");
+    btnVisastatus.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            btnVisastatusActionPerformed(evt);
+            
+        }
+      
+    });
+     
+
     }
     
-    
     public void hamtaAllaProjekt() {
+       
         try {
-            String sqlFraga = " select projektnamn from projekt where pid in (select pid from ans_proj where aid in (select aid from anstalld where avdelning in (select avdelning from anstalld where aid = " + aid +")))";
-        ArrayList < String> projektnamn = idb.fetchColumn(sqlFraga);
-        
+            String selectedStatus = (String) cbstatus.getSelectedItem();
+            String sqlFraga;
+            if (selectedStatus.equals("Alla")){
+
+             sqlFraga = " select projektnamn from projekt where pid in (select pid from ans_proj where aid in (select aid from anstalld where avdelning in (select avdelning from anstalld where aid = " + aid +")))";
+        } else {
+                sqlFraga = "select projektnamn from projekt where status = '" + selectedStatus + "' AND pid IN (select pid from ans_proj where aid IN (select aid from anstalld where avdelning IN (select avdelning from anstalld where aid = "+aid +"))";
+}
+       ArrayList < String> projektnamn = idb.fetchColumn(sqlFraga);  
        DefaultListModel <String> lista = new DefaultListModel <> ();
         
         for (String namn :projektnamn){
@@ -44,6 +82,7 @@ public class Projektstatus extends javax.swing.JFrame {
         }
         
         ltprojekt.setModel (lista);
+
         
         }
         
@@ -53,6 +92,8 @@ public class Projektstatus extends javax.swing.JFrame {
         
         }
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,7 +111,7 @@ public class Projektstatus extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cbstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Pågående", "Avslutad", "Planerat", " " }));
         cbstatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbstatusActionPerformed(evt);
@@ -78,6 +119,11 @@ public class Projektstatus extends javax.swing.JFrame {
         });
 
         btnVisastatus.setText("Visa projekt");
+        btnVisastatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisastatusActionPerformed(evt);
+            }
+        });
 
         ltprojekt.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -90,36 +136,147 @@ public class Projektstatus extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnVisastatus))
-                .addGap(77, 77, 77)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cbstatus, 0, 103, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addComponent(btnVisastatus)
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cbstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(btnVisastatus)))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(cbstatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnVisastatus)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
     private void cbstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbstatusActionPerformed
-        // TODO add your handling code here:
+  
+// Hämta den valda statusen från ComboBoxen
+    selectedStatus = getSelectedStatus();
+       System.out.println("Selected status: " + selectedStatus);
+    String selectedStatus = (String) cbstatus.getSelectedItem();
+    System.out.println("Selected status: " + selectedStatus);
+     if (selectedStatus.equals("Alla")) {
+        hamtaAllaProjekt();
+    } else 
+        // Kolla vilken status som är vald och uppdatera listan över projekt
+        switch (selectedStatus) {
+            case "Pågående":
+                hamtaPagaendeProjekt();
+                break;
+            case "Avslutad":
+                hamtaAvslutadeProjekt();
+                break;
+            case "Planerat":
+                hamtaPlaneratProjekt();
+                break;
+            default:
+                break;
+        }
+}
+    
+    private String getSelectedStatus() {
+        return (String) cbstatus.getSelectedItem();
+    }
+
+public void hamtaPagaendeProjekt() {
+    try { 
+        // SQL-fråga för att hämta pågående projekt
+        String sqlFraga = "SELECT projektnamn FROM projekt WHERE status = 'Pågående' AND pid IN (SELECT pid FROM ans_proj WHERE aid IN (SELECT aid FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ")))";
+        ArrayList<String> projektnamn = idb.fetchColumn(sqlFraga);
+
+        DefaultListModel<String> lista = new DefaultListModel<>();
+
+        for (String namn : projektnamn) {
+            lista.addElement(namn);
+        }
+
+        ltprojekt.setModel(lista);
+
+    } catch (InfException ex) {
+        System.out.println(ex.getMessage());
+    }
+}
+
+public void hamtaAvslutadeProjekt() {
+    try {
+        // SQL-fråga för att hämta avslutade projekt
+        String sqlFraga = "SELECT projektnamn FROM projekt WHERE status = 'Avslutad' AND pid IN (SELECT pid FROM ans_proj WHERE aid IN (SELECT aid FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ")))";;
+        ArrayList<String> projektnamn = idb.fetchColumn(sqlFraga);
+
+        DefaultListModel<String> lista = new DefaultListModel<>();
+
+        for (String namn : projektnamn) {
+            lista.addElement(namn);
+        }
+
+        ltprojekt.setModel(lista);
+
+    } catch (InfException ex) {
+        System.out.println(ex.getMessage());
+    }
+
+}
+ 
+public void hamtaPlaneratProjekt() {
+    try {
+        // SQL-fråga för att hämta pågående projekt
+        String sqlFraga = "SELECT projektnamn FROM projekt WHERE status = 'Planerat' AND pid IN (SELECT pid FROM ans_proj WHERE aid IN (SELECT aid FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ")))";;
+        ArrayList<String> projektnamn = idb.fetchColumn(sqlFraga);
+
+        DefaultListModel<String> lista = new DefaultListModel<>();
+
+        for (String namn : projektnamn) {
+            lista.addElement(namn);
+        }
+
+        ltprojekt.setModel(lista);
+
+    } catch (InfException ex) {
+        System.out.println(ex.getMessage());
+    }
+    
     }//GEN-LAST:event_cbstatusActionPerformed
 
+    private void btnVisastatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisastatusActionPerformed
+      
+        String selectedStatus = (String) cbstatus.getSelectedItem();// TODO add your handling code here:
+        // Update the project list based on the selected status
+        System.out.println("Selected status: " + selectedStatus);
+        
+         if (selectedStatus.equals("Alla")) {
+        hamtaAllaProjekt();
+    } else 
+        switch (selectedStatus) {
+            case "Alla":
+                hamtaAllaProjekt();
+                break;
+            case "Pågående":
+                hamtaPagaendeProjekt();
+                break;
+            case "Avslutad":
+                hamtaAvslutadeProjekt();
+                break;
+            case "Planerat":
+                hamtaPlaneratProjekt();
+                break;
+        }
+    }//GEN-LAST:event_btnVisastatusActionPerformed
+
     /**
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -148,16 +305,30 @@ public class Projektstatus extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-              //  new Projektstatus().setVisible(true);
-            }
-        });
+           public void run() {
+        
+        //new Projektstatus().setVisible(true);
     }
 
+
+});
+
+}
+
+
+
+            
+        
+               
+           
+                
+
+           
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVisastatus;
     private javax.swing.JComboBox<String> cbstatus;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> ltprojekt;
     // End of variables declaration//GEN-END:variables
+
 }
