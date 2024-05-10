@@ -138,7 +138,7 @@ public class Inloggning extends javax.swing.JFrame {
             // Loggar in som administratör
             if (losen.equals(userLosen) && isAdminstrator != null) {
                 setVisible(false);
-                new AdministratorMeny().setVisible(true);
+                new AdministratorMeny(idb).setVisible(true);
             }
             else {
                 lblFelmeddelande.setVisible(true);
