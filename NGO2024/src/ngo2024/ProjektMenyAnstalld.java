@@ -21,7 +21,7 @@ public class ProjektMenyAnstalld extends javax.swing.JFrame {
     
     private InfDB idb;
     private String aid;
-    private ArrayList<String> projektLista;
+    
 
     /** Creates new form ProjektMenyAnstalld */
     public ProjektMenyAnstalld(InfDB idb, String aid) {
@@ -124,6 +124,7 @@ public class ProjektMenyAnstalld extends javax.swing.JFrame {
         listaProjekt.setSelectionBackground(new java.awt.Color(153, 204, 255));
         jScrollPane1.setViewportView(listaProjekt);
 
+        lblProjekt.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         lblProjekt.setText("Mina Projekt:");
 
         lblInfo.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
@@ -150,7 +151,7 @@ public class ProjektMenyAnstalld extends javax.swing.JFrame {
                 .addComponent(lblInfo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
