@@ -32,6 +32,8 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnGenereraLosenord" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="btnLaggTill" min="-2" pref="116" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -46,16 +48,16 @@
                           <Component id="fornamnText" min="-2" pref="197" max="-2" attributes="0"/>
                           <Component id="lblAdress" alignment="0" min="-2" pref="49" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="56" max="32767" attributes="0"/>
+                      <EmptySpace pref="87" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="anstallningsDatumText" pref="197" max="32767" attributes="0"/>
-                          <Component id="avdelningIdText" pref="197" max="32767" attributes="0"/>
                           <Component id="telefonText" pref="197" max="32767" attributes="0"/>
                           <Component id="lblAnstallningsdatum" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
                           <Component id="lblAvdelning" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
                           <Component id="lblLosenord" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
                           <Component id="losenordText" alignment="0" max="32767" attributes="0"/>
                           <Component id="lblTelefonnummer" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
+                          <Component id="avdelningIdComboBox" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -101,7 +103,7 @@
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="adressText" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="avdelningIdText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="avdelningIdComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -114,7 +116,10 @@
                   <Component id="telefonText" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="btnLaggTill" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnLaggTill" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnGenereraLosenord" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="54" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -176,11 +181,12 @@
     </Component>
     <Component class="javax.swing.JTextField" name="anstallningsDatumText">
     </Component>
-    <Component class="javax.swing.JTextField" name="avdelningIdText">
-    </Component>
     <Component class="javax.swing.JTextField" name="telefonText">
     </Component>
     <Component class="javax.swing.JTextField" name="losenordText">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnLaggTill">
       <Properties>
@@ -189,6 +195,28 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLaggTillActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnGenereraLosenord">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Generera l&#xf6;senord "/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenereraLosenordActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="avdelningIdComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="1"/>
+            <StringItem index="1" value="2"/>
+            <StringItem index="2" value="3"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

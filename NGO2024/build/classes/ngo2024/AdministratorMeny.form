@@ -122,9 +122,9 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="3">
-            <StringItem index="0" value="L&#xe4;gg till anst&#xe4;lld"/>
+            <StringItem index="0" value="L&#xe4;gg till anst&#xe4;lld/Generera l&#xf6;senord f&#xf6;r ny anst&#xe4;lld"/>
             <StringItem index="1" value="Ta bort anst&#xe4;lld"/>
-            <StringItem index="2" value="Generera l&#xf6;senord f&#xf6;r ny anst&#xe4;lld"/>
+            <StringItem index="2" value=" "/>
           </StringArray>
         </Property>
       </Properties>

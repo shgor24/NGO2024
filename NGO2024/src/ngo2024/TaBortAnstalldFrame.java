@@ -4,17 +4,33 @@
  */
 package ngo2024;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import javax.swing.table.DefaultTableModel;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
 /**
  *
- * @author sheny
+ * @author shenye
  */
 public class TaBortAnstalldFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TaBortAnstalldFrame
-     */
-    public TaBortAnstalldFrame() {
+    private InfDB idb;
+
+    public TaBortAnstalldFrame(InfDB idb) {
         initComponents();
+        this.idb = idb;
+        try {
+            String fetchUsersQuery = "SELECT * FROM ngo_2024.anstalld";
+            ArrayList<HashMap<String, String>> resultSet = idb.fetchRows(fetchUsersQuery);
+            
+            
+
+
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**
@@ -27,19 +43,13 @@ public class TaBortAnstalldFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         lblAnstalldAttTaBort = new javax.swing.JLabel();
-        cbTaBortAnstalld = new javax.swing.JComboBox<>();
         btnTaBortAnstalld = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblAnstalldAttTaBort.setText("Välj anställd som du vill ta bort");
-
-        cbTaBortAnstalld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Person 1", "Person 2", "Person 3", "Person 4" }));
-        cbTaBortAnstalld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbTaBortAnstalldActionPerformed(evt);
-            }
-        });
 
         btnTaBortAnstalld.setText("Ta bort anställd");
         btnTaBortAnstalld.addActionListener(new java.awt.event.ActionListener() {
@@ -48,51 +58,48 @@ public class TaBortAnstalldFrame extends javax.swing.JFrame {
             }
         });
 
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(btnTaBortAnstalld)
+                .addGap(455, 455, 455))
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTaBortAnstalld)
-                    .addComponent(cbTaBortAnstalld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblAnstalldAttTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(lblAnstalldAttTaBort)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbTaBortAnstalld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
-                .addComponent(btnTaBortAnstalld)
-                .addGap(71, 71, 71))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(btnTaBortAnstalld, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbTaBortAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTaBortAnstalldActionPerformed
-         String detValdaAlternativet = (String) cbTaBortAnstalld.getSelectedItem();
-         if(detValdaAlternativet.equals("Person 1" +"")){
-        cbTaBortAnstalld.removeItem(detValdaAlternativet);
-         }
-         else if(detValdaAlternativet.equals("Person 2"+"")){
-        cbTaBortAnstalld.removeItem(detValdaAlternativet);
-         }
-          else if(detValdaAlternativet.equals("Person 3"+"")){
-        cbTaBortAnstalld.removeItem(detValdaAlternativet);
-          }
-          else if(detValdaAlternativet.equals("Person 4"+"")){
-        cbTaBortAnstalld.removeItem(detValdaAlternativet);
-          }
-    }//GEN-LAST:event_cbTaBortAnstalldActionPerformed
-
+    //TEST
     private void btnTaBortAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortAnstalldActionPerformed
-     
+
     }//GEN-LAST:event_btnTaBortAnstalldActionPerformed
 
     /**
@@ -125,14 +132,15 @@ public class TaBortAnstalldFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TaBortAnstalldFrame().setVisible(true);
+                //new TaBortAnstalldFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTaBortAnstalld;
-    private javax.swing.JComboBox<String> cbTaBortAnstalld;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAnstalldAttTaBort;
     // End of variables declaration//GEN-END:variables
 }

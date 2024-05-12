@@ -4,8 +4,10 @@
  */
 package ngo2024;
 
+import java.util.ArrayList;
+import java.util.Random;
+import javax.swing.JOptionPane;
 import oru.inf.InfDB;
-import java.sql.PreparedStatement;
 import oru.inf.InfException;
 
 /**
@@ -47,10 +49,11 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
         lblAvdelning = new javax.swing.JLabel();
         lblTelefonnummer = new javax.swing.JLabel();
         anstallningsDatumText = new javax.swing.JTextField();
-        avdelningIdText = new javax.swing.JTextField();
         telefonText = new javax.swing.JTextField();
         losenordText = new javax.swing.JTextField();
         btnLaggTill = new javax.swing.JButton();
+        btnGenereraLosenord = new javax.swing.JButton();
+        avdelningIdComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,12 +75,23 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
 
         lblTelefonnummer.setText("Telefonnummer");
 
+        losenordText.setEnabled(false);
+
         btnLaggTill.setText("Lägg till");
         btnLaggTill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLaggTillActionPerformed(evt);
             }
         });
+
+        btnGenereraLosenord.setText("Generera lösenord ");
+        btnGenereraLosenord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenereraLosenordActionPerformed(evt);
+            }
+        });
+
+        avdelningIdComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,6 +105,8 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGenereraLosenord)
+                        .addGap(34, 34, 34)
                         .addComponent(btnLaggTill, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
@@ -103,16 +119,16 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
                             .addComponent(lblEpost, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fornamnText, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblAdress, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(anstallningsDatumText, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
-                            .addComponent(avdelningIdText, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                             .addComponent(telefonText, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                             .addComponent(lblAnstallningsdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblLosenord, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(losenordText)
-                            .addComponent(lblTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblTelefonnummer, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(avdelningIdComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
@@ -146,7 +162,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adressText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(avdelningIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(avdelningIdComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEpost)
@@ -156,7 +172,9 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
                     .addComponent(epostText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(telefonText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addComponent(btnLaggTill)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLaggTill)
+                    .addComponent(btnGenereraLosenord))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
@@ -174,7 +192,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
             String telefon = telefonText.getText();
             String anstallningsdatum = anstallningsDatumText.getText();
             String losenord = losenordText.getText();
-            String avdelning = avdelningIdText.getText();
+            Object avdelning = avdelningIdComboBox.getSelectedItem();
 
             // Hämtar senaste aid från anställda och incrementerar med 1
             String latestAid = "SELECT AID FROM ngo_2024.anstalld ORDER BY AID DESC LIMIT 1";
@@ -182,15 +200,54 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
             int intIncrement = Integer.parseInt(currentAidNumber);
             intIncrement++;
 
-            // Skjuter anropet mot DB och skapar användaren, loggar till konsollen.
-            String insertAnstalld2 = "INSERT INTO ngo_2024.anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) VALUES (" + intIncrement + ", '" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + anstallningsdatum + "', '" + losenord + "', '" + avdelning + "')";
-            idb.insert(insertAnstalld2);
-            System.out.print("Ny användare är tillagd!");
-            
+            // Validerar att alla inputfields har ett värde och är rätt datumformat
+            isValidDate(anstallningsdatum);
+            if (!fornamn.equals("") && !efternamn.equals("") && !adress.equals("") && !epost.equals("") && !telefon.equals("") && !anstallningsdatum.equals("") && !losenord.equals("") && !avdelning.equals("")) {
+                // Skjuter anropet mot DB och skapar användaren, informerar användaren.
+                String insertAnstalld2 = "INSERT INTO ngo_2024.anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) VALUES (" + intIncrement + ", '" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + anstallningsdatum + "', '" + losenord + "', '" + avdelning + "')";
+                idb.insert(insertAnstalld2);
+                JOptionPane.showMessageDialog(null, "Ny användare är tillagd!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Du har inte fyllt i alla fällt, vänligen fyll i alla uppgifter", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
+
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnLaggTillActionPerformed
+
+    private void btnGenereraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenereraLosenordActionPerformed
+
+        ArrayList<Character> tecken = new ArrayList<>();
+        // Add letters A-Z
+        for (char bokstaver = 'A'; bokstaver <= 'Z'; bokstaver++) {
+            tecken.add(bokstaver);
+        }
+        // Add numbers 0-9
+        for (int i = 0; i <= 9; i++) {
+            tecken.add((char) ('0' + i));
+        }
+        int losenordLength = 11;
+        StringBuilder losenord = new StringBuilder();
+        Random random = new Random();
+
+        for (int i = 0; i < losenordLength; i++) {
+            int randomIndex = random.nextInt(tecken.size());
+            losenord.append(tecken.get(randomIndex));
+        }
+        // Convert StringBuilder to String
+        String genereratLosenord = losenord.toString();
+        losenordText.setText(genereratLosenord);
+    }//GEN-LAST:event_btnGenereraLosenordActionPerformed
+
+    private boolean isValidDate(String dateString) {
+        if (dateString.matches("\\d{4}-\\d{2}-\\d{2}")) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(null, "Datumet är i fel format, vänligen använd YYYY-MM-DD formatet!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -231,7 +288,8 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField adressText;
     private javax.swing.JTextField anstallningsDatumText;
-    private javax.swing.JTextField avdelningIdText;
+    private javax.swing.JComboBox<String> avdelningIdComboBox;
+    private javax.swing.JButton btnGenereraLosenord;
     private javax.swing.JButton btnLaggTill;
     private javax.swing.JTextField efternamnText;
     private javax.swing.JTextField epostText;
