@@ -14,7 +14,7 @@ import oru.inf.InfException;
  *
  * @author fatimatouray
  */
-public class HandläggareSökning extends javax.swing.JFrame {
+public class HandlaggareSokning extends javax.swing.JFrame {
     
     private InfDB idb;
     private String aid;
@@ -23,19 +23,25 @@ public class HandläggareSökning extends javax.swing.JFrame {
     /**
      * Creates new form HandläggareSökning
      */
-    public HandläggareSökning (InfDB idb, String aid) {
+    public HandlaggareSokning (InfDB idb, String aid) {
         
         this.idb = idb;
         this.aid = "1";
         
+        ltHandlaggare = new javax.swing.JList<>();
+        
         
         initComponents();
         
-        btnsok = new javax.swing.JButton();
-        tfsokhandlaggare = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        btnsok.addActionListener(new java.awt.event.ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        String searchQuery = tfsokhandlaggare.getText(); // Hämta sökfrågan från textfältet
+        hamtaSpecifikHandlaggare(searchQuery); // Anropa metoden för att hämta handläggarna
     }
+});
+        
+    }
+               
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,7 +52,7 @@ public class HandläggareSökning extends javax.swing.JFrame {
     
     public void hamtaSpecifikHandlaggare(String searchQuery) {
     try {
-        String sqlFraga = "SELECT förnamn, efternamn, e_post FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ") AND (förnamn LIKE '%" + searchQuery + "%' OR e_post LIKE '%" + searchQuery + "%')";
+        String sqlFraga = "SELECT fornamn, efternamn, epost FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = ' + aid + ') AND (fornamn LIKE '%" + searchQuery + "%' OR epost LIKE '%" + searchQuery + "%')";
         
         ArrayList<String> handlaggareInfo = idb.fetchColumn(sqlFraga);
         DefaultListModel<String> lista = new DefaultListModel<>();
@@ -121,14 +127,15 @@ public class HandläggareSökning extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HandläggareSökning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HandlaggareSokning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HandläggareSökning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HandlaggareSokning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HandläggareSökning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HandlaggareSokning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HandläggareSökning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HandlaggareSokning.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

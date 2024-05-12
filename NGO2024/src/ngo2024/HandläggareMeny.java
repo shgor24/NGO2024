@@ -23,7 +23,16 @@ public class HandläggareMeny extends javax.swing.JFrame {
         this.aid = aid;
         this.idb = idb;
         initComponents();
+        
+        
+           bAnsAvd.addActionListener(new java.awt.event.ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        bAnsAvdActionPerformed(evt);
     }
+});
+    
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,14 +125,17 @@ public class HandläggareMeny extends javax.swing.JFrame {
        projektstatus.hamtaAllaProjekt();
        projektstatus.setVisible(true);
        
-    private void bAnsAvdActionPerformed (java.awt.event.ActionEvent evt){
     
-    HandlaggareSokning
-}
         
 // TODO add your handling code here:
     }//GEN-LAST:event_bAvdProjActionPerformed
 
+    private void bAnsAvdActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    // Skapa en ny instans av HandläggareSökning och visa den
+    HandlaggareSokning handlaggareSokning = new HandlaggareSokning(idb, aid);
+    handlaggareSokning.setVisible(true);
+    
+    }
     /**
      * @param args the command line arguments
      */
