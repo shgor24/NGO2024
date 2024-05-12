@@ -37,6 +37,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         bAnsProjekt = new javax.swing.JButton();
         bAvdProj = new javax.swing.JButton();
+        bAnsAvd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +62,8 @@ public class HandläggareMeny extends javax.swing.JFrame {
             }
         });
 
+        bAnsAvd.setText("Handläggare på min avdelning");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -74,7 +77,9 @@ public class HandläggareMeny extends javax.swing.JFrame {
                         .addGap(22, 22, 22)
                         .addComponent(bAnsProjekt)
                         .addGap(89, 89, 89)
-                        .addComponent(bAvdProj)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bAnsAvd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bAvdProj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -86,14 +91,18 @@ public class HandläggareMeny extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAnsProjekt)
                     .addComponent(bAvdProj))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(bAnsAvd)
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+          
+       
+      
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void bAnsProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAnsProjektActionPerformed
@@ -106,6 +115,11 @@ public class HandläggareMeny extends javax.swing.JFrame {
        Projektstatus projektstatus = new Projektstatus (idb,aid);
        projektstatus.hamtaAllaProjekt();
        projektstatus.setVisible(true);
+       
+    private void bAnsAvdActionPerformed (java.awt.event.ActionEvent evt){
+    
+    HandlaggareSokning
+}
         
 // TODO add your handling code here:
     }//GEN-LAST:event_bAvdProjActionPerformed
@@ -146,6 +160,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bAnsAvd;
     private javax.swing.JButton bAnsProjekt;
     private javax.swing.JButton bAvdProj;
     private javax.swing.JTextField jTextField1;

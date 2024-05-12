@@ -33,7 +33,10 @@
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Component id="bAnsProjekt" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                      <Component id="bAvdProj" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="bAnsAvd" max="32767" attributes="0"/>
+                          <Component id="bAvdProj" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -50,7 +53,9 @@
                   <Component id="bAnsProjekt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="bAvdProj" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="181" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="bAnsAvd" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="123" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -79,6 +84,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAvdProjActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bAnsAvd">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Handl&#xe4;ggare p&#xe5; min avdelning"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
