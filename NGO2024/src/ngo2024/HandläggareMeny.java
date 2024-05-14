@@ -23,7 +23,16 @@ public class HandläggareMeny extends javax.swing.JFrame {
         this.aid = aid;
         this.idb = idb;
         initComponents();
+        
+        
+           bAnsAvd.addActionListener(new java.awt.event.ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        bAnsAvdActionPerformed(evt);
     }
+});
+    
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,7 +46,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         bAnsProjekt = new javax.swing.JButton();
         bAvdProj = new javax.swing.JButton();
-        personalPaAvdelning = new javax.swing.JButton();
+        bAnsAvd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,12 +71,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
             }
         });
 
-        personalPaAvdelning.setText("Anställda på min avdelning");
-        personalPaAvdelning.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                personalPaAvdelningActionPerformed(evt);
-            }
-        });
+        bAnsAvd.setText("Handläggare på min avdelning");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,20 +80,16 @@ public class HandläggareMeny extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(116, 116, 116)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(bAnsProjekt)
-                                .addGap(89, 89, 89)
-                                .addComponent(bAvdProj)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(personalPaAvdelning, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(116, 116, 116)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(bAnsProjekt)
+                        .addGap(89, 89, 89)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bAnsAvd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bAvdProj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,16 +100,18 @@ public class HandläggareMeny extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAnsProjekt)
                     .addComponent(bAvdProj))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(personalPaAvdelning)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(bAnsAvd)
+                .addContainerGap(123, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
+          
+       
+      
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void bAnsProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAnsProjektActionPerformed
@@ -122,15 +124,18 @@ public class HandläggareMeny extends javax.swing.JFrame {
        Projektstatus projektstatus = new Projektstatus (idb,aid);
        projektstatus.hamtaAllaProjekt();
        projektstatus.setVisible(true);
+       
+    
         
 // TODO add your handling code here:
     }//GEN-LAST:event_bAvdProjActionPerformed
 
-    private void personalPaAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personalPaAvdelningActionPerformed
-        personalpaminavdelning anstalld = new personalpaminavdelning (idb, aid); 
-        anstalld.setVisible (true);
-    }//GEN-LAST:event_personalPaAvdelningActionPerformed
-
+    private void bAnsAvdActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    // Skapa en ny instans av HandläggareSökning och visa den
+    HandlaggareSokning handlaggareSokning = new HandlaggareSokning(idb, aid);
+    handlaggareSokning.setVisible(true);
+    
+    }
     /**
      * @param args the command line arguments
      */
@@ -167,9 +172,9 @@ public class HandläggareMeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bAnsAvd;
     private javax.swing.JButton bAnsProjekt;
     private javax.swing.JButton bAvdProj;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton personalPaAvdelning;
     // End of variables declaration//GEN-END:variables
 }
