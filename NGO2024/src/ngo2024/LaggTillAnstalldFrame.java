@@ -35,7 +35,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblFyllIUppgifterForDenNyaAnstallda = new javax.swing.JLabel();
         lblFornamn = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblAdress = new javax.swing.JLabel();
@@ -57,7 +57,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Fyll i uppgifter för den nya anställda");
+        lblFyllIUppgifterForDenNyaAnstallda.setText("Fyll i uppgifter för den nya anställda");
 
         lblFornamn.setText("Förnamn");
 
@@ -99,7 +99,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblFyllIUppgifterForDenNyaAnstallda, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(136, 136, 136))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -140,7 +140,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
                         .addComponent(lblFornamn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(jLabel1)
+                        .addComponent(lblFyllIUppgifterForDenNyaAnstallda)
                         .addGap(30, 30, 30)
                         .addComponent(lblLosenord)))
                 .addGap(1, 1, 1)
@@ -207,6 +207,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
                 String insertAnstalld2 = "INSERT INTO ngo_2024.anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) VALUES (" + intIncrement + ", '" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + anstallningsdatum + "', '" + losenord + "', '" + avdelning + "')";
                 idb.insert(insertAnstalld2);
                 JOptionPane.showMessageDialog(null, "Ny användare är tillagd!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                clearInputFields();
             } else {
                 JOptionPane.showMessageDialog(null, "Du har inte fyllt i alla fällt, vänligen fyll i alla uppgifter", "Warning", JOptionPane.WARNING_MESSAGE);
             }
@@ -215,6 +216,18 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnLaggTillActionPerformed
+
+    private void clearInputFields() {
+        
+        fornamnText.setText("");
+        efternamnText.setText("");
+        adressText.setText("");
+        epostText.setText("");
+        telefonText.setText("");
+        anstallningsDatumText.setText("");
+        losenordText.setText("");
+        avdelningIdComboBox = null;
+    }
 
     private void btnGenereraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenereraLosenordActionPerformed
 
@@ -294,13 +307,13 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
     private javax.swing.JTextField efternamnText;
     private javax.swing.JTextField epostText;
     private javax.swing.JTextField fornamnText;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblAdress;
     private javax.swing.JLabel lblAnstallningsdatum;
     private javax.swing.JLabel lblAvdelning;
     private javax.swing.JLabel lblEpost;
     private javax.swing.JLabel lblFornamn;
+    private javax.swing.JLabel lblFyllIUppgifterForDenNyaAnstallda;
     private javax.swing.JLabel lblLosenord;
     private javax.swing.JLabel lblTelefonnummer;
     private javax.swing.JTextField losenordText;

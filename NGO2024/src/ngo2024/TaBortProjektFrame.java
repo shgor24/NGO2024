@@ -8,12 +8,12 @@ package ngo2024;
  *
  * @author sheny
  */
-public class LaggTillTaBortProjektFrame extends javax.swing.JFrame {
+public class TaBortProjektFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form LaggTillTaBortProjektFrame
+     * Creates new form TaBortProjektFrame
      */
-    public LaggTillTaBortProjektFrame() {
+    public TaBortProjektFrame() {
         initComponents();
     }
 
@@ -59,20 +59,20 @@ public class LaggTillTaBortProjektFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LaggTillTaBortProjektFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TaBortProjektFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LaggTillTaBortProjektFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TaBortProjektFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LaggTillTaBortProjektFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TaBortProjektFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LaggTillTaBortProjektFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TaBortProjektFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LaggTillTaBortProjektFrame().setVisible(true);
+                new TaBortProjektFrame().setVisible(true);
             }
         });
     }

@@ -65,7 +65,7 @@ public class AdministratorMeny extends javax.swing.JFrame {
             }
         });
 
-        cbValdProjekt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till/Ta bort projekt", "Ändra uppgifter om ett projekt", "Se uppgifter om projektansvarig" }));
+        cbValdProjekt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till projekt", "Ta bort projekt", "Ändra uppgifter om ett projekt", "Se uppgifter om projektansvarig" }));
         cbValdProjekt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbValdProjektActionPerformed(evt);
@@ -155,8 +155,10 @@ public class AdministratorMeny extends javax.swing.JFrame {
 
     private void cbValdProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValdProjektActionPerformed
         String detValdaAlternativet = (String) cbValdProjekt.getSelectedItem();
-        if (detValdaAlternativet.equals("Lägg till/Ta bort projekt" + "")) {
-            new LaggTillTaBortProjektFrame().setVisible(true);
+        if (detValdaAlternativet.equals("Lägg till projekt" + "")) {
+            new LaggTillProjektFrame(idb).setVisible(true);
+        } else if (detValdaAlternativet.equals("Ta bort projekt" +"")){
+            new TaBortProjektFrame().setVisible(true);
         } else if (detValdaAlternativet.equals("Ändra uppgifter om ett projekt" + "")) {
             new AndraUppgifterOmEttProjektFrame().setVisible(true);
         } else if (detValdaAlternativet.equals("Se uppgifter om projektansvarig" + "")) {
