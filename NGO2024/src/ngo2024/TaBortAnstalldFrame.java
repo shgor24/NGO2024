@@ -4,9 +4,17 @@
  */
 package ngo2024;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.table.DefaultTableModel;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -17,6 +25,8 @@ import oru.inf.InfException;
 public class TaBortAnstalldFrame extends javax.swing.JFrame {
 
     private InfDB idb;
+    private DefaultListModel<String> listModel;
+    int aid = -1;
 
     public TaBortAnstalldFrame(InfDB idb) {
         initComponents();
@@ -24,9 +34,24 @@ public class TaBortAnstalldFrame extends javax.swing.JFrame {
         try {
             String fetchUsersQuery = "SELECT * FROM ngo_2024.anstalld";
             ArrayList<HashMap<String, String>> resultSet = idb.fetchRows(fetchUsersQuery);
-            
-            
 
+            listModel = new DefaultListModel<>();
+            jList1.setModel(listModel);
+
+            for (HashMap<String, String> result : resultSet) {
+                // Loop over key-value pairs in each HashMap and print them
+                StringBuilder listItem = new StringBuilder();
+                for (Map.Entry<String, String> entry : result.entrySet()) {
+                    String key = entry.getKey();
+                    String value = entry.getValue();
+                    listItem.append(key).append(": ").append(value).append(", ");
+
+                    System.out.println("Key: " + key + ", Value: " + value);
+                }
+                listModel.addElement(listItem.toString());
+            }
+
+            getSelectedValueAndDelete();
 
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
@@ -49,7 +74,7 @@ public class TaBortAnstalldFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblAnstalldAttTaBort.setText("Välj anställd som du vill ta bort");
+        lblAnstalldAttTaBort.setText("Välj anställd som ska bli borttagen");
 
         btnTaBortAnstalld.setText("Ta bort anställd");
         btnTaBortAnstalld.addActionListener(new java.awt.event.ActionListener() {
@@ -58,29 +83,19 @@ public class TaBortAnstalldFrame extends javax.swing.JFrame {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(btnTaBortAnstalld)
-                .addGap(455, 455, 455))
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblAnstalldAttTaBort, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblAnstalldAttTaBort)
+                    .addComponent(btnTaBortAnstalld)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,13 +106,51 @@ public class TaBortAnstalldFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55)
                 .addComponent(btnTaBortAnstalld, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //TEST
+    private void getSelectedValueAndDelete() {
+        jList1.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+
+                    Object selectedValue = jList1.getSelectedValue();
+
+                    if (selectedValue != null) {
+                        String[] parts = selectedValue.toString().split(", ");
+                        // int aid = -1; // Initialize aid to a default value
+                        for (String part : parts) {
+                            String[] keyValue = part.split(": ");
+                            if (keyValue[0].trim().equals("aid")) {
+                                aid = Integer.parseInt(keyValue[1]);
+                                break; // Exit loop once aid is found
+                            }
+                        }
+                    }
+                    String sqlFraga = "DELETE FROM NGO_2024.Anstalld WHERE aid = '" + aid + "'";
+                    
+                    btnTaBortAnstalld.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            try {
+                                idb.delete(sqlFraga);
+                                JOptionPane.showMessageDialog(null, "Användare har blivit borttagen!", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+                                DefaultListModel<String> model = (DefaultListModel<String>) jList1.getModel();
+                                model.removeElement(selectedValue);
+                                jList1.repaint();
+                            } catch (InfException ex) {
+                                Logger.getLogger(TaBortAnstalldFrame.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+
     private void btnTaBortAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaBortAnstalldActionPerformed
 
     }//GEN-LAST:event_btnTaBortAnstalldActionPerformed
