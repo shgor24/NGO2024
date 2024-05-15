@@ -25,10 +25,35 @@ public class HandläggareMeny extends javax.swing.JFrame {
         initComponents();
         
         
+           bAnsUpp.setText("Mina uppgifter");
+        bAnsUpp.addActionListener(new java.awt.event.ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        bAnsUppActionPerformed(evt);
+    }
+});
+
+        
+    
+        
+        
+     
+        
            bAnsAvd.addActionListener(new java.awt.event.ActionListener() {
     public void actionPerformed(java.awt.event.ActionEvent evt) {
         bAnsAvdActionPerformed(evt);
+    
+        
+        
+        
+   
+    
+             
     }
+           
+
+           
+        
+     
 });
     
     }
@@ -47,6 +72,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
         bAnsProjekt = new javax.swing.JButton();
         bAvdProj = new javax.swing.JButton();
         bAnsAvd = new javax.swing.JButton();
+        bAnsUpp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,6 +99,8 @@ public class HandläggareMeny extends javax.swing.JFrame {
 
         bAnsAvd.setText("Handläggare på min avdelning");
 
+        bAnsUpp.setText("Mina uppgifter");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -84,8 +112,10 @@ public class HandläggareMeny extends javax.swing.JFrame {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(bAnsProjekt)
-                        .addGap(89, 89, 89)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bAnsProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bAnsUpp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(99, 99, 99)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(bAnsAvd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(bAvdProj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -101,7 +131,9 @@ public class HandläggareMeny extends javax.swing.JFrame {
                     .addComponent(bAnsProjekt)
                     .addComponent(bAvdProj))
                 .addGap(35, 35, 35)
-                .addComponent(bAnsAvd)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bAnsAvd)
+                    .addComponent(bAnsUpp))
                 .addContainerGap(123, Short.MAX_VALUE))
         );
 
@@ -132,10 +164,22 @@ public class HandläggareMeny extends javax.swing.JFrame {
 
     private void bAnsAvdActionPerformed(java.awt.event.ActionEvent evt) {                                         
     // Skapa en ny instans av HandläggareSökning och visa den
-    HandlaggareSokning handlaggareSokning = new HandlaggareSokning(idb, aid);
-    handlaggareSokning.setVisible(true);
+    HandlaggareSokning  handlaggaresokning = new HandlaggareSokning(idb, aid);
+    handlaggaresokning.setVisible(true);
     
     }
+    
+    private void bAnsUppActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    // Create an instance of AndraMinaUppgifter and display it
+    AndraMinaUppgifter andraMinaUppgifter = new AndraMinaUppgifter(aid, idb); // Pass the 'aid' and 'idb' values
+    andraMinaUppgifter.setVisible(true);
+}
+    
+    
+
+    
+    
+   
     /**
      * @param args the command line arguments
      */
@@ -174,6 +218,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAnsAvd;
     private javax.swing.JButton bAnsProjekt;
+    private javax.swing.JButton bAnsUpp;
     private javax.swing.JButton bAvdProj;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

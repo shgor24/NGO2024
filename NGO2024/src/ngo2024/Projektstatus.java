@@ -51,8 +51,8 @@ public class Projektstatus extends javax.swing.JFrame {
     });
         cbstatus.setSelectedItem("Alla");
         btnVisastatus = new javax.swing.JButton();
-    btnVisastatus.setText("Visa projekt");
-    btnVisastatus.addActionListener(new java.awt.event.ActionListener() {
+        btnVisastatus.setText("Visa projekt");
+        btnVisastatus.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnVisastatusActionPerformed(evt);
             
