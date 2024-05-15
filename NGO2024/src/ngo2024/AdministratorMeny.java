@@ -12,12 +12,14 @@ import oru.inf.InfDB;
  * @author sheny
  */
 public class AdministratorMeny extends javax.swing.JFrame {
-private InfDB idb;
+
+    private InfDB idb;
+
     /**
      * Creates new form AdministratorMeny
      */
     public AdministratorMeny(InfDB idb) {
-        this.idb= idb;
+        this.idb = idb;
         initComponents();
     }
 
@@ -56,14 +58,14 @@ private InfDB idb;
 
         jLabel5.setText("Land");
 
-        cbValdAnstalld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till/Ta bort anställd", "Generera lösenord för ny anställd" }));
+        cbValdAnstalld.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till anställd/Generera lösenord för ny anställd", "Ta bort anställd", " " }));
         cbValdAnstalld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbValdAnstalldActionPerformed(evt);
             }
         });
 
-        cbValdProjekt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till/Ta bort projekt", "Ändra uppgifter om ett projekt", "Se uppgifter om projektansvarig" }));
+        cbValdProjekt.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till projekt", "Ta bort projekt", "Ändra uppgifter om ett projekt", "Se uppgifter om projektansvarig" }));
         cbValdProjekt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbValdProjektActionPerformed(evt);
@@ -136,29 +138,33 @@ private InfDB idb;
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbValdAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValdAnstalldActionPerformed
-              
-          String detValdaAlternativet = (String) cbValdAnstalld.getSelectedItem();
-       if(detValdaAlternativet.equals("Lägg till/Ta bort anställd" + "")){
-        new LaggTillTaBortAnstalldFrame().setVisible(true);
-    }
-        else if (detValdaAlternativet.equals("Generera lösenord för ny anställd"+ "")) {
-                    new GenereraLosenordFrame().setVisible(true);
-    }                                             
 
+        String detValdaAlternativet = (String)cbValdAnstalld.getSelectedItem();
+        
+        if (detValdaAlternativet.equals("Lägg till anställd/Generera lösenord för ny anställd" + "")) {
+            new LaggTillAnstalldFrame(idb).setVisible(true);
+        }
+
+        if (detValdaAlternativet.equals("Ta bort anställd" + "")) {
+            new TaBortAnstalldFrame(idb).setVisible(true);
+
+        }
+        
+        
     }//GEN-LAST:event_cbValdAnstalldActionPerformed
 
     private void cbValdProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValdProjektActionPerformed
-          String detValdaAlternativet= (String)cbValdProjekt.getSelectedItem();
-       if(detValdaAlternativet.equals("Lägg till/Ta bort projekt"+ "")){
-           new LaggTillTaBortProjektFrame().setVisible(true);
-       }
-       else if(detValdaAlternativet.equals("Ändra uppgifter om ett projekt"+"")){
-           new AndraUppgifterOmEttProjektFrame().setVisible(true);
-       }
-       else if (detValdaAlternativet.equals("Se uppgifter om projektansvarig"+"")){
-           new SeUppgifterOmEttProjektFrame().setVisible(true);
-       }
-       
+        String detValdaAlternativet = (String) cbValdProjekt.getSelectedItem();
+        if (detValdaAlternativet.equals("Lägg till projekt" + "")) {
+            new LaggTillProjektFrame(idb).setVisible(true);
+        } else if (detValdaAlternativet.equals("Ta bort projekt" +"")){
+            new TaBortProjektFrame().setVisible(true);
+        } else if (detValdaAlternativet.equals("Ändra uppgifter om ett projekt" + "")) {
+            new AndraUppgifterOmEttProjektFrame().setVisible(true);
+        } else if (detValdaAlternativet.equals("Se uppgifter om projektansvarig" + "")) {
+            new SeUppgifterOmEttProjektFrame().setVisible(true);
+        }
+
     }//GEN-LAST:event_cbValdProjektActionPerformed
 
     /**
@@ -191,7 +197,7 @@ private InfDB idb;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-              // new AdministratorMeny().setVisible(true);
+                //new AdministratorMeny().setVisible(true);
             }
         });
     }

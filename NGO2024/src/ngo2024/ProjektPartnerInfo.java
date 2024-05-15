@@ -9,7 +9,7 @@ import oru.inf.InfException;
 
 /**
  *
- * @author mikni
+ * @author mikaela nilsson
  */
 public class ProjektPartnerInfo extends javax.swing.JFrame {
 

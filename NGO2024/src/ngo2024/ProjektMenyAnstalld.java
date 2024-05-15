@@ -15,13 +15,13 @@ import javax.swing.event.ListSelectionListener;
 
 /**
  *
- * @author mikni
+ * @author mikaela nilsson
  */
 public class ProjektMenyAnstalld extends javax.swing.JFrame {
     
     private InfDB idb;
     private String aid;
-    private ArrayList<String> projektLista;
+    
 
     /** Creates new form ProjektMenyAnstalld */
     public ProjektMenyAnstalld(InfDB idb, String aid) {
@@ -38,7 +38,7 @@ public class ProjektMenyAnstalld extends javax.swing.JFrame {
     public void hamtaAllaProjekt() {
         try {
             //Hämtar pid och namn på projekt som en viss anställd tillhör
-            String sqlFraga = "select projekt.pid, projekt.projektnamn from projekt join ans_proj on projekt.pid = ans_proj.pid where ans_proj.aid =" + aid;
+            String sqlFraga = "select pid, projektnamn from projekt where projekt.projektchef = " + aid + " or exists (select 1 FROM ans_proj where ans_proj.pid = projekt.pid and ans_proj.aid = " + aid + ")";
 
             //Skapar en ArrayList av HashMap av Strings med alla hämtade pid och namn
             ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
@@ -124,6 +124,7 @@ public class ProjektMenyAnstalld extends javax.swing.JFrame {
         listaProjekt.setSelectionBackground(new java.awt.Color(153, 204, 255));
         jScrollPane1.setViewportView(listaProjekt);
 
+        lblProjekt.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         lblProjekt.setText("Mina Projekt:");
 
         lblInfo.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
@@ -150,7 +151,7 @@ public class ProjektMenyAnstalld extends javax.swing.JFrame {
                 .addComponent(lblInfo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
