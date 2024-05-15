@@ -36,6 +36,7 @@ public class ProjektledareMeny extends javax.swing.JFrame {
 
         jTextField1 = new javax.swing.JTextField();
         bAnsProjekt = new javax.swing.JButton();
+        jButton1SeAnstallda = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,19 +49,27 @@ public class ProjektledareMeny extends javax.swing.JFrame {
             }
         });
 
+        jButton1SeAnstallda.setLabel("Anställda på min avdelning");
+        jButton1SeAnstallda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1SeAnstalldaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(bAnsProjekt)))
+                .addGap(113, 113, 113)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(116, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(bAnsProjekt)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1SeAnstallda, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,7 +77,9 @@ public class ProjektledareMeny extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(bAnsProjekt)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bAnsProjekt)
+                    .addComponent(jButton1SeAnstallda))
                 .addContainerGap(189, Short.MAX_VALUE))
         );
 
@@ -80,6 +91,12 @@ public class ProjektledareMeny extends javax.swing.JFrame {
         projektMeny.hamtaAllaProjekt();
         projektMeny.setVisible(true);
     }//GEN-LAST:event_bAnsProjektActionPerformed
+
+    private void jButton1SeAnstalldaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1SeAnstalldaActionPerformed
+    PersonalPa anstalld = new PersonalPa (idb, aid); 
+    anstalld.setVisible (true);
+            // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1SeAnstalldaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,9 +132,14 @@ public class ProjektledareMeny extends javax.swing.JFrame {
             }
         });
     }
+    private void personalPaAvdelningActionPerformed(java.awt.event.ActionEvent evt) {                                                    
+        PersonalPa anstalld = new PersonalPa (idb, aid); 
+        anstalld.setVisible (true);
+    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAnsProjekt;
+    private javax.swing.JButton jButton1SeAnstallda;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

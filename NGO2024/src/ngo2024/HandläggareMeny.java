@@ -127,7 +127,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_bAvdProjActionPerformed
 
     private void personalPaAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personalPaAvdelningActionPerformed
-        personalpaminavdelning anstalld = new personalpaminavdelning (idb, aid); 
+        PersonalPa anstalld = new PersonalPa (idb, aid); 
         anstalld.setVisible (true);
     }//GEN-LAST:event_personalPaAvdelningActionPerformed
 

@@ -36,9 +36,9 @@ public class Inloggning extends javax.swing.JFrame {
         lblEPost = new javax.swing.JLabel();
         lblLosenord = new javax.swing.JLabel();
         tfEPost = new javax.swing.JTextField();
-        tfLosenord = new javax.swing.JTextField();
         lblFelmeddelande = new javax.swing.JLabel();
         btnLoggaIn = new javax.swing.JButton();
+        tfLosenord = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,7 +79,7 @@ public class Inloggning extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tfEPost, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                             .addComponent(tfLosenord))))
-                .addGap(126, 126, 126))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,6 +194,6 @@ public class Inloggning extends javax.swing.JFrame {
     private javax.swing.JLabel lblFelmeddelande;
     private javax.swing.JLabel lblLosenord;
     private javax.swing.JTextField tfEPost;
-    private javax.swing.JTextField tfLosenord;
+    private javax.swing.JPasswordField tfLosenord;
     // End of variables declaration//GEN-END:variables
 }
