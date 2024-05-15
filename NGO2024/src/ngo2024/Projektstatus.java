@@ -17,6 +17,7 @@ public class Projektstatus extends javax.swing.JFrame {
     
     private InfDB idb;
     private String aid;
+    
     private javax.swing.JList<String> projekt;
     private String selectedStatus;
     
@@ -35,7 +36,8 @@ public class Projektstatus extends javax.swing.JFrame {
         
    
 
-        cbstatus = new javax.swing.JComboBox<>();
+        
+        
  
         cbstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Alla", "Pågående", "Avslutad", "Planerat"}));
         cbstatus.addActionListener(new java.awt.event.ActionListener(){
@@ -166,25 +168,23 @@ public class Projektstatus extends javax.swing.JFrame {
 // Hämta den valda statusen från ComboBoxen
     selectedStatus = getSelectedStatus();
        System.out.println("Selected status: " + selectedStatus);
-    String selectedStatus = (String) cbstatus.getSelectedItem();
-    System.out.println("Selected status: " + selectedStatus);
+    
      if (selectedStatus.equals("Alla")) {
         hamtaAllaProjekt();
-    } else 
+    
         // Kolla vilken status som är vald och uppdatera listan över projekt
-        switch (selectedStatus) {
-            case "Pågående":
+       
+    } else if(selectedStatus.equals("Pagaende")){
                 hamtaPagaendeProjekt();
-                break;
-            case "Avslutad":
+                
+    } else if(selectedStatus.equals("Avslutad")){
                 hamtaAvslutadeProjekt();
-                break;
-            case "Planerat":
+                
+    } else if(selectedStatus.equals("Planerat")){
                 hamtaPlaneratProjekt();
-                break;
-            default:
-                break;
-        }
+                
+              
+    }
 }
     
     private String getSelectedStatus() {
@@ -192,7 +192,7 @@ public class Projektstatus extends javax.swing.JFrame {
     }
 
 public void hamtaPagaendeProjekt() {
-    try { 
+    try { String selectedStatus = (String) cbstatus.getSelectedItem();
         // SQL-fråga för att hämta pågående projekt
         String sqlFraga = "SELECT projektnamn FROM projekt WHERE status = 'Pågående' AND pid IN (SELECT pid FROM ans_proj WHERE aid IN (SELECT aid FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ")))";
         ArrayList<String> projektnamn = idb.fetchColumn(sqlFraga);
@@ -211,7 +211,7 @@ public void hamtaPagaendeProjekt() {
 }
 
 public void hamtaAvslutadeProjekt() {
-    try {
+    try {String selectedStatus = (String) cbstatus.getSelectedItem();
         // SQL-fråga för att hämta avslutade projekt
         String sqlFraga = "SELECT projektnamn FROM projekt WHERE status = 'Avslutad' AND pid IN (SELECT pid FROM ans_proj WHERE aid IN (SELECT aid FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ")))";;
         ArrayList<String> projektnamn = idb.fetchColumn(sqlFraga);
@@ -231,7 +231,7 @@ public void hamtaAvslutadeProjekt() {
 }
  
 public void hamtaPlaneratProjekt() {
-    try {
+    try {String selectedStatus = (String) cbstatus.getSelectedItem();
         // SQL-fråga för att hämta pågående projekt
         String sqlFraga = "SELECT projektnamn FROM projekt WHERE status = 'Planerat' AND pid IN (SELECT pid FROM ans_proj WHERE aid IN (SELECT aid FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ")))";;
         ArrayList<String> projektnamn = idb.fetchColumn(sqlFraga);
@@ -258,21 +258,21 @@ public void hamtaPlaneratProjekt() {
         
          if (selectedStatus.equals("Alla")) {
         hamtaAllaProjekt();
+    } else if (selectedStatus.equals("Pågående")) {
+        hamtaPagaendeProjekt();
+        
+        
+    } else if (selectedStatus.equals("Avslutad")) {
+        hamtaAvslutadeProjekt();
+        
+    } else if (selectedStatus.equals("Planerat")) {
+        hamtaPlaneratProjekt();
     } else 
-        switch (selectedStatus) {
-            case "Alla":
-                hamtaAllaProjekt();
-                break;
-            case "Pågående":
-                hamtaPagaendeProjekt();
-                break;
-            case "Avslutad":
-                hamtaAvslutadeProjekt();
-                break;
-            case "Planerat":
-                hamtaPlaneratProjekt();
-                break;
-        }
+            hamtaAllaProjekt();
+
+        
+       
+        
     }//GEN-LAST:event_btnVisastatusActionPerformed
 
     /**

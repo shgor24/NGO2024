@@ -6,7 +6,6 @@ package ngo2024;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -18,7 +17,9 @@ public class HandlaggareSokning extends javax.swing.JFrame {
     
     private InfDB idb;
     private String aid;
-    private javax.swing.JList<String> ltHandlaggare;
+    private DefaultListModel<String> lista;
+    
+    
 
     /**
      * Creates new form HandläggareSökning
@@ -26,14 +27,17 @@ public class HandlaggareSokning extends javax.swing.JFrame {
     public HandlaggareSokning (InfDB idb, String aid) {
         
         this.idb = idb;
-        this.aid = "1";
+        this.aid = "3";
         
-        ltHandlaggare = new javax.swing.JList<>();
+        
         
         
         initComponents();
         
-        btnsok.addActionListener(new java.awt.event.ActionListener() {
+       
+        
+        
+        btnsokhandlaggare.addActionListener(new java.awt.event.ActionListener() {
     public void actionPerformed(java.awt.event.ActionEvent evt) {
         String searchQuery = tfsokhandlaggare.getText(); // Hämta sökfrågan från textfältet
         hamtaSpecifikHandlaggare(searchQuery); // Anropa metoden för att hämta handläggarna
@@ -52,16 +56,17 @@ public class HandlaggareSokning extends javax.swing.JFrame {
     
     public void hamtaSpecifikHandlaggare(String searchQuery) {
     try {
-        String sqlFraga = "SELECT fornamn, efternamn, epost FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = ' + aid + ') AND (fornamn LIKE '%" + searchQuery + "%' OR epost LIKE '%" + searchQuery + "%')";
+        String sqlFraga = "SELECT fornamn, efternamn, epost FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ") AND (fornamn LIKE '%" + searchQuery + "%' OR epost LIKE '%" + searchQuery + "%')";
         
         ArrayList<String> handlaggareInfo = idb.fetchColumn(sqlFraga);
         DefaultListModel<String> lista = new DefaultListModel<>();
+        
         
         for (String info : handlaggareInfo) {
             lista.addElement(info);
         }
         
-        ltHandlaggare.setModel(lista);
+          jList1.setModel(lista); 
     } catch (InfException ex) {
         System.out.println(ex.getMessage());
     }
@@ -69,18 +74,21 @@ public class HandlaggareSokning extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnsok = new javax.swing.JButton();
+        btnsokhandlaggare = new javax.swing.JButton();
         tfsokhandlaggare = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        btnsok.setText("Sök");
+        btnsokhandlaggare.setText("Sök");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,10 +97,10 @@ public class HandlaggareSokning extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addComponent(tfsokhandlaggare, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(btnsok)
+                .addComponent(btnsokhandlaggare)
                 .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
@@ -100,11 +108,11 @@ public class HandlaggareSokning extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnsok)
+                    .addComponent(btnsokhandlaggare)
                     .addComponent(tfsokhandlaggare, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,9 +155,9 @@ public class HandlaggareSokning extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnsok;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton btnsokhandlaggare;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField tfsokhandlaggare;
     // End of variables declaration//GEN-END:variables
 }
