@@ -202,6 +202,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
 
             // Validerar att alla inputfields har ett värde och är rätt datumformat
             isValidDate(anstallningsdatum);
+            if(isValidDate(anstallningsdatum)){
             if (!fornamn.equals("") && !efternamn.equals("") && !adress.equals("") && !epost.equals("") && !telefon.equals("") && !anstallningsdatum.equals("") && !losenord.equals("") && !avdelning.equals("")) {
                 // Skjuter anropet mot DB och skapar användaren, informerar användaren.
                 String insertAnstalld2 = "INSERT INTO ngo_2024.anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) VALUES (" + intIncrement + ", '" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + anstallningsdatum + "', '" + losenord + "', '" + avdelning + "')";
@@ -210,6 +211,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
                 clearInputFields();
             } else {
                 JOptionPane.showMessageDialog(null, "Du har inte fyllt i alla fällt, vänligen fyll i alla uppgifter", "Warning", JOptionPane.WARNING_MESSAGE);
+            }
             }
 
         } catch (InfException ex) {
