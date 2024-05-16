@@ -194,7 +194,7 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
             String beskrivning = beskrivningText.getText();
             String startdatum = startdatumText.getText();
             String slutdatum = slutdatumText.getText();
-            String kostnader = kostnaderText.getText();
+            String kostnad = kostnaderText.getText();
             Object status = statusComboBox.getSelectedItem();
             Object prioritet = prioritetComboBox.getSelectedItem();
             String projektchef = projektchefText.getText();
@@ -209,11 +209,10 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
             // Validerar att alla inputfields har ett värde och är rätt datumformat
             isValidDate(startdatum);
             isValidDate(slutdatum);
-            if (!projektnamn.equals("") && !beskrivning.equals("") && !startdatum.equals("") && !slutdatum.equals("") && !kostnader.equals("") && !status.equals("") && !prioritet.equals("") && !projektchef.equals("") && !land.equals("")) {
-                //Skjuter anropet mot DB och skapar användaren, informerar användaren.
-                String insertProjekt2 = "INSERT INTO ngo_2024.projekt (projektnamn, beskrivning, startdatum, slutdatum, kostnader, projektchef, land) VALUES (" + intIncrement + ", '" + projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnader + "', '" + status + "', '" + prioritet + "', '" + projektchef + "', '" + land + "')";
-                idb.insert(insertProjekt2);
-                JOptionPane.showMessageDialog(null, "Ny projekt är tillagd!", "Information", JOptionPane.INFORMATION_MESSAGE);
+            if (!projektnamn.equals("") && !beskrivning.equals("") && !startdatum.equals("") && !slutdatum.equals("") && !kostnad.equals("") && !status.equals("") && !prioritet.equals("") && !projektchef.equals("") && !land.equals("")) {
+                String sqlFraga = "INSERT INTO ngo_2024.projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + intIncrement + ", '" + projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" + projektchef + "', '" + land + "')";
+                idb.insert(sqlFraga);
+                JOptionPane.showMessageDialog(null, "Nytt projekt är tillagd!", "Information", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "Du har inte fyllt i alla fällt, vänligen fyll i alla uppgifter", "Warning", JOptionPane.WARNING_MESSAGE);
 
