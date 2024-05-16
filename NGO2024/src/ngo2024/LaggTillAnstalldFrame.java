@@ -6,6 +6,8 @@ package ngo2024;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -24,6 +26,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
     public LaggTillAnstalldFrame(InfDB idb) {
         this.idb = idb;
         initComponents();
+        fyllPaComboBox();
     }
 
     /**
@@ -90,8 +93,6 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
                 btnGenereraLosenordActionPerformed(evt);
             }
         });
-
-        avdelningIdComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,9 +200,12 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
             String currentAidNumber = idb.fetchSingle(latestAid);
             int intIncrement = Integer.parseInt(currentAidNumber);
             intIncrement++;
-
+            
+                    
+           
             // Validerar att alla inputfields har ett värde och är rätt datumformat
             isValidDate(anstallningsdatum);
+            if(isValidDate(anstallningsdatum)){
             if (!fornamn.equals("") && !efternamn.equals("") && !adress.equals("") && !epost.equals("") && !telefon.equals("") && !anstallningsdatum.equals("") && !losenord.equals("") && !avdelning.equals("")) {
                 // Skjuter anropet mot DB och skapar användaren, informerar användaren.
                 String insertAnstalld2 = "INSERT INTO ngo_2024.anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) VALUES (" + intIncrement + ", '" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + anstallningsdatum + "', '" + losenord + "', '" + avdelning + "')";
@@ -211,12 +215,27 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Du har inte fyllt i alla fällt, vänligen fyll i alla uppgifter", "Warning", JOptionPane.WARNING_MESSAGE);
             }
+            }
 
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
+    
+    private void fyllPaComboBox() {
+        
+        try {
+            //Hämtar namn från avdelning
+            String avdelningsNamn= "SELECT namn FROM ngo_2024.avdelning";
+            ArrayList<String> avdelningsnamn= idb.fetchColumn(avdelningsNamn);
+            for(String detValdaAlternativet:avdelningsnamn){
+                avdelningIdComboBox.addItem(detValdaAlternativet);
+            }
+        } catch (InfException ex) {
+            Logger.getLogger(LaggTillAnstalldFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void clearInputFields() {
         
         fornamnText.setText("");
@@ -265,38 +284,38 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LaggTillAnstalldFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LaggTillAnstalldFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LaggTillAnstalldFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LaggTillAnstalldFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                // new LaggTillAnstalldFrame().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(LaggTillAnstalldFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(LaggTillAnstalldFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(LaggTillAnstalldFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(LaggTillAnstalldFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                // new LaggTillAnstalldFrame().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField adressText;
