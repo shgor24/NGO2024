@@ -31,14 +31,19 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="bAnsProjekt" max="32767" attributes="0"/>
-                          <Component id="bAnsUpp" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="bAnsAvd" max="32767" attributes="0"/>
-                          <Component id="bAvdProj" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="bSeAllaProjektAvdelning" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="bAnsProjekt" max="32767" attributes="0"/>
+                                  <Component id="bAnsUpp" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="bAnsAvd" max="32767" attributes="0"/>
+                                  <Component id="bAvdProj" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -61,7 +66,9 @@
                   <Component id="bAnsAvd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="bAnsUpp" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="123" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Component id="bSeAllaProjektAvdelning" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="62" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,11 +102,22 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Handl&#xe4;ggare p&#xe5; min avdelning"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAnsAvdActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bAnsUpp">
       <Properties>
         <Property name="text" type="java.lang.String" value="Mina uppgifter"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="bSeAllaProjektAvdelning">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Se alla projekt p&#xe5; min avdelning"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSeAllaProjektAvdelningActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
