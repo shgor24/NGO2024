@@ -41,6 +41,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
         bAnsUpp = new javax.swing.JButton();
         bSeAllaProjektAvdelning = new javax.swing.JButton();
         bSokEfterProjekt = new javax.swing.JButton();
+        jButton1ListaOverHalMal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,6 +89,13 @@ public class HandläggareMeny extends javax.swing.JFrame {
             }
         });
 
+        jButton1ListaOverHalMal.setText("Lista Över Hållbarhetsmål");
+        jButton1ListaOverHalMal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ListaOverHalMalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,8 +107,11 @@ public class HandläggareMeny extends javax.swing.JFrame {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bSeAllaProjektAvdelning)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bSeAllaProjektAvdelning)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1ListaOverHalMal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(bAnsProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -126,7 +137,9 @@ public class HandläggareMeny extends javax.swing.JFrame {
                     .addComponent(bAnsAvd)
                     .addComponent(bAnsUpp))
                 .addGap(34, 34, 34)
-                .addComponent(bSeAllaProjektAvdelning)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bSeAllaProjektAvdelning)
+                    .addComponent(jButton1ListaOverHalMal))
                 .addGap(18, 18, 18)
                 .addComponent(bSokEfterProjekt)
                 .addContainerGap(17, Short.MAX_VALUE))
@@ -172,6 +185,11 @@ public class HandläggareMeny extends javax.swing.JFrame {
         projektDatumSok.setVisible(true);
     }//GEN-LAST:event_bSokEfterProjektActionPerformed
 
+    private void jButton1ListaOverHalMalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ListaOverHalMalActionPerformed
+        ListaoverHallbarhetsmal listaoverHallbarhetsmal = new ListaoverHallbarhetsmal(idb);
+        listaoverHallbarhetsmal.setVisible(true);                                            
+    }//GEN-LAST:event_jButton1ListaOverHalMalActionPerformed
+// DefaultListModel<String> lista = new DefaultListModel<>();
     /**
      * @param args the command line arguments
      */
@@ -214,6 +232,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
     private javax.swing.JButton bAvdProj;
     private javax.swing.JButton bSeAllaProjektAvdelning;
     private javax.swing.JButton bSokEfterProjekt;
+    private javax.swing.JButton jButton1ListaOverHalMal;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

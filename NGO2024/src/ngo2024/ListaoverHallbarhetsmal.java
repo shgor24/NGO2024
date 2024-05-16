@@ -4,19 +4,45 @@
  */
 package ngo2024;
 
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import oru.inf.InfDB;
+import oru.inf.InfException;
+
 /**
  *
  * @author mursalmohammad
  */
 public class ListaoverHallbarhetsmal extends javax.swing.JFrame {
-
+    private InfDB idb;
     /**
      * Creates new form ListaoverHallbarhetsmal
      */
-    public ListaoverHallbarhetsmal() {
+    public ListaoverHallbarhetsmal(InfDB idb) {
+        this.idb = idb; 
         initComponents();
+        hamtalistan();
     }
+    public void hamtalistan(){
+    
+    String sqlFraga1 = "select namn from hallbarhetsmal";
+            
+        try {  DefaultListModel<String> lista = new DefaultListModel<>();
+        jList1Listan.setModel(lista);
+            ArrayList<String> hallbarhetsmal = idb.fetchColumn(sqlFraga1);
+            for (String namn: hallbarhetsmal) {
+                lista.addElement(namn);
+            }
 
+            //Sätter listan ovan till modellen för listaProjekt, vilket ändrar dess innehåll
+            
+        } catch (InfException ex) {
+            Logger.getLogger(ListaoverHallbarhetsmal.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());}
+}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,18 +54,13 @@ public class ListaoverHallbarhetsmal extends javax.swing.JFrame {
 
         lblrubrik = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1Listan = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblrubrik.setText("Lista Over Hallbarhetsmal");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "1.Inga fattiga", "2.Noll hunger", "3.God hälsa och välbefinnande", "4.Hållbart jordbruk", "5.Jämställdhet", "6.Rent vatten och sanitet", "7.Förnybar energi", "8.Anständiga arbetsvillkor", "9.Innovation och infrastruktur", "10.Minskad ojämlikhet", "11.Hållbara städer och samhällen", "12.Hållbara konsumtions- och produktionsmönster", "13.Bekämpa klimatförändringarna", "14.Hav och marina resurser", "15.Livet på land", "16.Fredliga och inkluderande samhällen", "17.Samverkan och genomförande", " " };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jList1Listan);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,40 +92,8 @@ public class ListaoverHallbarhetsmal extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListaoverHallbarhetsmal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListaoverHallbarhetsmal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListaoverHallbarhetsmal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaoverHallbarhetsmal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ListaoverHallbarhetsmal().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList1Listan;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblrubrik;
     // End of variables declaration//GEN-END:variables
