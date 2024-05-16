@@ -23,16 +23,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
         this.aid = aid;
         this.idb = idb;
         initComponents();
-        
-        
-           bAnsAvd.addActionListener(new java.awt.event.ActionListener() {
-    public void actionPerformed(java.awt.event.ActionEvent evt) {
-        bAnsAvdActionPerformed(evt);
     }
-});
-    
-    }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +38,9 @@ public class HandläggareMeny extends javax.swing.JFrame {
         bAnsProjekt = new javax.swing.JButton();
         bAvdProj = new javax.swing.JButton();
         bAnsAvd = new javax.swing.JButton();
+        bAnsUpp = new javax.swing.JButton();
+        bSeAllaProjektAvdelning = new javax.swing.JButton();
+        bSokEfterProjekt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +66,27 @@ public class HandläggareMeny extends javax.swing.JFrame {
         });
 
         bAnsAvd.setText("Handläggare på min avdelning");
+        bAnsAvd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAnsAvdActionPerformed(evt);
+            }
+        });
+
+        bAnsUpp.setText("Mina uppgifter");
+
+        bSeAllaProjektAvdelning.setText("Se alla projekt på min avdelning");
+        bSeAllaProjektAvdelning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSeAllaProjektAvdelningActionPerformed(evt);
+            }
+        });
+
+        bSokEfterProjekt.setText("Sök efter projekt på datum");
+        bSokEfterProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSokEfterProjektActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,11 +99,17 @@ public class HandläggareMeny extends javax.swing.JFrame {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(bAnsProjekt)
-                        .addGap(89, 89, 89)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(bAnsAvd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(bAvdProj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bSeAllaProjektAvdelning)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(bAnsProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(bAnsUpp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(99, 99, 99)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(bAnsAvd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(bAvdProj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(bSokEfterProjekt))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -101,17 +122,21 @@ public class HandläggareMeny extends javax.swing.JFrame {
                     .addComponent(bAnsProjekt)
                     .addComponent(bAvdProj))
                 .addGap(35, 35, 35)
-                .addComponent(bAnsAvd)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bAnsAvd)
+                    .addComponent(bAnsUpp))
+                .addGap(34, 34, 34)
+                .addComponent(bSeAllaProjektAvdelning)
+                .addGap(18, 18, 18)
+                .addComponent(bSokEfterProjekt)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-          
-       
-      
+        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void bAnsProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAnsProjektActionPerformed
@@ -124,18 +149,29 @@ public class HandläggareMeny extends javax.swing.JFrame {
        Projektstatus projektstatus = new Projektstatus (idb,aid);
        projektstatus.hamtaAllaProjekt();
        projektstatus.setVisible(true);
-       
-    
         
 // TODO add your handling code here:
     }//GEN-LAST:event_bAvdProjActionPerformed
 
-    private void bAnsAvdActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    // Skapa en ny instans av HandläggareSökning och visa den
-    HandlaggareSokning handlaggareSokning = new HandlaggareSokning(idb, aid);
-    handlaggareSokning.setVisible(true);
-    
-    }
+    private void personalPaAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personalPaAvdelningActionPerformed
+        
+    }//GEN-LAST:event_personalPaAvdelningActionPerformed
+
+    private void bAnsAvdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAnsAvdActionPerformed
+        PersonalPa anstalld = new PersonalPa (idb, aid); 
+        anstalld.setVisible (true);
+    }//GEN-LAST:event_bAnsAvdActionPerformed
+
+    private void bSeAllaProjektAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSeAllaProjektAvdelningActionPerformed
+        ProjektMenyAvdelning projektMenyAvdelning = new ProjektMenyAvdelning(idb, aid);
+        projektMenyAvdelning.setVisible(true);
+    }//GEN-LAST:event_bSeAllaProjektAvdelningActionPerformed
+
+    private void bSokEfterProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSokEfterProjektActionPerformed
+        DatumProjektSok projektDatumSok = new DatumProjektSok(idb, aid);
+        projektDatumSok.setVisible(true);
+    }//GEN-LAST:event_bSokEfterProjektActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -174,7 +210,10 @@ public class HandläggareMeny extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAnsAvd;
     private javax.swing.JButton bAnsProjekt;
+    private javax.swing.JButton bAnsUpp;
     private javax.swing.JButton bAvdProj;
+    private javax.swing.JButton bSeAllaProjektAvdelning;
+    private javax.swing.JButton bSokEfterProjekt;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

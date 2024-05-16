@@ -15,7 +15,7 @@ import oru.inf.InfException;
 
 /**
  *
- * @author mikni
+ * @author mikaela nilsson
  */
 public class ProjektInfo extends javax.swing.JFrame {
     
@@ -185,7 +185,7 @@ public class ProjektInfo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jSeparator7.setForeground(new java.awt.Color(255, 255, 255));
 
