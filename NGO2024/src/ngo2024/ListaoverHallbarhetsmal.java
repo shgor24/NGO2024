@@ -27,7 +27,7 @@ public class ListaoverHallbarhetsmal extends javax.swing.JFrame {
     }
     public void hamtalistan(){
     
-    String sqlFraga1 = "select namn from hallbarhetsmal";
+    String sqlFraga1 = "select namn from hallbarhetsmal"; //kolla hur man hämtar nummer på målet
             
         try {  DefaultListModel<String> lista = new DefaultListModel<>();
         jList1Listan.setModel(lista);

@@ -112,22 +112,28 @@ public class Inloggning extends javax.swing.JFrame {
             String sqlFraga1 = "SELECT losenord FROM anstalld WHERE epost= '" + ePost + "'";
             String sqlFraga2 = "SELECT anstalld.epost, anstalld.losenord, anstalld.aid FROM anstalld JOIN handlaggare ON anstalld.aid = handlaggare.aid and anstalld.epost= '" + ePost + "'";
             String sqlFraga3 = "SELECT anstalld.epost, anstalld.losenord, anstalld.aid FROM anstalld JOIN admin ON anstalld.aid = admin.aid and anstalld.epost = '" + ePost + "'";
-            String sqlFraga4 = "SELECT DISTINCT projekt.projektchef, projekt.projektnamn, projekt.pid, anstalld.epost, anstalld.losenord FROM projekt JOIN handlaggare ON projekt.projektchef = handlaggare.aid JOIN anstalld ON projekt.pid = anstalld.aid and anstalld.ePost = '" + ePost + "'";
+            //String sqlFraga4 = "SELECT DISTINCT projekt.projektchef, projekt.projektnamn, projekt.pid, anstalld.epost, anstalld.losenord FROM projekt JOIN handlaggare ON projekt.projektchef = handlaggare.aid JOIN anstalld ON projekt.pid = anstalld.aid and anstalld.ePost = '" + ePost + "'";
             String sqlFraga5 = "SELECT aid from anstalld where epost = '" + ePost + "'";
+            String sqlFraga6 = "select projektchef from projekt where projektchef in (select aid from anstalld where epost = '" + ePost + "')";
+
             
             // Utför anropen mot databasen, returnera värden i variablerna
             String userLosen = idb.fetchSingle(sqlFraga1);
             String isHandlaggare = idb.fetchSingle(sqlFraga2);
             String isAdminstrator = idb.fetchSingle(sqlFraga3);
-            String isProjektChef = idb.fetchSingle(sqlFraga4);
+            String isProjektChef = idb.fetchSingle(sqlFraga6);
+            
             
             // Loggar in som ProjektChef/Ledare (Högst behörighet)
             if (losen.equals(userLosen) && isProjektChef != null) {
                 setVisible(false);
                 String aid = idb.fetchSingle(sqlFraga5);
                 new ProjektledareMeny(idb, aid).setVisible(true);
-                return;
+                //return;
+//               
             }
+            else{ System.out.print("inte Projektchef");
+            
             //Loggar in som handläggare
             if (losen.equals(userLosen) && isHandlaggare != null) {
                 setVisible(false);
@@ -143,12 +149,12 @@ public class Inloggning extends javax.swing.JFrame {
             else {
                 lblFelmeddelande.setVisible(true);
             }
-        } catch (InfException ex) {
+        }} catch (InfException ex) {
             System.out.println(ex.getMessage());
 
         }
     }//GEN-LAST:event_btnLoggaInActionPerformed
-
+    
     private void tfEPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEPostActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfEPostActionPerformed
