@@ -44,6 +44,7 @@
                                   <Component id="bAvdProj" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="bSokEfterProjekt" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -68,7 +69,9 @@
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="bSeAllaProjektAvdelning" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="62" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="bSokEfterProjekt" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -117,6 +120,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSeAllaProjektAvdelningActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bSokEfterProjekt">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="S&#xf6;k efter projekt p&#xe5; datum"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSokEfterProjektActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -40,6 +40,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
         bAnsAvd = new javax.swing.JButton();
         bAnsUpp = new javax.swing.JButton();
         bSeAllaProjektAvdelning = new javax.swing.JButton();
+        bSokEfterProjekt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +81,13 @@ public class HandläggareMeny extends javax.swing.JFrame {
             }
         });
 
+        bSokEfterProjekt.setText("Sök efter projekt på datum");
+        bSokEfterProjekt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSokEfterProjektActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,7 +108,8 @@ public class HandläggareMeny extends javax.swing.JFrame {
                                 .addGap(99, 99, 99)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(bAnsAvd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bAvdProj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                    .addComponent(bAvdProj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(bSokEfterProjekt))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -118,7 +127,9 @@ public class HandläggareMeny extends javax.swing.JFrame {
                     .addComponent(bAnsUpp))
                 .addGap(34, 34, 34)
                 .addComponent(bSeAllaProjektAvdelning)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(bSokEfterProjekt)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,6 +166,11 @@ public class HandläggareMeny extends javax.swing.JFrame {
         ProjektMenyAvdelning projektMenyAvdelning = new ProjektMenyAvdelning(idb, aid);
         projektMenyAvdelning.setVisible(true);
     }//GEN-LAST:event_bSeAllaProjektAvdelningActionPerformed
+
+    private void bSokEfterProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSokEfterProjektActionPerformed
+        DatumProjektSok projektDatumSok = new DatumProjektSok(idb, aid);
+        projektDatumSok.setVisible(true);
+    }//GEN-LAST:event_bSokEfterProjektActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +213,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
     private javax.swing.JButton bAnsUpp;
     private javax.swing.JButton bAvdProj;
     private javax.swing.JButton bSeAllaProjektAvdelning;
+    private javax.swing.JButton bSokEfterProjekt;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
