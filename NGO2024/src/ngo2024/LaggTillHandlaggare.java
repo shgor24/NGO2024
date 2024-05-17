@@ -8,6 +8,10 @@ package ngo2024;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showConfirmDialog;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
@@ -26,6 +30,7 @@ public class LaggTillHandlaggare extends javax.swing.JFrame {
         this.pid = pid;
         initComponents();
         hamtaAllaHandlaggare();
+        listener();
     }
     
     private void hamtaAllaHandlaggare()
@@ -62,7 +67,7 @@ public class LaggTillHandlaggare extends javax.swing.JFrame {
            
             String helaNamnet = handlaggareNamn.get(0) + " " + handlaggareNamn.get(1);
             
-            lista.addElement(helaNamnet);
+            lista.addElement(helaNamnet + " ID: " + aid);
         }
         
         listaHandlaggare.setModel(lista);
@@ -73,7 +78,58 @@ public class LaggTillHandlaggare extends javax.swing.JFrame {
         }
     }
     
+    private void listener() {
+        listaHandlaggare.addListSelectionListener(new ListSelectionListener() {
+
+            //När användaren har valt ett projekt i listan kommer detta att köras, tack vare valueChanged() metoden
+            public void valueChanged(ListSelectionEvent e) {
+
+                //Anropar en metod från ListSelectionEvent som returnerar true om användaren har valt något i listan
+                if (!e.getValueIsAdjusting()) {
+                    int valtIndex = listaHandlaggare.getSelectedIndex();
+
+                    //Kontrollerar om användaren har valt ett giltigt värde i listan
+                    if (valtIndex != -1) {
+                        //Hämtar projektnamnet som valdes i listan
+                        String valtHandlaggare = listaHandlaggare.getSelectedValue();
+
+                        //Hämtar pid från listnamnet med hjälp av substring() metoden
+                        String[] delar = valtHandlaggare.split(" ID: ");
+                        
+                        String helaNamnet = delar[0];
+                        String aid = delar [1];
+                        
+                        if(bekraftaVal(helaNamnet))
+                        {
+                            laggTillHandlaggare(aid);
+                        }
+
+                    }
+
+                }
+            }
+        });
+    }
     
+    private boolean bekraftaVal(String namn)
+    {
+        int bekrafta = JOptionPane.showConfirmDialog(this, "Vänligen bekräfta att du vill lägga till " + namn + " till projektet", "Bekräfta", JOptionPane.YES_NO_OPTION);
+        
+        return bekrafta == JOptionPane.YES_OPTION;
+    }
+    
+    private void laggTillHandlaggare(String aid)
+    {
+        try{
+            String sqlFraga = "insert into ans_proj pid, aid values (" + pid + "," + aid + ")";
+            idb.insert(sqlFraga);
+        
+        }catch(InfException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -85,16 +141,13 @@ public class LaggTillHandlaggare extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        bLaggTill = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaHandlaggare = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         jLabel1.setText("Välj en handläggare att lägga till på det valda projektet:");
-
-        bLaggTill.setText("Lägg till");
 
         listaHandlaggare.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -115,9 +168,7 @@ public class LaggTillHandlaggare extends javax.swing.JFrame {
                         .addContainerGap(84, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
-                        .addGap(18, 18, 18)
-                        .addComponent(bLaggTill)
-                        .addGap(69, 69, 69))))
+                        .addGap(163, 163, 163))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,9 +176,7 @@ public class LaggTillHandlaggare extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bLaggTill))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(105, Short.MAX_VALUE))
         );
 
@@ -171,7 +220,6 @@ public class LaggTillHandlaggare extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bLaggTill;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> listaHandlaggare;
