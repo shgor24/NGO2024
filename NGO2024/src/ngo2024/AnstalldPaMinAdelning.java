@@ -26,7 +26,7 @@ class AnstalldPaMinAdelning extends javax.swing.JFrame {
         this.aid=aid;
         this.idb =idb;
         initComponents();
-        hamtanamnpapersonalen(3);
+        hamtanamnpapersonalen();
     }
 
     /**
@@ -81,7 +81,7 @@ class AnstalldPaMinAdelning extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-     public void hamtanamnpapersonalen(int avdelning) {
+     public void hamtanamnpapersonalen() {
     try {
         String sqlFraga1 = "SELECT avdelning from anstalld where aid =  " +aid ;
         String Avdelning = idb.fetchSingle(sqlFraga1);
@@ -98,7 +98,7 @@ class AnstalldPaMinAdelning extends javax.swing.JFrame {
         }
         }
         else {
-            System.out.println("Ingen personal hittades för avdelningen"+ avdelning);
+            System.out.println("Ingen personal hittades för avdelningen"+ Avdelning);
             
         }
     jList1_listaoverpersonal.setModel(lista);
