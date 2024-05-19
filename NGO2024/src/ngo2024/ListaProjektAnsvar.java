@@ -81,7 +81,7 @@ public class ListaProjektAnsvar extends javax.swing.JFrame {
                         String pid = valtProjekt.substring(valtProjekt.lastIndexOf(" ") + 1);
 
                         //Öppnar ett nytt meny fönster
-                        ProjektAnsvarigMeny projektAnsvarigMeny = new ProjektAnsvarigMeny(idb, pid);
+                        ProjektAnsvarigMeny projektAnsvarigMeny = new ProjektAnsvarigMeny(idb, pid, aid);
                         projektAnsvarigMeny.setVisible(true);
                         
 

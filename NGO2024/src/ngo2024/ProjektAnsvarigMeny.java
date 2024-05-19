@@ -16,11 +16,13 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
     
     private InfDB idb;
     private String pid;
+    private String aid;
 
     /** Creates new form ProjektAnsvarigMeny */
-    public ProjektAnsvarigMeny(InfDB idb, String pid) {
+    public ProjektAnsvarigMeny(InfDB idb, String pid, String aid) {
         this.idb = idb;
         this.pid = pid;
+        this.aid = aid;
         initComponents();
     }
 
@@ -56,6 +58,11 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
         });
 
         jButton5.setText("Ta bort handläggare");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         jLabel1.setText("Välj vad du vill göra med det valda projektet:");
@@ -101,9 +108,14 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        LaggTillHandlaggare laggTillHandlaggare = new LaggTillHandlaggare(idb, pid);
+        LaggTillHandlaggare laggTillHandlaggare = new LaggTillHandlaggare(idb, pid, aid);
         laggTillHandlaggare.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        TaBortHandlaggare taBortHandlaggare = new TaBortHandlaggare(idb, pid, aid);
+        taBortHandlaggare.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
