@@ -117,8 +117,10 @@ public class LaggTillHandlaggare extends javax.swing.JFrame {
 
     private void laggTillHandlaggare(String anstalldId) {
         try {
-            String sqlFraga = "insert into ans_proj pid, aid values (" + pid + "," + anstalldId + ")";
+            String sqlFraga = "insert into ans_proj (pid, aid) values (" + pid + "," + anstalldId + ")";
             idb.insert(sqlFraga);
+            //Updaterar listan
+            hamtaAllaHandlaggare();
 
         } catch (InfException ex) {
             System.out.println(ex.getMessage());

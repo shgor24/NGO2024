@@ -116,8 +116,10 @@ public class TaBortHandlaggare extends javax.swing.JFrame {
 
     private void taBortHandlaggare(String anstalldId) {
         try {
-            String sqlFraga = "delete from ans_proj where pid = " + pid + "and aid = " + aid;
-            idb.insert(sqlFraga);
+            String sqlFraga = "delete from ans_proj where pid = " + pid + " and aid = " + anstalldId;
+            idb.delete(sqlFraga);
+            //Updaterar listan
+            hamtaProjektetsHandlaggare();
 
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
@@ -137,7 +139,7 @@ public class TaBortHandlaggare extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listaHandlaggare = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         jLabel1.setText("Välj en handläggare att ta bort från det valda projektet:");
