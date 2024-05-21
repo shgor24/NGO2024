@@ -194,10 +194,12 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
             String kostnad = kostnaderText.getText();
             Object status = statusComboBox.getSelectedItem();
             Object prioritet = prioritetComboBox.getSelectedItem();
-            Object projektchef = projektchefComboBox.getSelectedItem();
-            Object land = landComboBox.getSelectedItem();
 
+            String projektchef = (String) projektchefComboBox.getSelectedItem();
             String projektchefId = projektchef.toString().replaceAll("\\D+", "");
+
+            String land = (String) landComboBox.getSelectedItem();
+            String landId = land.toString().replaceAll("\\D+", "");
 
             // Hämtar senaste pid från projekt och incrementerar med 1
             String latestPid = "SELECT PID FROM ngo_2024.projekt ORDER BY PID DESC LIMIT 1";
@@ -209,10 +211,9 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
             isValidDate(startdatum);
             isValidDate(slutdatum);
             if (!projektnamn.equals("") && !beskrivning.equals("") && !startdatum.equals("") && !slutdatum.equals("") && !kostnad.equals("") && !status.equals("") && !prioritet.equals("") && !projektchef.equals("") && !land.equals("")) {
-                String sqlFraga = "INSERT INTO ngo_2024.projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + intIncrement + ", '" + projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" + projektchefId + "', '" + land + "')";
-                //String sqlFraga2= "SELECT LID FROM ngo_2024.land where 
+                String sqlFraga = "INSERT INTO ngo_2024.projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + intIncrement + ", '" + projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" + projektchefId + "', '" + landId + "')";
                 //String sqlFraga2= "INSERT into ngo_2024.projekt where "
-               //System.out.println(sqlFraga);
+                //System.out.println(sqlFraga);
                 idb.insert(sqlFraga);
                 JOptionPane.showMessageDialog(null, "Nytt projekt är tillagd!", "Information", JOptionPane.INFORMATION_MESSAGE);
                 clearInputFields();
@@ -250,7 +251,7 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
 
     private void fyllPaComboBoxLand() {
         try {
-            String landID = "SELECT l.namn AS land_namn FROM ngo_2024.projekt p JOIN ngo_2024.anstalld a ON p.projektchef = a.aid JOIN ngo_2024.land l ON p.land = l.lid;";
+            String landID = "SELECT DISTINCT l.namn AS land_namn FROM ngo_2024.projekt p JOIN ngo_2024.anstalld a ON p.projektchef = a.aid JOIN ngo_2024.land l ON p.land = l.lid;";
             ArrayList<String> landid = idb.fetchColumn(landID);
             for (String detValdaAlternativet : landid) {
                 landComboBox.addItem(detValdaAlternativet);
