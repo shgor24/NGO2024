@@ -5,6 +5,7 @@
 package ngo2024;
 
 import ngo2024.AndraUppgifterOmEttProjektFrame;
+import ngo2024.AndraUppgifterProjektSelect;
 import ngo2024.LaggTillAnstalldFrame;
 import ngo2024.LaggTillProjektFrame;
 import ngo2024.SeUppgifterOmEttProjektFrame;
@@ -164,9 +165,9 @@ public class AdministratorMeny extends javax.swing.JFrame {
         if (detValdaAlternativet.equals("Lägg till projekt" + "")) {
             new LaggTillProjektFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Ta bort projekt" +"")){
-            new TaBortProjektFrame().setVisible(true);
+            new TaBortProjektFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Ändra uppgifter om ett projekt" + "")) {
-            new AndraUppgifterOmEttProjektFrame(idb).setVisible(true);
+            new AndraUppgifterProjektSelect(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Se uppgifter om projektansvarig" + "")) {
             new SeUppgifterOmEttProjektFrame().setVisible(true);
         }

@@ -3,27 +3,53 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024;
-import java.util.ArrayList;
+
+import java.util.HashMap;
+import java.util.Map;
 import oru.inf.InfDB;
 import javax.swing.JOptionPane;
 import oru.inf.InfException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author sheny
  */
 public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
+
     private InfDB idb;
+    private HashMap<String, String> projektnamn;
 
     /**
      * Creates new form AndraUppgifterOmEttProjekt
      */
-    public AndraUppgifterOmEttProjektFrame(InfDB idb) {
+    public AndraUppgifterOmEttProjektFrame(InfDB idb, HashMap<String, String> projektnamn) {
         this.idb = idb;
+        this.projektnamn = projektnamn;
         initComponents();
-        fyllPaComboBoxChef();
-        fyllPaComboBoxLand();
+
+        String value = "";
+
+        for (Map.Entry<String, String> entry : projektnamn.entrySet()) {
+            String key = entry.getKey();
+            value = entry.getValue();
+            // Now you can use the key-value pairs as needed
+            System.out.println("Key: " + key + ", Value: " + value);
+        }
+
+        HashMap<String, String> data = GetData(value);
+        System.out.println(data);
+
+        if (data != null) {
+
+            String value1 = data.get("projektnamn"); // Get the value associated with key1
+            String value2 = data.get("beskrivning"); // Get the value associated with key2
+
+            // Set the values in the input properties
+            projektnamnText.setText(value1);
+            beskrivningText.setText(value2);
+        }
+
     }
 
     /**
@@ -78,7 +104,7 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
 
         lblPrioritet.setText("Prioritet");
 
-        btnSparaAndringar.setText("Spara ändringar");
+        btnSparaAndringar.setText("Uppdatera Projekt");
         btnSparaAndringar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSparaAndringarActionPerformed(evt);
@@ -89,50 +115,53 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
 
         prioritetComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hög", "Medel", "Låg" }));
 
+        landComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                landComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblBeskrivning, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(startdatumText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblStartdatum, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(slutdatumText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(beskrivningText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnSparaAndringar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(331, 331, 331))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblProjektchef, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblKostnader, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(kostnaderText, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPrioritet, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(prioritetComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(projektchefComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(249, 249, 249))))
+                            .addComponent(lblBeskrivning, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblStartdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(slutdatumText, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                            .addComponent(startdatumText)
+                            .addComponent(beskrivningText, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(226, 226, 226))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblSlutdatum, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(landComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(projektnamnText, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblLand, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblProjektnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(lblProjektnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(projektnamnText)
+                            .addComponent(landComboBox, 0, 127, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblProjektchef, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(kostnaderText)
+                        .addComponent(lblKostnader, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPrioritet, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(statusComboBox, 0, 128, Short.MAX_VALUE)
+                        .addComponent(prioritetComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(projektchefComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSparaAndringar))
+                .addGap(66, 66, 66))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +176,7 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(projektnamnText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(kostnaderText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblBeskrivning)
                     .addComponent(lblStatus))
@@ -156,103 +185,56 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
                     .addComponent(beskrivningText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(statusComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
-                .addComponent(lblStartdatum)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblStartdatum)
+                    .addComponent(lblPrioritet))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(startdatumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPrioritet))
-                        .addGap(14, 14, 14)
-                        .addComponent(lblSlutdatum))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(startdatumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(prioritetComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSlutdatum)
+                    .addComponent(lblProjektchef))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(slutdatumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(projektchefComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(slutdatumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
                         .addComponent(lblLand)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(landComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblProjektchef)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(projektchefComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92)))
-                .addComponent(btnSparaAndringar)
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addComponent(landComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSparaAndringar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaAndringarActionPerformed
-    
-        try {
-            String projektnamn = projektnamnText.getText();
-            String beskrivning = beskrivningText.getText();
-            String startdatum = startdatumText.getText();
-            String slutdatum = slutdatumText.getText();
-            String kostnad = kostnaderText.getText();
-            Object status = statusComboBox.getSelectedItem();
-            Object prioritet = prioritetComboBox.getSelectedItem();
-            Object projektchef = projektchefComboBox.getSelectedItem();
-            Object land = landComboBox.getSelectedItem();
-            
-            String projektchefId = projektchef.toString().replaceAll("\\D+", "");
 
-            isValidDate(startdatum);
-            isValidDate(slutdatum);
-            if (!projektnamn.equals("") && !beskrivning.equals("") && !startdatum.equals("") && !slutdatum.equals("") && !kostnad.equals("") && !status.equals("") && !prioritet.equals("") && !projektchef.equals("") && !land.equals("")) {
-                String sqlFraga = "UPDATE ngo_2024.projekt SET projektnamn = '" + projektnamn + "', beskrivning = '" + beskrivning + "', startdatum = '" + startdatum + "', slutdatum = '" + slutdatum + "', kostnad = '" + kostnad + "', status = '" + status + "', prioritet = '" + prioritet + "', projektchef = '" + projektchefId + "', land = '" + land + "' WHERE pid = " + projektchefId;
-                idb.update(sqlFraga);
-                JOptionPane.showMessageDialog(null, "Projektinformation är uppdaterad!", "Information", JOptionPane.INFORMATION_MESSAGE);
-                clearInputFields();
-          
-          } else {
-                JOptionPane.showMessageDialog(null, "Du har inte fyllt i alla fält, vänligen fyll i alla uppgifter", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
-            
-          } catch (InfException ex) {
-              System.out.println(ex.getMessage());
-          }
+        // UPDATE QUERY SOM SKJUTER MOT DB
+        // LOGGNING MOT ANVÄNDAREN
+        // VALIDERING AV IFYLLD DATA
+
     }//GEN-LAST:event_btnSparaAndringarActionPerformed
 
-     private boolean isValidDate(String dateString) {
+    private void landComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_landComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_landComboBoxActionPerformed
+
+    private boolean isValidDate(String dateString) {
         if (dateString.matches("\\d{4}-\\d{2}-\\d{2}")) {
             return true;
-            } else {
+        } else {
             JOptionPane.showMessageDialog(null, "Datumet är i fel format, vänligen använd YYYY-MM-DD formatet!", "Warning", JOptionPane.WARNING_MESSAGE);
             return false;
         }
-        }
-     
-     private void fyllPaComboBoxChef() {
-         try {
-             String projektchefInfo = "SELECT CONCAT(a.fornamn, ' ', a.efternamn, ' (', p.projektchef, ')') AS chef_info " + "FROM ngo_2024.projekt p " + "JOIN ngo_2024.anstalld a ON p.projektchef = a.aid;";
-             ArrayList<String> projektchefnamn = idb.fetchColumn(projektchefInfo);
-            for (String detValdaAlternativet : projektchefnamn) {
-                projektchefComboBox.addItem(detValdaAlternativet);
-          }
-        } catch (InfException ex) {
-            Logger.getLogger(AndraUppgifterOmEttProjektFrame.class.getName()).log(Level.SEVERE, null, ex);
-     }
-     }
-     
-      private void fyllPaComboBoxLand() {
-          try {
-            String landID = "SELECT l.namn AS land_namn FROM ngo_2024.projekt p JOIN ngo_2024.anstalld a ON p.projektchef = a.aid JOIN ngo_2024.land l ON p.land = l.lid;";
-            ArrayList<String> landid = idb.fetchColumn(landID);
-            for (String detValdaAlternativet : landid) {
-                landComboBox.addItem(detValdaAlternativet);
-          }
-        } catch (InfException ex) {
-             Logger.getLogger(AndraUppgifterOmEttProjektFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      }
-      
-      private void clearInputFields() {
+    }
+
+    private void clearInputFields() {
         projektnamnText.setText("");
         beskrivningText.setText("");
         startdatumText.setText("");
@@ -263,19 +245,18 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
         projektchefComboBox = null;
         landComboBox = null;
     }
-      
-      private void uppdateraData(){
-          try{
-              idb.update("UPDATE Projekt SET projektnamn= '" + projektnamnText.getText() +"', beskrivning='" + beskrivningText.getText() + "', startdatum= '" + startdatumText.getText() + "', slutdatum='" + slutdatumText.getText()+ "', land='" + landComboBox.getSelectedItem()+ "', kostnad='" + kostnaderText.getText()+ "', status='" + statusComboBox.getSelectedItem()+ "', prioritet='" + prioritetComboBox.getSelectedItem()+ "', projektchef='" + projektchefComboBox.getSelectedItem());
-          } catch (InfException ex) {
-            System.out.println(ex.getMessage());
-      }
-   }
-      
 
-     
-     
-     
+    private HashMap GetData(String projektnamn) {
+        HashMap<String, String> resultat = null;
+        try {
+            String sqlFraga = "SELECT * FROM ngo_2024.projekt WHERE projektnamn = '" + projektnamn + "'";
+            resultat = idb.fetchRow(sqlFraga);
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return resultat;
+    }
+
     /**
      * @param args the command line arguments
      */

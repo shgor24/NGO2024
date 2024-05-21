@@ -35,7 +35,7 @@ public class TaBortPartners extends javax.swing.JFrame {
     {
         try {String sqlFraga = "SELECT partner.namn, partner.kontaktperson, partner.pid " +
                   "FROM partner " +
-                  "LEFT JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid AND projekt_partner.pid = 1 " +
+                  "LEFT JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid AND projekt_partner.pid = 1 ";
                   //"WHERE projekt_partner.partner_pid IS NULL";
 //            ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
 //

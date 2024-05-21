@@ -17,51 +17,50 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author sheny
  */
 public class TaBortProjektFrame extends javax.swing.JFrame {
+
     private InfDB idb;
     private DefaultListModel<String> listModel;
     int pid = -1;
-    
-     public TaBortProjektFrame(InfDB idb) {
+
+    public TaBortProjektFrame(InfDB idb) {
         initComponents();
         this.idb = idb;
         try {
             String fetchUsersQuery = "SELECT * FROM ngo_2024.projekt";
             ArrayList<HashMap<String, String>> resultSet = idb.fetchRows(fetchUsersQuery);
-            
-        listModel = new DefaultListModel<>();
+
+            listModel = new DefaultListModel<>();
             jList1.setModel(listModel);
             
-        for (HashMap<String, String> result : resultSet) {
-                // Loop over key-value pairs in each HashMap and print them
-                StringBuilder listItem = new StringBuilder();
-                for (Map.Entry<String, String> entry : result.entrySet()) {
-                    String key = entry.getKey();
-                    String value = entry.getValue();
-                    listItem.append(key).append(": ").append(value).append(", ");
+            String[] keyOrder = {"pid", "projektnamn", "beskrivning", "startdatum", "slutdatum", "kostnad", "status", "prioritet", "projektchef", "land"};
 
-                    System.out.println("Key: " + key + ", Value: " + value);
+            for (HashMap<String, String> result : resultSet) {
+                // Build the list item in the specified order
+                StringBuilder listItem = new StringBuilder();
+                for (String key : keyOrder) {
+                    String value = result.get(key);
+                    if (value != null) {
+                        listItem.append(key).append(": ").append(value).append(", ");
+                    }
+                }
+                // Remove the trailing comma and space
+                if (listItem.length() > 0) {
+                    listItem.setLength(listItem.length() - 2);
                 }
                 listModel.addElement(listItem.toString());
-                
-                }
+            }
 
             getSelectedValueAndDelete();
 
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
-     }
-
-    /**
-     * Creates new form TaBortProjektFrame
-     */
-    public TaBortProjektFrame() {
-        initComponents();
     }
 
     /**
@@ -135,7 +134,7 @@ public class TaBortProjektFrame extends javax.swing.JFrame {
                         }
                     }
                     String sqlFraga = "DELETE FROM NGO_2024.projekt WHERE pid = '" + pid + "'";
-                    
+
                     btnTaBortProjekt.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             try {
@@ -154,6 +153,7 @@ public class TaBortProjektFrame extends javax.swing.JFrame {
             }
         });
     }
+
     /**
      * @param args the command line arguments
      */
