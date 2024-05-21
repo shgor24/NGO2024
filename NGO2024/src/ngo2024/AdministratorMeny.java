@@ -4,6 +4,12 @@
  */
 package ngo2024;
 
+import ngo2024.AndraUppgifterOmEttProjektFrame;
+import ngo2024.LaggTillAnstalldFrame;
+import ngo2024.LaggTillProjektFrame;
+import ngo2024.SeUppgifterOmEttProjektFrame;
+import ngo2024.TaBortAnstalldFrame;
+import ngo2024.TaBortProjektFrame;
 import oru.inf.InfDB;
 //import oru.inf.InfException;
 
