@@ -35,37 +35,52 @@ public class TaBortPartners extends javax.swing.JFrame {
     {
         try {String sqlFraga = "SELECT partner.namn, partner.kontaktperson, partner.pid " +
                   "FROM partner " +
-                  "LEFT JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid AND projekt_partner.pid = ? " +
-                  "WHERE projekt_partner.partner_pid IS NULL";
-            ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
-
-            //Skapar en HashMap där alla aid lagras som nycklar och värdena blir för- och efternamn i en ArrayList
-            HashMap<String, ArrayList<String>> partnerLista = new HashMap<>();
-
-            for (HashMap<String, String> rad : resultatLista) {
+                  "LEFT JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid AND projekt_partner.pid = 1 " +
+                  //"WHERE projekt_partner.partner_pid IS NULL";
+//            ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
+//
+//            //Skapar en HashMap där alla aid lagras som nycklar och värdena blir för- och efternamn i en ArrayList
+//            HashMap<String, ArrayList<String>> partnerLista = new HashMap<>();
+//
+//            for (HashMap<String, String> rad : resultatLista) {
+//                String partnerId = rad.get("pid");
+//                String namn = rad.get("namn");
+//                String kontaktperson = rad.get("kontaktperson");
+//
+//                ArrayList<String> namnLista = new ArrayList<String>();
+//                namnLista.add(namn);
+//                namnLista.add(kontaktperson);
+//
+//                partnerLista.put(partnerId, namnLista);
+//
+//            }
+//       DefaultListModel<String> lista = new DefaultListModel<>();
+//
+//            for (String partnerId : partnerLista.keySet()) {
+//                ArrayList<String> partnerNamn = partnerLista.get(partnerId);
+//
+//                String helaNamnet = partnerNamn.get(0) + " " + partnerNamn.get(1);
+//
+//                lista.addElement(helaNamnet + " ID: " + partnerId);
+//            }
+//
+//        listaPartners.setModel(lista);
+    ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
+        
+        DefaultListModel<String> lista = new DefaultListModel<>();
+        
+        for (HashMap<String, String> rad : resultatLista) {
                 String partnerId = rad.get("pid");
                 String namn = rad.get("namn");
                 String kontaktperson = rad.get("kontaktperson");
-
-                ArrayList<String> namnLista = new ArrayList<String>();
-                namnLista.add(namn);
-                namnLista.add(kontaktperson);
-
-                partnerLista.put(partnerId, namnLista);
-
-            }
-       DefaultListModel<String> lista = new DefaultListModel<>();
-
-            for (String partnerId : partnerLista.keySet()) {
-                ArrayList<String> partnerNamn = partnerLista.get(partnerId);
-
-                String helaNamnet = partnerNamn.get(0) + " " + partnerNamn.get(1);
+                
+                String helaNamnet = namn + " " + kontaktperson;
 
                 lista.addElement(helaNamnet + " ID: " + partnerId);
-            }
-
+        }
+        
+        
         listaPartners.setModel(lista);
-
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
