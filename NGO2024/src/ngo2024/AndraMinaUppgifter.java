@@ -19,7 +19,7 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
     /**
      * Creates new form AndraMinaUppgifter
      */
-    public AndraMinaUppgifter(String aid, InfDB idb) {
+    public AndraMinaUppgifter(InfDB idb, String aid) {
         
         this.aid = aid;
         this.idb = idb;
@@ -91,10 +91,6 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
         tfansdat = new javax.swing.JTextField();
         tflosen = new javax.swing.JTextField();
         tfavd = new javax.swing.JTextField();
-        bnandralosen = new javax.swing.JButton();
-        bnandratelfon = new javax.swing.JButton();
-        bnandraepost = new javax.swing.JButton();
-        bnandraadress = new javax.swing.JButton();
         bnsparaandringar = new javax.swing.JButton();
 
         jLabel10.setText("jLabel10");
@@ -140,17 +136,7 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
             }
         });
 
-        tfavd.setText("jTextField9");
-
-        bnandralosen.setText("Ändra");
-
-        bnandratelfon.setText("Ändra");
-
-        bnandraepost.setText("Ändra");
-
-        bnandraadress.setText("Ändra");
-
-        bnsparaandringar.setText("Spara");
+        bnsparaandringar.setText("Spara ändringar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,37 +157,27 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tflosen)
-                                .addGap(99, 99, 99)
-                                .addComponent(bnandralosen))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(tftelefon)
-                                    .addComponent(tfepost)
-                                    .addComponent(tfadress))
-                                .addGap(99, 99, 99)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bnandraadress, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(bnandraepost, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(bnandratelfon, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(30, 30, 30))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tftelefon, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfepost, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfadress, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(tfavd)
+                            .addComponent(tflosen, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(188, 188, 188))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(90, 90, 90)
-                                    .addComponent(jLabel1))
-                                .addComponent(tfaid)
-                                .addComponent(tffornamn)
-                                .addComponent(tfefternamn)
-                                .addComponent(tfansdat)
-                                .addComponent(tfavd))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(90, 90, 90)
+                                .addComponent(jLabel1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(313, 313, 313)
-                                .addComponent(bnsparaandringar)))
-                        .addContainerGap(30, Short.MAX_VALUE))))
+                                .addComponent(bnsparaandringar))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(tfaid, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                                .addComponent(tfefternamn, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tffornamn, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(tfansdat, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,18 +199,15 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbadress)
-                    .addComponent(tfadress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bnandraadress))
+                    .addComponent(tfadress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbepost)
-                    .addComponent(tfepost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bnandraepost))
+                    .addComponent(tfepost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbtelefon)
-                    .addComponent(tftelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bnandratelfon))
+                    .addComponent(tftelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbansdat)
@@ -242,8 +215,7 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblosen)
-                    .addComponent(tflosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bnandralosen))
+                    .addComponent(tflosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbavd)
@@ -303,10 +275,6 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bnandraadress;
-    private javax.swing.JButton bnandraepost;
-    private javax.swing.JButton bnandralosen;
-    private javax.swing.JButton bnandratelfon;
     private javax.swing.JButton bnsparaandringar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

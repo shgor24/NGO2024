@@ -46,47 +46,33 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="tflosen" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                              <Component id="bnandralosen" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="tftelefon" max="32767" attributes="0"/>
-                                  <Component id="tfepost" max="32767" attributes="0"/>
-                                  <Component id="tfadress" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="bnandraadress" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="bnandraepost" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="bnandratelfon" alignment="1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tftelefon" alignment="1" max="32767" attributes="0"/>
+                          <Component id="tfepost" alignment="1" max="32767" attributes="0"/>
+                          <Component id="tfadress" alignment="1" max="32767" attributes="0"/>
+                          <Component id="tfavd" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tflosen" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="tfaid" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tffornamn" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tfefternamn" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tfansdat" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tfavd" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
                               <Component id="bnsparaandringar" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="tfaid" alignment="0" pref="240" max="32767" attributes="0"/>
+                              <Component id="tfefternamn" alignment="0" max="32767" attributes="0"/>
+                              <Component id="tffornamn" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="tfansdat" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="30" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -116,19 +102,16 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbadress" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tfadress" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="bnandraadress" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbepost" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tfepost" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="bnandraepost" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbtelefon" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tftelefon" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="bnandratelfon" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -139,7 +122,6 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblosen" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tflosen" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="bnandralosen" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -232,33 +214,10 @@
     <Component class="javax.swing.JTextField" name="tflosen">
     </Component>
     <Component class="javax.swing.JTextField" name="tfavd">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField9"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="bnandralosen">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc4;ndra"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="bnandratelfon">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc4;ndra"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="bnandraepost">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc4;ndra"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="bnandraadress">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc4;ndra"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="bnsparaandringar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Spara"/>
+        <Property name="text" type="java.lang.String" value="Spara &#xe4;ndringar"/>
       </Properties>
     </Component>
   </SubComponents>
