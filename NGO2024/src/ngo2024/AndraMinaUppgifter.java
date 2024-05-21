@@ -27,6 +27,32 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
         
         
     }
+    
+    private void fyllData() {
+        try {
+            tfaid.setText(aid);
+            tffornamn.setText(idb.fetchSingle("SELECT fornamn FROM Anstalld WHERE aid = '" + aid + "'"));
+            tfefternamn.setText(idb.fetchSingle("SELECT efternamn FROM Anstalld WHERE aid = '" + aid + "'"));
+            tfadress.setText(idb.fetchSingle("SELECT adress FROM Anstalld WHERE aid = '" + aid + "'"));
+            tfepost.setText(idb.fetchSingle("SELECT epost FROM Anstalld WHERE aid = '" + aid + "'"));
+            tftelefon.setText(idb.fetchSingle("SELECT telefon FROM Anstalld WHERE aid = '" + aid + "'"));
+            tfansdat.setText(idb.fetchSingle("SELECT anstallddatum FROM Anstalld WHERE aid = '" + aid + "'"));
+            tflosen.setText(idb.fetchSingle("SELECT losenord FROM Anstalld WHERE aid = '" + aid + "'"));
+            tfavd.setText(idb.fetchSingle("SELECT avdelning FROM Anstalld WHERE aid = '" + aid + "'"));
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+           
+        }
+    }
+    
+      private void uppdateraData() {
+        try {
+            idb.update("UPDATE Anstalld SET fornamn = '" + tffornamn.getText() + "', efternamn = '" + tfefternamn.getText() + "', adress = '" + tfadress.getText() + "', epost = '" + tfepost.getText() + "', telefon = '" + tftelefon.getText() + "', losenord = '" + tflosen.getText() + "', avdelning = '" + tfavd.getText() + "' WHERE aid = '" + aid + "'");
+            
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -65,11 +91,11 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
         tfansdat = new javax.swing.JTextField();
         tflosen = new javax.swing.JTextField();
         tfavd = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        bnandralosen = new javax.swing.JButton();
+        bnandratelfon = new javax.swing.JButton();
+        bnandraepost = new javax.swing.JButton();
+        bnandraadress = new javax.swing.JButton();
+        bnsparaandringar = new javax.swing.JButton();
 
         jLabel10.setText("jLabel10");
 
@@ -78,7 +104,11 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Mina uppgifter");
 
-        tffornamn.setText("jTextField1");
+        tffornamn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tffornamnActionPerformed(evt);
+            }
+        });
 
         lbaid.setText("AID:");
 
@@ -98,36 +128,29 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
 
         lbavd.setText("Avdelning:");
 
-        tfaid.setText("jTextField2");
+        tfefternamn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfefternamnActionPerformed(evt);
+            }
+        });
 
-        tfefternamn.setText("jTextField3");
-
-        tfadress.setText("jTextField4");
-
-        tfepost.setText("jTextField5");
-
-        tftelefon.setText("jTextField6");
-
-        tfansdat.setText("jTextField7");
         tfansdat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfansdatActionPerformed(evt);
             }
         });
 
-        tflosen.setText("jTextField8");
-
         tfavd.setText("jTextField9");
 
-        jButton1.setText("Ändra");
+        bnandralosen.setText("Ändra");
 
-        jButton2.setText("Ändra");
+        bnandratelfon.setText("Ändra");
 
-        jButton3.setText("Ändra");
+        bnandraepost.setText("Ändra");
 
-        jButton4.setText("Ändra");
+        bnandraadress.setText("Ändra");
 
-        jButton5.setText("Spara");
+        bnsparaandringar.setText("Spara");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,7 +175,7 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(tflosen)
                                 .addGap(99, 99, 99)
-                                .addComponent(jButton1))
+                                .addComponent(bnandralosen))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(tftelefon)
@@ -160,9 +183,9 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
                                     .addComponent(tfadress))
                                 .addGap(99, 99, 99)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(bnandraadress, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(bnandraepost, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(bnandratelfon, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +200,7 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
                                 .addComponent(tfavd))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(313, 313, 313)
-                                .addComponent(jButton5)))
+                                .addComponent(bnsparaandringar)))
                         .addContainerGap(30, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -201,17 +224,17 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbadress)
                     .addComponent(tfadress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(bnandraadress))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbepost)
                     .addComponent(tfepost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(bnandraepost))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbtelefon)
                     .addComponent(tftelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(bnandratelfon))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbansdat)
@@ -220,13 +243,13 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblosen)
                     .addComponent(tflosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(bnandralosen))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbavd)
                     .addComponent(tfavd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5))
+                .addComponent(bnsparaandringar))
         );
 
         pack();
@@ -235,6 +258,14 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
     private void tfansdatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfansdatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfansdatActionPerformed
+
+    private void tffornamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tffornamnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tffornamnActionPerformed
+
+    private void tfefternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfefternamnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfefternamnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,11 +303,11 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton bnandraadress;
+    private javax.swing.JButton bnandraepost;
+    private javax.swing.JButton bnandralosen;
+    private javax.swing.JButton bnandratelfon;
+    private javax.swing.JButton bnsparaandringar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel lbadress;
