@@ -127,6 +127,8 @@ public class SoktDatumProjektMeny extends javax.swing.JFrame {
         lblInfo = new javax.swing.JLabel();
         lblIngenResultat = new javax.swing.JLabel();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         listaProjekt.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         listaProjekt.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         listaProjekt.setSelectionBackground(new java.awt.Color(153, 204, 255));
