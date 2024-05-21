@@ -43,38 +43,29 @@
                   <Component id="lbadress" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="lbaid" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="tftelefon" alignment="1" max="32767" attributes="0"/>
-                          <Component id="tfepost" alignment="1" max="32767" attributes="0"/>
-                          <Component id="tfadress" alignment="1" max="32767" attributes="0"/>
-                          <Component id="tfavd" alignment="0" max="32767" attributes="0"/>
-                          <Component id="tflosen" alignment="1" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
-                              <Component id="bnsparaandringar" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="tfaid" alignment="0" pref="240" max="32767" attributes="0"/>
-                              <Component id="tfefternamn" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tffornamn" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="tfansdat" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="313" max="-2" attributes="0"/>
+                      <Component id="bnsparaandringar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="tfaid" alignment="0" pref="280" max="32767" attributes="0"/>
+                      <Component id="tffornamn" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tfefternamn" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tfadress" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tfepost" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tftelefon" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tfansdat" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tflosen" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tfavd" alignment="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -83,52 +74,52 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="9" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lbaid" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="tfaid" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lbaid" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfaid" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbfornamn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tffornamn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbefternamn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tfefternamn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbadress" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tfadress" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbepost" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tfepost" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbtelefon" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tftelefon" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbansdat" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tfansdat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblosen" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tflosen" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lbavd" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="tfavd" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
               <Component id="bnsparaandringar" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -201,6 +192,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfadress">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfadressActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfepost">
     </Component>

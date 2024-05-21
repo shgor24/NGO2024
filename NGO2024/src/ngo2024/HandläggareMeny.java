@@ -22,22 +22,21 @@ public class HandläggareMeny extends javax.swing.JFrame {
     public HandläggareMeny(String aid, InfDB idb) {
         this.aid = aid;
         this.idb = idb;
-        initComponents();            
+        initComponents(); 
         
-        
-        
-        
-        
-        bnHandAvd.addActionListener(new java.awt.event.ActionListener() {
+                    bnHandAvd.addActionListener(new java.awt.event.ActionListener() {
     public void actionPerformed(java.awt.event.ActionEvent evt) {
         bnHandAvdActionPerformed(evt);
     }
 });
-        bnAnsUpp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bnAnsUppActionPerformed(evt);
-            }
-        });
+
+        
+        
+        
+        
+        
+   
+       
 
         
         
@@ -139,9 +138,9 @@ public class HandläggareMeny extends javax.swing.JFrame {
                     .addComponent(bAnsAvd, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                     .addComponent(bAvdProj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(bnHandAvd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bSeAllaProjektAvdelning, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bSeAllaProjektAvdelning)
+                    .addComponent(bnHandAvd, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bSokEfterProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
@@ -226,7 +225,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
 
     private void bnHandAvdActionPerformed (java.awt.event.ActionEvent evt) {                                         
     HandlaggareSokning  handlaggaresokning = new HandlaggareSokning(idb, aid);
-  
+    
     handlaggaresokning.setVisible(true);
 
     
@@ -236,6 +235,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
 
     private void bnAnsUppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnAnsUppActionPerformed
        AndraMinaUppgifter andraminauppgifter = new AndraMinaUppgifter(idb, aid);
+       andraminauppgifter.andrauppgift();
         andraminauppgifter.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_bnAnsUppActionPerformed
 // DefaultListModel<String> lista = new DefaultListModel<>();
