@@ -55,6 +55,11 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
         });
 
         tabortpartner.setText("Ta bort partner");
+        tabortpartner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tabortpartnerActionPerformed(evt);
+            }
+        });
 
         laggtillhandlaggare.setText("Lägg till handläggare");
         laggtillhandlaggare.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +132,11 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
         LaggTillPartners laggTillPartners=new LaggTillPartners (idb, pid,aid);
         laggTillPartners.setVisible(true); 
     }//GEN-LAST:event_laggtillpartnerActionPerformed
+
+    private void tabortpartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabortpartnerActionPerformed
+        TaBortPartners taBortpartners=new TaBortPartners (idb, pid,aid);
+        taBortpartners.setVisible(true);
+    }//GEN-LAST:event_tabortpartnerActionPerformed
 
     /**
      * @param args the command line arguments
