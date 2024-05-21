@@ -51,7 +51,7 @@ public class ListaProjektAnsvar extends javax.swing.JFrame {
             
             for (String pid : projektLista.keySet()) {
                 String namn = projektLista.get(pid);
-                lista.addElement(namn + " ID : " + pid);
+                lista.addElement(namn + " ID: " + pid);
             }
             
             listaProjekt.setModel(lista);

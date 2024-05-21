@@ -119,7 +119,7 @@ public class ProjektMenyAnstalld extends javax.swing.JFrame {
         lblProjekt = new javax.swing.JLabel();
         lblInfo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         listaProjekt.setSelectionBackground(new java.awt.Color(153, 204, 255));
         jScrollPane1.setViewportView(listaProjekt);
