@@ -4,11 +4,58 @@
  */
 package ngo2024;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 /**
  *
  * @author sheny
  */
 public class TaBortProjektFrame extends javax.swing.JFrame {
+    private InfDB idb;
+    private DefaultListModel<String> listModel;
+    int pid = -1;
+    
+     public TaBortProjektFrame(InfDB idb) {
+        initComponents();
+        this.idb = idb;
+        try {
+            String fetchUsersQuery = "SELECT * FROM ngo_2024.projekt";
+            ArrayList<HashMap<String, String>> resultSet = idb.fetchRows(fetchUsersQuery);
+            
+        listModel = new DefaultListModel<>();
+            jList1.setModel(listModel);
+            
+        for (HashMap<String, String> result : resultSet) {
+                // Loop over key-value pairs in each HashMap and print them
+                StringBuilder listItem = new StringBuilder();
+                for (Map.Entry<String, String> entry : result.entrySet()) {
+                    String key = entry.getKey();
+                    String value = entry.getValue();
+                    listItem.append(key).append(": ").append(value).append(", ");
+
+                    System.out.println("Key: " + key + ", Value: " + value);
+                }
+                listModel.addElement(listItem.toString());
+                
+                }
+
+            getSelectedValueAndDelete();
+
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+        }
+     }
 
     /**
      * Creates new form TaBortProjektFrame
@@ -26,22 +73,87 @@ public class TaBortProjektFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        btnTaBortProjekt = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Välj projekt som ska bli borttagen");
+
+        jScrollPane1.setViewportView(jList1);
+
+        btnTaBortProjekt.setText("Ta bort projekt");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnTaBortProjekt)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(btnTaBortProjekt)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void getSelectedValueAndDelete() {
+        jList1.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+
+                    Object selectedValue = jList1.getSelectedValue();
+
+                    if (selectedValue != null) {
+                        String[] parts = selectedValue.toString().split(", ");
+                        // int aid = -1; // Initialize aid to a default value
+                        for (String part : parts) {
+                            String[] keyValue = part.split(": ");
+                            if (keyValue[0].trim().equals("pid")) {
+                                pid = Integer.parseInt(keyValue[1]);
+                                break; // Exit loop once aid is found
+                            }
+                        }
+                    }
+                    String sqlFraga = "DELETE FROM NGO_2024.projekt WHERE pid = '" + pid + "'";
+                    
+                    btnTaBortProjekt.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            try {
+                                idb.delete(sqlFraga);
+                                JOptionPane.showMessageDialog(null, "projekt har blivit borttagen!", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+                                DefaultListModel<String> model = (DefaultListModel<String>) jList1.getModel();
+                                model.removeElement(selectedValue);
+                                jList1.repaint();
+                            } catch (InfException ex) {
+                                Logger.getLogger(TaBortProjektFrame.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
     /**
      * @param args the command line arguments
      */
@@ -78,5 +190,9 @@ public class TaBortProjektFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTaBortProjekt;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

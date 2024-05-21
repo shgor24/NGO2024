@@ -193,28 +193,28 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
             String telefon = telefonText.getText();
             String anstallningsdatum = anstallningsDatumText.getText();
             String losenord = losenordText.getText();
-            Object avdelning = avdelningIdComboBox.getSelectedItem();
+            String avdelning = (String) avdelningIdComboBox.getSelectedItem();
+            String[] splitId = avdelning.split("-");
+            String avdelningId = splitId[0];
 
             // Hämtar senaste aid från anställda och incrementerar med 1
             String latestAid = "SELECT AID FROM ngo_2024.anstalld ORDER BY AID DESC LIMIT 1";
             String currentAidNumber = idb.fetchSingle(latestAid);
             int intIncrement = Integer.parseInt(currentAidNumber);
             intIncrement++;
-            
-                    
-           
+
             // Validerar att alla inputfields har ett värde och är rätt datumformat
             isValidDate(anstallningsdatum);
-            if(isValidDate(anstallningsdatum)){
-            if (!fornamn.equals("") && !efternamn.equals("") && !adress.equals("") && !epost.equals("") && !telefon.equals("") && !anstallningsdatum.equals("") && !losenord.equals("") && !avdelning.equals("")) {
-                // Skjuter anropet mot DB och skapar användaren, informerar användaren.
-                String insertAnstalld2 = "INSERT INTO ngo_2024.anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) VALUES (" + intIncrement + ", '" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + anstallningsdatum + "', '" + losenord + "', '" + avdelning + "')";
-                idb.insert(insertAnstalld2);
-                JOptionPane.showMessageDialog(null, "Ny användare är tillagd!", "Information", JOptionPane.INFORMATION_MESSAGE);
-                clearInputFields();
-            } else {
-                JOptionPane.showMessageDialog(null, "Du har inte fyllt i alla fällt, vänligen fyll i alla uppgifter", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
+            if (isValidDate(anstallningsdatum)) {
+                if (!fornamn.equals("") && !efternamn.equals("") && !adress.equals("") && !epost.equals("") && !telefon.equals("") && !anstallningsdatum.equals("") && !losenord.equals("") && !avdelning.equals("")) {
+                    // Skjuter anropet mot DB och skapar användaren, informerar användaren.
+                    String insertAnstalld2 = "INSERT INTO ngo_2024.anstalld (aid, fornamn, efternamn, adress, epost, telefon, anstallningsdatum, losenord, avdelning) VALUES (" + intIncrement + ", '" + fornamn + "', '" + efternamn + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + anstallningsdatum + "', '" + losenord + "', '" + avdelningId + "')";
+                    idb.insert(insertAnstalld2);
+                    JOptionPane.showMessageDialog(null, "Ny användare är tillagd!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    clearInputFields();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Du har inte fyllt i alla fällt, vänligen fyll i alla uppgifter", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
             }
 
         } catch (InfException ex) {
@@ -222,22 +222,21 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
-    
     private void fyllPaComboBox() {
-        
         try {
             //Hämtar namn från avdelning
-            String avdelningsNamn= "SELECT namn FROM ngo_2024.avdelning";
-            ArrayList<String> avdelningsnamn= idb.fetchColumn(avdelningsNamn);
-            for(String detValdaAlternativet:avdelningsnamn){
+            String avdelningsNamn = "SELECT CONCAT(avdid, ' - ', namn) AS avd_info FROM ngo_2024.avdelning;";
+            ArrayList<String> avdelningsnamn = idb.fetchColumn(avdelningsNamn);
+            for (String detValdaAlternativet : avdelningsnamn) {
                 avdelningIdComboBox.addItem(detValdaAlternativet);
             }
         } catch (InfException ex) {
             Logger.getLogger(LaggTillAnstalldFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     private void clearInputFields() {
-        
+
         fornamnText.setText("");
         efternamnText.setText("");
         adressText.setText("");

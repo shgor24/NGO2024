@@ -34,17 +34,16 @@ public class ProjektledareMeny extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
         bAnsProjekt = new javax.swing.JButton();
         jButton1SeAnstallda = new javax.swing.JButton();
         bSeAllaProjektAvd = new javax.swing.JButton();
         bSokEfterProjekt = new javax.swing.JButton();
         jButton1ListaOverHalMal = new javax.swing.JButton();
         bSeProjektJagAnsvararFor = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        bVisaKostnad = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTextField1.setText("Detta är projektledare menyn");
 
         bAnsProjekt.setText("Se mina projekt");
         bAnsProjekt.addActionListener(new java.awt.event.ActionListener() {
@@ -88,52 +87,62 @@ public class ProjektledareMeny extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
+        jLabel1.setText("Välkommen till projektledaremenyn");
+
+        bVisaKostnad.setText("Visa kostnadsstatistik för projekt");
+        bVisaKostnad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVisaKostnadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(113, 113, 113)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(135, 135, 135)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bSeAllaProjektAvd)
-                        .addGap(18, 18, 18)
                         .addComponent(bSeProjektJagAnsvararFor)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(bSokEfterProjekt)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1ListaOverHalMal, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(bAnsProjekt)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1SeAnstallda, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(51, 51, 51))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bSeAllaProjektAvd)
+                            .addComponent(bSokEfterProjekt)
+                            .addComponent(bAnsProjekt))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bVisaKostnad, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1ListaOverHalMal)
+                            .addComponent(jButton1SeAnstallda))
+                        .addGap(29, 29, 29))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAnsProjekt)
-                    .addComponent(jButton1SeAnstallda))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bSeAllaProjektAvd)
-                    .addComponent(bSeProjektJagAnsvararFor))
-                .addGap(27, 27, 27)
+                    .addComponent(jButton1ListaOverHalMal))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bSokEfterProjekt)
-                    .addComponent(jButton1ListaOverHalMal))
-                .addContainerGap(69, Short.MAX_VALUE))
+                    .addComponent(jButton1SeAnstallda))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bSeAllaProjektAvd)
+                    .addComponent(bVisaKostnad))
+                .addGap(18, 18, 18)
+                .addComponent(bSeProjektJagAnsvararFor)
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,6 +179,11 @@ public class ProjektledareMeny extends javax.swing.JFrame {
         ListaProjektAnsvar listaProjekt = new ListaProjektAnsvar(idb, aid);
         listaProjekt.setVisible(true);
     }//GEN-LAST:event_bSeProjektJagAnsvararForActionPerformed
+
+    private void bVisaKostnadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVisaKostnadActionPerformed
+        KostnadsStatistik kostnad = new KostnadsStatistik(idb, aid);
+        kostnad.setVisible(true);
+    }//GEN-LAST:event_bVisaKostnadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,8 +229,9 @@ public class ProjektledareMeny extends javax.swing.JFrame {
     private javax.swing.JButton bSeAllaProjektAvd;
     private javax.swing.JButton bSeProjektJagAnsvararFor;
     private javax.swing.JButton bSokEfterProjekt;
+    private javax.swing.JButton bVisaKostnad;
     private javax.swing.JButton jButton1ListaOverHalMal;
     private javax.swing.JButton jButton1SeAnstallda;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

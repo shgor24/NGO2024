@@ -27,6 +27,32 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
         
         
     }
+    
+    private void fyllData() {
+        try {
+            tfaid.setText(aid);
+            tffornamn.setText(idb.fetchSingle("SELECT fornamn FROM Anstalld WHERE aid = '" + aid + "'"));
+            tfefternamn.setText(idb.fetchSingle("SELECT efternamn FROM Anstalld WHERE aid = '" + aid + "'"));
+            tfadress.setText(idb.fetchSingle("SELECT adress FROM Anstalld WHERE aid = '" + aid + "'"));
+            tfepost.setText(idb.fetchSingle("SELECT epost FROM Anstalld WHERE aid = '" + aid + "'"));
+            tftelefon.setText(idb.fetchSingle("SELECT telefon FROM Anstalld WHERE aid = '" + aid + "'"));
+            tfansdat.setText(idb.fetchSingle("SELECT anstallddatum FROM Anstalld WHERE aid = '" + aid + "'"));
+            tflosen.setText(idb.fetchSingle("SELECT losenord FROM Anstalld WHERE aid = '" + aid + "'"));
+            tfavd.setText(idb.fetchSingle("SELECT avdelning FROM Anstalld WHERE aid = '" + aid + "'"));
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+           
+        }
+    }
+    
+      private void uppdateraData() {
+        try {
+            idb.update("UPDATE Anstalld SET fornamn = '" + tffornamn.getText() + "', efternamn = '" + tfefternamn.getText() + "', adress = '" + tfadress.getText() + "', epost = '" + tfepost.getText() + "', telefon = '" + tftelefon.getText() + "', losenord = '" + tflosen.getText() + "', avdelning = '" + tfavd.getText() + "' WHERE aid = '" + aid + "'");
+            
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,34 +62,40 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     
     
+    
+    
+    
+    
+    
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        tffornamn = new javax.swing.JTextField();
+        lbaid = new javax.swing.JLabel();
+        lbfornamn = new javax.swing.JLabel();
+        lbefternamn = new javax.swing.JLabel();
+        lbadress = new javax.swing.JLabel();
+        lbepost = new javax.swing.JLabel();
+        lbtelefon = new javax.swing.JLabel();
+        lbansdat = new javax.swing.JLabel();
+        lblosen = new javax.swing.JLabel();
+        lbavd = new javax.swing.JLabel();
+        tfaid = new javax.swing.JTextField();
+        tfefternamn = new javax.swing.JTextField();
+        tfadress = new javax.swing.JTextField();
+        tfepost = new javax.swing.JTextField();
+        tftelefon = new javax.swing.JTextField();
+        tfansdat = new javax.swing.JTextField();
+        tflosen = new javax.swing.JTextField();
+        tfavd = new javax.swing.JTextField();
+        bnandralosen = new javax.swing.JButton();
+        bnandratelfon = new javax.swing.JButton();
+        bnandraepost = new javax.swing.JButton();
+        bnandraadress = new javax.swing.JButton();
+        bnsparaandringar = new javax.swing.JButton();
 
         jLabel10.setText("jLabel10");
 
@@ -72,51 +104,53 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Mina uppgifter");
 
-        jTextField1.setText("jTextField1");
+        tffornamn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tffornamnActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("AID:");
+        lbaid.setText("AID:");
 
-        jLabel3.setText("Förnamn:");
+        lbfornamn.setText("Förnamn:");
 
-        jLabel4.setText("Efternamn:");
+        lbefternamn.setText("Efternamn:");
 
-        jLabel5.setText("Adress:");
+        lbadress.setText("Adress:");
 
-        jLabel6.setText("Epost:");
+        lbepost.setText("Epost:");
 
-        jLabel7.setText("Telefon:");
+        lbtelefon.setText("Telefon:");
 
-        jLabel8.setText("Anställningsdatum:");
+        lbansdat.setText("Anställningsdatum:");
 
-        jLabel9.setText("Lösenord:");
+        lblosen.setText("Lösenord:");
 
-        jLabel11.setText("Avdelning:");
+        lbavd.setText("Avdelning:");
 
-        jTextField2.setText("jTextField2");
+        tfefternamn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfefternamnActionPerformed(evt);
+            }
+        });
 
-        jTextField3.setText("jTextField3");
+        tfansdat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfansdatActionPerformed(evt);
+            }
+        });
 
-        jTextField4.setText("jTextField4");
+        tfavd.setText("jTextField9");
 
-        jTextField5.setText("jTextField5");
+        bnandralosen.setText("Ändra");
 
-        jTextField6.setText("jTextField6");
+        bnandratelfon.setText("Ändra");
 
-        jTextField7.setText("jTextField7");
+        bnandraepost.setText("Ändra");
 
-        jTextField8.setText("jTextField8");
+        bnandraadress.setText("Ändra");
 
-        jTextField9.setText("jTextField9");
-
-        jButton1.setText("Ändra");
-
-        jButton2.setText("Ändra");
-
-        jButton3.setText("Ändra");
-
-        jButton4.setText("Ändra");
-
-        jButton5.setText("Spara");
+        bnsparaandringar.setText("Spara");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -125,33 +159,33 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel2))
+                    .addComponent(lbfornamn)
+                    .addComponent(lbefternamn)
+                    .addComponent(lbtelefon)
+                    .addComponent(lbepost)
+                    .addComponent(lbansdat)
+                    .addComponent(lblosen)
+                    .addComponent(lbavd)
+                    .addComponent(lbadress)
+                    .addComponent(lbaid))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTextField8)
+                                .addComponent(tflosen)
                                 .addGap(99, 99, 99)
-                                .addComponent(jButton1))
+                                .addComponent(bnandralosen))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField6)
-                                    .addComponent(jTextField5)
-                                    .addComponent(jTextField4))
+                                    .addComponent(tftelefon)
+                                    .addComponent(tfepost)
+                                    .addComponent(tfadress))
                                 .addGap(99, 99, 99)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(bnandraadress, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(bnandraepost, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(bnandratelfon, javax.swing.GroupLayout.Alignment.TRAILING))))
                         .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,14 +193,14 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(90, 90, 90)
                                     .addComponent(jLabel1))
-                                .addComponent(jTextField2)
-                                .addComponent(jTextField1)
-                                .addComponent(jTextField3)
-                                .addComponent(jTextField7)
-                                .addComponent(jTextField9))
+                                .addComponent(tfaid)
+                                .addComponent(tffornamn)
+                                .addComponent(tfefternamn)
+                                .addComponent(tfansdat)
+                                .addComponent(tfavd))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(313, 313, 313)
-                                .addComponent(jButton5)))
+                                .addComponent(bnsparaandringar)))
                         .addContainerGap(30, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -176,50 +210,62 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbaid)
+                    .addComponent(tfaid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbfornamn)
+                    .addComponent(tffornamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbefternamn)
+                    .addComponent(tfefternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4))
+                    .addComponent(lbadress)
+                    .addComponent(tfadress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bnandraadress))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(lbepost)
+                    .addComponent(tfepost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bnandraepost))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(lbtelefon)
+                    .addComponent(tftelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bnandratelfon))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbansdat)
+                    .addComponent(tfansdat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(lblosen)
+                    .addComponent(tflosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bnandralosen))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbavd)
+                    .addComponent(tfavd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton5))
+                .addComponent(bnsparaandringar))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tfansdatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfansdatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfansdatActionPerformed
+
+    private void tffornamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tffornamnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tffornamnActionPerformed
+
+    private void tfefternamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfefternamnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfefternamnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,30 +303,30 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton bnandraadress;
+    private javax.swing.JButton bnandraepost;
+    private javax.swing.JButton bnandralosen;
+    private javax.swing.JButton bnandratelfon;
+    private javax.swing.JButton bnsparaandringar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lbadress;
+    private javax.swing.JLabel lbaid;
+    private javax.swing.JLabel lbansdat;
+    private javax.swing.JLabel lbavd;
+    private javax.swing.JLabel lbefternamn;
+    private javax.swing.JLabel lbepost;
+    private javax.swing.JLabel lbfornamn;
+    private javax.swing.JLabel lblosen;
+    private javax.swing.JLabel lbtelefon;
+    private javax.swing.JTextField tfadress;
+    private javax.swing.JTextField tfaid;
+    private javax.swing.JTextField tfansdat;
+    private javax.swing.JTextField tfavd;
+    private javax.swing.JTextField tfefternamn;
+    private javax.swing.JTextField tfepost;
+    private javax.swing.JTextField tffornamn;
+    private javax.swing.JTextField tflosen;
+    private javax.swing.JTextField tftelefon;
     // End of variables declaration//GEN-END:variables
 }
