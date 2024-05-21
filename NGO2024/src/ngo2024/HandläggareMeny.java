@@ -1,5 +1,5 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ *. Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024;
@@ -22,8 +22,29 @@ public class HandläggareMeny extends javax.swing.JFrame {
     public HandläggareMeny(String aid, InfDB idb) {
         this.aid = aid;
         this.idb = idb;
-        initComponents();
+        initComponents(); 
+        
+                    bnHandAvd.addActionListener(new java.awt.event.ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        bnHandAvdActionPerformed(evt);
     }
+});
+
+        
+        
+        
+        
+        
+   
+       
+
+        
+        
+  
+    }
+    
+      
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,10 +59,11 @@ public class HandläggareMeny extends javax.swing.JFrame {
         bAnsProjekt = new javax.swing.JButton();
         bAvdProj = new javax.swing.JButton();
         bAnsAvd = new javax.swing.JButton();
-        bAnsUpp = new javax.swing.JButton();
+        bnAnsUpp = new javax.swing.JButton();
         bSeAllaProjektAvdelning = new javax.swing.JButton();
         bSokEfterProjekt = new javax.swing.JButton();
         jButton1ListaOverHalMal = new javax.swing.JButton();
+        bnHandAvd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,7 +95,12 @@ public class HandläggareMeny extends javax.swing.JFrame {
             }
         });
 
-        bAnsUpp.setText("Mina uppgifter");
+        bnAnsUpp.setText("Mina uppgifter");
+        bnAnsUpp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bnAnsUppActionPerformed(evt);
+            }
+        });
 
         bSeAllaProjektAvdelning.setText("Se alla projekt på min avdelning");
         bSeAllaProjektAvdelning.addActionListener(new java.awt.event.ActionListener() {
@@ -96,55 +123,55 @@ public class HandläggareMeny extends javax.swing.JFrame {
             }
         });
 
+        bnHandAvd.setText("Handläggare på min avdelning");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bAnsUpp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bnAnsUpp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bAnsProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                .addGap(102, 102, 102)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bAvdProj, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(bAnsAvd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(bSeAllaProjektAvdelning)
-                .addGap(31, 31, 31)
-                .addComponent(jButton1ListaOverHalMal, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
+                    .addComponent(bAnsAvd, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                    .addComponent(bAvdProj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(bSokEfterProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(bSeAllaProjektAvdelning)
+                    .addComponent(bnHandAvd, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bSokEfterProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                    .addComponent(jButton1ListaOverHalMal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(177, 177, 177))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(27, 27, 27)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAnsProjekt)
                     .addComponent(bAvdProj))
-                .addGap(35, 35, 35)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAnsAvd)
-                    .addComponent(bAnsUpp))
+                    .addComponent(bnAnsUpp))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bSeAllaProjektAvdelning)
                     .addComponent(jButton1ListaOverHalMal))
-                .addGap(18, 18, 18)
-                .addComponent(bSokEfterProjekt)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bnHandAvd)
+                    .addComponent(bSokEfterProjekt))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
@@ -168,6 +195,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_bAvdProjActionPerformed
 
+
     private void personalPaAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personalPaAvdelningActionPerformed
         
     }//GEN-LAST:event_personalPaAvdelningActionPerformed
@@ -189,8 +217,27 @@ public class HandläggareMeny extends javax.swing.JFrame {
 
     private void jButton1ListaOverHalMalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ListaOverHalMalActionPerformed
         ListaoverHallbarhetsmal listaoverHallbarhetsmal = new ListaoverHallbarhetsmal(idb);
-        listaoverHallbarhetsmal.setVisible(true);                                            
+        listaoverHallbarhetsmal.setVisible(true); 
+        
+   
+}
+     
+
+    private void bnHandAvdActionPerformed (java.awt.event.ActionEvent evt) {                                         
+    HandlaggareSokning  handlaggaresokning = new HandlaggareSokning(idb, aid);
+    
+    handlaggaresokning.setVisible(true);
+
+    
+    
+
     }//GEN-LAST:event_jButton1ListaOverHalMalActionPerformed
+
+    private void bnAnsUppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnAnsUppActionPerformed
+       AndraMinaUppgifter andraminauppgifter = new AndraMinaUppgifter(idb, aid);
+       andraminauppgifter.andrauppgift();
+        andraminauppgifter.setVisible(true); // TODO add your handling code here:
+    }//GEN-LAST:event_bnAnsUppActionPerformed
 // DefaultListModel<String> lista = new DefaultListModel<>();
     /**
      * @param args the command line arguments
@@ -230,10 +277,11 @@ public class HandläggareMeny extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAnsAvd;
     private javax.swing.JButton bAnsProjekt;
-    private javax.swing.JButton bAnsUpp;
     private javax.swing.JButton bAvdProj;
     private javax.swing.JButton bSeAllaProjektAvdelning;
     private javax.swing.JButton bSokEfterProjekt;
+    private javax.swing.JButton bnAnsUpp;
+    private javax.swing.JButton bnHandAvd;
     private javax.swing.JButton jButton1ListaOverHalMal;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

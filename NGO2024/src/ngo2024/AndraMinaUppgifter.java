@@ -19,16 +19,34 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
     /**
      * Creates new form AndraMinaUppgifter
      */
-    public AndraMinaUppgifter(String aid, InfDB idb) {
+    public AndraMinaUppgifter(InfDB idb, String aid) {
         
         this.aid = aid;
         this.idb = idb;
         initComponents();
         
         
+        
+
+        
+
+       
+
+        
+
+      
+
+        bnsparaandringar.setText("Spara ändringar");
+        bnsparaandringar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bnsparaandringarActionPerformed(evt);
+            }
+        });
+        
+        
     }
     
-    private void fyllData() {
+    public void andrauppgift() {
         try {
             tfaid.setText(aid);
             tffornamn.setText(idb.fetchSingle("SELECT fornamn FROM Anstalld WHERE aid = '" + aid + "'"));
@@ -36,7 +54,7 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
             tfadress.setText(idb.fetchSingle("SELECT adress FROM Anstalld WHERE aid = '" + aid + "'"));
             tfepost.setText(idb.fetchSingle("SELECT epost FROM Anstalld WHERE aid = '" + aid + "'"));
             tftelefon.setText(idb.fetchSingle("SELECT telefon FROM Anstalld WHERE aid = '" + aid + "'"));
-            tfansdat.setText(idb.fetchSingle("SELECT anstallddatum FROM Anstalld WHERE aid = '" + aid + "'"));
+            tfansdat.setText(idb.fetchSingle("SELECT anstallningsdatum FROM Anstalld WHERE aid = '" + aid + "'"));
             tflosen.setText(idb.fetchSingle("SELECT losenord FROM Anstalld WHERE aid = '" + aid + "'"));
             tfavd.setText(idb.fetchSingle("SELECT avdelning FROM Anstalld WHERE aid = '" + aid + "'"));
         } catch (InfException ex) {
@@ -45,7 +63,7 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
         }
     }
     
-      private void uppdateraData() {
+      private void uppdateraUppgift() {
         try {
             idb.update("UPDATE Anstalld SET fornamn = '" + tffornamn.getText() + "', efternamn = '" + tfefternamn.getText() + "', adress = '" + tfadress.getText() + "', epost = '" + tfepost.getText() + "', telefon = '" + tftelefon.getText() + "', losenord = '" + tflosen.getText() + "', avdelning = '" + tfavd.getText() + "' WHERE aid = '" + aid + "'");
             
@@ -91,10 +109,6 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
         tfansdat = new javax.swing.JTextField();
         tflosen = new javax.swing.JTextField();
         tfavd = new javax.swing.JTextField();
-        bnandralosen = new javax.swing.JButton();
-        bnandratelfon = new javax.swing.JButton();
-        bnandraepost = new javax.swing.JButton();
-        bnandraadress = new javax.swing.JButton();
         bnsparaandringar = new javax.swing.JButton();
 
         jLabel10.setText("jLabel10");
@@ -134,23 +148,19 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
             }
         });
 
+        tfadress.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfadressActionPerformed(evt);
+            }
+        });
+
         tfansdat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfansdatActionPerformed(evt);
             }
         });
 
-        tfavd.setText("jTextField9");
-
-        bnandralosen.setText("Ändra");
-
-        bnandratelfon.setText("Ändra");
-
-        bnandraepost.setText("Ändra");
-
-        bnandraadress.setText("Ändra");
-
-        bnsparaandringar.setText("Spara");
+        bnsparaandringar.setText("Spara ändringar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,87 +178,68 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
                     .addComponent(lbavd)
                     .addComponent(lbadress)
                     .addComponent(lbaid))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tflosen)
-                                .addGap(99, 99, 99)
-                                .addComponent(bnandralosen))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(tftelefon)
-                                    .addComponent(tfepost)
-                                    .addComponent(tfadress))
-                                .addGap(99, 99, 99)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bnandraadress, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(bnandraepost, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(bnandratelfon, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(90, 90, 90)
-                                    .addComponent(jLabel1))
-                                .addComponent(tfaid)
-                                .addComponent(tffornamn)
-                                .addComponent(tfefternamn)
-                                .addComponent(tfansdat)
-                                .addComponent(tfavd))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(313, 313, 313)
-                                .addComponent(bnsparaandringar)))
-                        .addContainerGap(30, Short.MAX_VALUE))))
+                        .addGap(90, 90, 90)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(313, 313, 313)
+                        .addComponent(bnsparaandringar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(tfaid, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                        .addComponent(tffornamn, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tfefternamn, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tfadress, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tfepost, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tftelefon, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tfansdat, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tflosen, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tfavd, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbaid)
                     .addComponent(tfaid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbfornamn)
                     .addComponent(tffornamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbefternamn)
                     .addComponent(tfefternamn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbadress)
-                    .addComponent(tfadress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bnandraadress))
-                .addGap(18, 18, 18)
+                    .addComponent(tfadress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbepost)
-                    .addComponent(tfepost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bnandraepost))
-                .addGap(18, 18, 18)
+                    .addComponent(tfepost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbtelefon)
-                    .addComponent(tftelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bnandratelfon))
-                .addGap(18, 18, 18)
+                    .addComponent(tftelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbansdat)
                     .addComponent(tfansdat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblosen)
-                    .addComponent(tflosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bnandralosen))
-                .addGap(18, 18, 18)
+                    .addComponent(tflosen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbavd)
                     .addComponent(tfavd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(bnsparaandringar))
         );
 
@@ -267,6 +258,13 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfefternamnActionPerformed
 
+    private void tfadressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfadressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfadressActionPerformed
+
+     private void bnsparaandringarActionPerformed(java.awt.event.ActionEvent evt) {
+        uppdateraUppgift();
+    }
     /**
      * @param args the command line arguments
      */
@@ -303,10 +301,6 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bnandraadress;
-    private javax.swing.JButton bnandraepost;
-    private javax.swing.JButton bnandralosen;
-    private javax.swing.JButton bnandratelfon;
     private javax.swing.JButton bnsparaandringar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
