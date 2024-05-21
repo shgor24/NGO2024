@@ -179,7 +179,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_bAvdProjActionPerformed
 
-<<<<<<< Updated upstream
+
     private void personalPaAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personalPaAvdelningActionPerformed
         
     }//GEN-LAST:event_personalPaAvdelningActionPerformed
@@ -203,20 +203,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
         ListaoverHallbarhetsmal listaoverHallbarhetsmal = new ListaoverHallbarhetsmal(idb);
         listaoverHallbarhetsmal.setVisible(true); 
         
-        
-=======
-    private void bAnsAvdActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    // Skapa en ny instans av HandläggareSökning och visa den
-    HandlaggareSokning  handlaggaresokning = new HandlaggareSokning(idb, aid);
-    handlaggaresokning.setVisible(true);
-    
-    }
-    
-    private void bAnsUppActionPerformed(java.awt.event.ActionEvent evt) {                                         
-    // Skapa en instans av Andraminauppgifter
-    AndraMinaUppgifter andraMinaUppgifter = new AndraMinaUppgifter(aid, idb); 
-    andraMinaUppgifter.setVisible(true);
->>>>>>> Stashed changes
+   
 }
     
 
