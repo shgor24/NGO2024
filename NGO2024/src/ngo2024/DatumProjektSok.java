@@ -41,7 +41,7 @@ public class DatumProjektSok extends javax.swing.JFrame {
         ftfSlutdatum = new javax.swing.JFormattedTextField();
         ftfStartdatum = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         jLabel1.setText("Fr.o.m.");
