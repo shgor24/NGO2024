@@ -24,6 +24,7 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
         this.pid = pid;
         this.aid = aid;
         initComponents();
+        
     }
 
     /** This method is called from within the constructor to
@@ -35,32 +36,42 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        andrauppgifter = new javax.swing.JButton();
+        laggtillpartner = new javax.swing.JButton();
+        tabortpartner = new javax.swing.JButton();
+        laggtillhandlaggare = new javax.swing.JButton();
+        taborthandlaggare = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jButton1.setText("Ändra uppgifter");
+        andrauppgifter.setText("Ändra uppgifter");
 
-        jButton2.setText("Lägg till partner");
-
-        jButton3.setText("Ta bort partner");
-
-        jButton4.setText("Lägg till handläggare");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        laggtillpartner.setText("Lägg till partner");
+        laggtillpartner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                laggtillpartnerActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Ta bort handläggare");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        tabortpartner.setText("Ta bort partner");
+        tabortpartner.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                tabortpartnerActionPerformed(evt);
+            }
+        });
+
+        laggtillhandlaggare.setText("Lägg till handläggare");
+        laggtillhandlaggare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                laggtillhandlaggareActionPerformed(evt);
+            }
+        });
+
+        taborthandlaggare.setText("Ta bort handläggare");
+        taborthandlaggare.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                taborthandlaggareActionPerformed(evt);
             }
         });
 
@@ -74,16 +85,16 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(andrauppgifter)
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(laggtillpartner, javax.swing.GroupLayout.PREFERRED_SIZE, 119, Short.MAX_VALUE)
+                            .addComponent(tabortpartner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(laggtillhandlaggare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(taborthandlaggare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(71, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,30 +103,40 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(16, 16, 16)
-                .addComponent(jButton1)
+                .addComponent(andrauppgifter)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4))
+                    .addComponent(laggtillpartner)
+                    .addComponent(laggtillhandlaggare))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5))
+                    .addComponent(tabortpartner)
+                    .addComponent(taborthandlaggare))
                 .addContainerGap(147, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void laggtillhandlaggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggtillhandlaggareActionPerformed
         LaggTillHandlaggare laggTillHandlaggare = new LaggTillHandlaggare(idb, pid, aid);
         laggTillHandlaggare.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_laggtillhandlaggareActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void taborthandlaggareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taborthandlaggareActionPerformed
         TaBortHandlaggare taBortHandlaggare = new TaBortHandlaggare(idb, pid, aid);
         taBortHandlaggare.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_taborthandlaggareActionPerformed
+
+    private void laggtillpartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggtillpartnerActionPerformed
+        LaggTillPartners laggTillPartners=new LaggTillPartners (idb, pid,aid);
+        laggTillPartners.setVisible(true); 
+    }//GEN-LAST:event_laggtillpartnerActionPerformed
+
+    private void tabortpartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabortpartnerActionPerformed
+        TaBortPartners taBortpartners=new TaBortPartners (idb, pid,aid);
+        taBortpartners.setVisible(true);
+    }//GEN-LAST:event_tabortpartnerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,12 +175,12 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton andrauppgifter;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton laggtillhandlaggare;
+    private javax.swing.JButton laggtillpartner;
+    private javax.swing.JButton taborthandlaggare;
+    private javax.swing.JButton tabortpartner;
     // End of variables declaration//GEN-END:variables
 
 }
