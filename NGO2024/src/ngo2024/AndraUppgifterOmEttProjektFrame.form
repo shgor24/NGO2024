@@ -23,20 +23,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="251" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblSlutdatum" min="-2" pref="65" max="-2" attributes="0"/>
-                      <EmptySpace min="440" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblBeskrivning" min="-2" pref="76" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="lblBeskrivning" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
                           <Component id="startdatumText" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="lblStartdatum" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
-                          <Component id="landText" min="-2" pref="71" max="-2" attributes="0"/>
-                          <Component id="slutdatumText" min="-2" pref="71" max="-2" attributes="0"/>
+                          <Component id="slutdatumText" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="beskrivningText" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="95" max="32767" attributes="0"/>
@@ -60,8 +60,13 @@
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblSlutdatum" min="-2" pref="65" max="-2" attributes="0"/>
+                      <EmptySpace min="440" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="landComboBox" min="-2" max="-2" attributes="0"/>
                           <Component id="projektnamnText" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="lblLand" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="lblProjektnamn" min="-2" pref="76" max="-2" attributes="0"/>
@@ -69,11 +74,6 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="251" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -123,7 +123,7 @@
                       <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="lblLand" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="landText" min="-2" max="-2" attributes="0"/>
+                      <Component id="landComboBox" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -194,6 +194,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Spara &#xe4;ndringar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSparaAndringarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="projektnamnText">
     </Component>
@@ -203,18 +206,15 @@
     </Component>
     <Component class="javax.swing.JTextField" name="slutdatumText">
     </Component>
-    <Component class="javax.swing.JTextField" name="landText">
-    </Component>
     <Component class="javax.swing.JTextField" name="kostnaderText">
     </Component>
     <Component class="javax.swing.JComboBox" name="statusComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="3">
+            <StringItem index="0" value="P&#xe5;g&#xe5;ende"/>
+            <StringItem index="1" value="Planerat"/>
+            <StringItem index="2" value="Avslutat"/>
           </StringArray>
         </Property>
       </Properties>
@@ -225,11 +225,10 @@
     <Component class="javax.swing.JComboBox" name="prioritetComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="3">
+            <StringItem index="0" value="H&#xf6;g"/>
+            <StringItem index="1" value="Medel"/>
+            <StringItem index="2" value="L&#xe5;g"/>
           </StringArray>
         </Property>
       </Properties>
@@ -240,12 +239,17 @@
     <Component class="javax.swing.JComboBox" name="projektchefComboBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="landComboBox">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <AuxValues>

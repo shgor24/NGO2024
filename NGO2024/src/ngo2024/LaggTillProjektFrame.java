@@ -72,12 +72,6 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
 
         lblBeskrivning.setText("Beskrivning");
 
-        beskrivningText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                beskrivningTextActionPerformed(evt);
-            }
-        });
-
         lblStartdatum.setText("Startdatum");
 
         lblSlutdatum.setText("Slutdatum");
@@ -97,12 +91,6 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
         statusComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pågående", "Planerat", "Avslutat" }));
 
         prioritetComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hög", "Medel", "Låg" }));
-
-        landComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                landComboBoxActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -222,6 +210,9 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
             isValidDate(slutdatum);
             if (!projektnamn.equals("") && !beskrivning.equals("") && !startdatum.equals("") && !slutdatum.equals("") && !kostnad.equals("") && !status.equals("") && !prioritet.equals("") && !projektchef.equals("") && !land.equals("")) {
                 String sqlFraga = "INSERT INTO ngo_2024.projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + intIncrement + ", '" + projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" + projektchefId + "', '" + land + "')";
+                //String sqlFraga2= "SELECT LID FROM ngo_2024.land where 
+                //String sqlFraga2= "INSERT into ngo_2024.projekt where "
+               //System.out.println(sqlFraga);
                 idb.insert(sqlFraga);
                 JOptionPane.showMessageDialog(null, "Nytt projekt är tillagd!", "Information", JOptionPane.INFORMATION_MESSAGE);
                 clearInputFields();
@@ -243,14 +234,6 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
             return false;
         }
     }//GEN-LAST:event_btnLaggTillActionPerformed
-
-    private void landComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_landComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_landComboBoxActionPerformed
-
-    private void beskrivningTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_beskrivningTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_beskrivningTextActionPerformed
 
     private void fyllPaComboBoxChef() {
         try {

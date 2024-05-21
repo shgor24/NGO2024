@@ -4,6 +4,12 @@
  */
 package ngo2024;
 
+import ngo2024.AndraUppgifterOmEttProjektFrame;
+import ngo2024.LaggTillAnstalldFrame;
+import ngo2024.LaggTillProjektFrame;
+import ngo2024.SeUppgifterOmEttProjektFrame;
+import ngo2024.TaBortAnstalldFrame;
+import ngo2024.TaBortProjektFrame;
 import oru.inf.InfDB;
 //import oru.inf.InfException;
 
@@ -160,7 +166,7 @@ public class AdministratorMeny extends javax.swing.JFrame {
         } else if (detValdaAlternativet.equals("Ta bort projekt" +"")){
             new TaBortProjektFrame().setVisible(true);
         } else if (detValdaAlternativet.equals("Ändra uppgifter om ett projekt" + "")) {
-            new AndraUppgifterOmEttProjektFrame().setVisible(true);
+            new AndraUppgifterOmEttProjektFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Se uppgifter om projektansvarig" + "")) {
             new SeUppgifterOmEttProjektFrame().setVisible(true);
         }
