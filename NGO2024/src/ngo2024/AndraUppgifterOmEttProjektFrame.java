@@ -202,14 +202,11 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
             
             String projektchefId = projektchef.toString().replaceAll("\\D+", "");
 
-            
-            
             isValidDate(startdatum);
             isValidDate(slutdatum);
             if (!projektnamn.equals("") && !beskrivning.equals("") && !startdatum.equals("") && !slutdatum.equals("") && !kostnad.equals("") && !status.equals("") && !prioritet.equals("") && !projektchef.equals("") && !land.equals("")) {
-                String sqlFraga1 = "UPDATE ngo_2024.projekt SET projektnamn = '" + projektnamn + "', beskrivning = '" + beskrivning + "', startdatum = '" + startdatum + "', slutdatum = '" + slutdatum + "', kostnad = '" + kostnad + "', status = '" + status + "', prioritet = '" + prioritet + "', projektchef = '" + projektchefId + "', land = '" + land + "' WHERE pid = " + projektchefId;
-                
-                idb.update(sqlFraga1);
+                String sqlFraga = "UPDATE ngo_2024.projekt SET projektnamn = '" + projektnamn + "', beskrivning = '" + beskrivning + "', startdatum = '" + startdatum + "', slutdatum = '" + slutdatum + "', kostnad = '" + kostnad + "', status = '" + status + "', prioritet = '" + prioritet + "', projektchef = '" + projektchefId + "', land = '" + land + "' WHERE pid = " + projektchefId;
+                idb.update(sqlFraga);
                 JOptionPane.showMessageDialog(null, "Projektinformation är uppdaterad!", "Information", JOptionPane.INFORMATION_MESSAGE);
                 clearInputFields();
           
@@ -266,6 +263,14 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
         projektchefComboBox = null;
         landComboBox = null;
     }
+      
+      private void uppdateraData(){
+          try{
+              idb.update("UPDATE Projekt SET projektnamn= '" + projektnamnText.getText() +"', beskrivning='" + beskrivningText.getText() + "', startdatum= '" + startdatumText.getText() + "', slutdatum='" + slutdatumText.getText()+ "', land='" + landComboBox.getSelectedItem()+ "', kostnad='" + kostnaderText.getText()+ "', status='" + statusComboBox.getSelectedItem()+ "', prioritet='" + prioritetComboBox.getSelectedItem()+ "', projektchef='" + projektchefComboBox.getSelectedItem());
+          } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+      }
+   }
       
 
      
