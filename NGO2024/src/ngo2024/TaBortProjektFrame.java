@@ -184,7 +184,7 @@ public class TaBortProjektFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TaBortProjektFrame().setVisible(true);
+                //new TaBortProjektFrame().setVisible(true);
             }
         });
     }

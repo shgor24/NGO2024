@@ -160,7 +160,7 @@ public class AdministratorMeny extends javax.swing.JFrame {
         } else if (detValdaAlternativet.equals("Ta bort projekt" +"")){
             new TaBortProjektFrame().setVisible(true);
         } else if (detValdaAlternativet.equals("Ändra uppgifter om ett projekt" + "")) {
-            new AndraUppgifterOmEttProjektFrame().setVisible(true);
+            new AndraUppgifterOmEttProjektFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Se uppgifter om projektansvarig" + "")) {
             new SeUppgifterOmEttProjektFrame().setVisible(true);
         }
