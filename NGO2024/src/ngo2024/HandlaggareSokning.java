@@ -34,8 +34,8 @@ public class HandlaggareSokning extends javax.swing.JFrame {
         
         initComponents();
         
+               
        
-        
         
         btnsokhandlaggare.addActionListener(new java.awt.event.ActionListener() {
     public void actionPerformed(java.awt.event.ActionEvent evt) {

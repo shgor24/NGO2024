@@ -23,7 +23,17 @@ public class HandläggareMeny extends javax.swing.JFrame {
         this.aid = aid;
         this.idb = idb;
         initComponents();
+        
+        
+            bnHandAvd.addActionListener(new java.awt.event.ActionListener() {
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        bnHandAvdActionPerformed(evt);
     }
+});
+    }
+    
+      
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,6 +52,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
         bSeAllaProjektAvdelning = new javax.swing.JButton();
         bSokEfterProjekt = new javax.swing.JButton();
         jButton1ListaOverHalMal = new javax.swing.JButton();
+        bnHandAvd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +107,8 @@ public class HandläggareMeny extends javax.swing.JFrame {
             }
         });
 
+        bnHandAvd.setText("Handläggare på min avdelning");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,37 +117,33 @@ public class HandläggareMeny extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(bAnsUpp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bAnsProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                .addGap(102, 102, 102)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bAvdProj, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(bAnsAvd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(bAnsAvd, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                    .addComponent(bAvdProj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(bSeAllaProjektAvdelning)
-                .addGap(31, 31, 31)
-                .addComponent(jButton1ListaOverHalMal, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(bSokEfterProjekt, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(bnHandAvd, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bSeAllaProjektAvdelning, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bSokEfterProjekt, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                    .addComponent(jButton1ListaOverHalMal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(177, 177, 177))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(27, 27, 27)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAnsProjekt)
                     .addComponent(bAvdProj))
-                .addGap(35, 35, 35)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bAnsAvd)
                     .addComponent(bAnsUpp))
@@ -142,9 +151,11 @@ public class HandläggareMeny extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bSeAllaProjektAvdelning)
                     .addComponent(jButton1ListaOverHalMal))
-                .addGap(18, 18, 18)
-                .addComponent(bSokEfterProjekt)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bnHandAvd)
+                    .addComponent(bSokEfterProjekt))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
@@ -189,7 +200,16 @@ public class HandläggareMeny extends javax.swing.JFrame {
 
     private void jButton1ListaOverHalMalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ListaOverHalMalActionPerformed
         ListaoverHallbarhetsmal listaoverHallbarhetsmal = new ListaoverHallbarhetsmal(idb);
-        listaoverHallbarhetsmal.setVisible(true);                                            
+        listaoverHallbarhetsmal.setVisible(true); 
+        
+        
+}
+
+
+    private void bnHandAvdActionPerformed (java.awt.event.ActionEvent evt) {                                         
+    HandlaggareSokning  handlaggaresokning = new HandlaggareSokning(idb, aid);
+   
+    handlaggaresokning.setVisible(true);
     }//GEN-LAST:event_jButton1ListaOverHalMalActionPerformed
 // DefaultListModel<String> lista = new DefaultListModel<>();
     /**
@@ -234,6 +254,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
     private javax.swing.JButton bAvdProj;
     private javax.swing.JButton bSeAllaProjektAvdelning;
     private javax.swing.JButton bSokEfterProjekt;
+    private javax.swing.JButton bnHandAvd;
     private javax.swing.JButton jButton1ListaOverHalMal;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
