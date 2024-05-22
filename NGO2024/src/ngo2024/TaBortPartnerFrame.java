@@ -129,13 +129,13 @@ public class TaBortPartnerFrame extends javax.swing.JFrame {
                             }
                         }
                     }
-                    String sqlFraga = "DELETE FROM NGO_2024.projekt WHERE pid = '" + pid + "'";
+                    String sqlFraga = "DELETE FROM NGO_2024.partner WHERE pid = '" + pid + "'";
 
                     btnTaBortPartner.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             try {
                                 idb.delete(sqlFraga);
-                                JOptionPane.showMessageDialog(null, "partner har blivit borttagen!", "Information", JOptionPane.INFORMATION_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Partner har blivit borttagen!", "Information", JOptionPane.INFORMATION_MESSAGE);
 
                                 DefaultListModel<String> model = (DefaultListModel<String>) jList1.getModel();
                                 model.removeElement(selectedValue);
