@@ -7,6 +7,7 @@ package ngo2024;
 
 import oru.inf.InfDB;
 import oru.inf.InfException;
+import javax.swing.JOptionPane;
 
 /** 
  *
@@ -248,6 +249,23 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
 
     private void bnsparaandringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnsparaandringarActionPerformed
       
+    String namn = tfNamn.getText();
+    String sprak = tfSprak.getText();
+    String valuta = tfValuta.getText();
+    String tidzon = tfTidzon.getText();
+    String politiskStruktur = tfPs.getText();
+    String ekonomi = tfEkonomi.getText();
+
+    // Kontrollera om något av fälten är tomt
+    if (namn.isEmpty() || sprak.isEmpty() || valuta.isEmpty() || tidzon.isEmpty() || politiskStruktur.isEmpty() || ekonomi.isEmpty()) {
+        // Visa ett meddelande till användaren om att fylla i alla fält
+        JOptionPane.showMessageDialog(this, "Var god fyll i alla fält.", "Tomma fält", JOptionPane.WARNING_MESSAGE);
+    } else {
+        // Om inga fält är tomma, uppdatera uppgifterna
+        uppdateraUppgift();
+    }
+
+        
         uppdateraUppgift();  
     }//GEN-LAST:event_bnsparaandringarActionPerformed
 
