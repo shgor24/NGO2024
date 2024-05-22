@@ -154,12 +154,7 @@ public class AdministratorMeny extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private void cbValdLandActionPerformed(java.awt.event.ActionEvent evt) {
-    String detValdaAlternativet = (String) cbValdLand.getSelectedItem();
-    if (detValdaAlternativet.equals("Ändra uppgifter för ett land" + "")) {
-        new ValjLand(idb).setVisible(true);
-    }
-}
+
     private void cbValdAnstalldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValdAnstalldActionPerformed
 
         String detValdaAlternativet = (String)cbValdAnstalld.getSelectedItem();
@@ -181,17 +176,48 @@ private void cbValdLandActionPerformed(java.awt.event.ActionEvent evt) {
         if (detValdaAlternativet.equals("Lägg till projekt" + "")) {
             new LaggTillProjektFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Ta bort projekt" +"")){
-            new TaBortProjektFrame().setVisible(true);
+            new TaBortProjektFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Ändra uppgifter om ett projekt" + "")) {
             new AndraUppgifterOmEttProjektFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Se uppgifter om projektansvarig" + "")) {
             new SeUppgifterOmEttProjektFrame().setVisible(true);
         }
         
-        
-
     }//GEN-LAST:event_cbValdProjektActionPerformed
+      private void cbValdAvdelningActionPerformed(java.awt.event.ActionEvent evt) {
+          String detValdaAlternativet = (String) cbValdAvdelning.getSelectedItem();
+          if (detValdaAlternativet.equals("Lägg till avdelning" + "")) {
+            new LaggTillAvdelningFrame().setVisible(true);
+        } else if (detValdaAlternativet.equals("Ändra uppgifter om en avdelning" + "")) {
+            new AndraUppgifterOmEnAvdelningFrame().setVisible(true);
+        }
+          
+      }
+      
+      private void cbValdPartnerActionPerformed(java.awt.event.ActionEvent evt) {
+          String detValdaAlternativet = (String) cbValdPartner.getSelectedItem();
+        if(detValdaAlternativet.equals("Lägg till partner" + "")){
+              new LaggTillPartnerFrame(idb).setVisible(true);
+        } else if (detValdaAlternativet.equals("Ta bort partner" +"")) {
+              new TaBortPartnerFrame(idb).setVisible(true);
+        } else if(detValdaAlternativet.equals("Ändra uppgifter om en partner" +"")){
+            new AndraUppgifterOmEnPartner().setVisible (true);
+          }
+      }
 
+      private void cbValdLandActionPerformed(java.awt.event.ActionEvent evt) {
+          String detValdaAlternativet = (String) cbValdLand.getSelectedItem();
+          if(detValdaAlternativet.equals("Lägg till land" +"")) {
+              new ValjLand(idb).setVisble(true);
+       } else if (detValdaAlternativet.equals ("Ändra uppgifter för ett land" +"")){
+           new AndraUppgiftOmEttLand().setVisible(true);
+       }
+          
+      }
+
+      
+      
+   
     /**
      * @param args the command line arguments
      */
