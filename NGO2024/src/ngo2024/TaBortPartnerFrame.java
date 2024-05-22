@@ -4,17 +4,59 @@
  */
 package ngo2024;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import oru.inf.InfDB;
+import oru.inf.InfException;
 /**
  *
  * @author sheny
  */
 public class TaBortPartnerFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TaBortPartnerFrame
-     */
-    public TaBortPartnerFrame() {
+    private InfDB idb;
+    private DefaultListModel<String> listModel;
+    int pid = -1;
+    
+    public TaBortPartnerFrame(InfDB idb) {
         initComponents();
+        this.idb = idb;
+        try {
+            String fetchUsersQuery = "SELECT * FROM ngo_2024.partner";
+            ArrayList<HashMap<String, String>> resultSet = idb.fetchRows(fetchUsersQuery);
+
+            listModel = new DefaultListModel<>();
+            jList1.setModel(listModel);
+            String[] keyOrder = {"pid", "namn", "kontaktperson", "kontaktepost", "telefon", "adress", "branch", "stad"};
+
+            for (HashMap<String, String> result : resultSet) {
+                // Build the list item in the specified order
+                StringBuilder listItem = new StringBuilder();
+                for (String key : keyOrder) {
+                    String value = result.get(key);
+                    if (value != null) {
+                        listItem.append(key).append(": ").append(value).append(", ");
+                    }
+                }
+                // Remove the trailing comma and space
+                if (listItem.length() > 0) {
+                    listItem.setLength(listItem.length() - 2);
+                }
+                listModel.addElement(listItem.toString());
+            }
+            getSelectedValueAndDelete();
+
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**
@@ -69,7 +111,44 @@ public class TaBortPartnerFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+ private void getSelectedValueAndDelete() {
+        jList1.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
 
+                    Object selectedValue = jList1.getSelectedValue();
+
+                    if (selectedValue != null) {
+                        String[] parts = selectedValue.toString().split(", ");
+                        // int aid = -1; // Initialize aid to a default value
+                        for (String part : parts) {
+                            String[] keyValue = part.split(": ");
+                            if (keyValue[0].trim().equals("pid")) {
+                                pid = Integer.parseInt(keyValue[1]);
+                                break; // Exit loop once aid is found
+                            }
+                        }
+                    }
+                    String sqlFraga = "DELETE FROM NGO_2024.projekt WHERE pid = '" + pid + "'";
+
+                    btnTaBortPartner.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            try {
+                                idb.delete(sqlFraga);
+                                JOptionPane.showMessageDialog(null, "partner har blivit borttagen!", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+                                DefaultListModel<String> model = (DefaultListModel<String>) jList1.getModel();
+                                model.removeElement(selectedValue);
+                                jList1.repaint();
+                            } catch (InfException ex) {
+                                Logger.getLogger(TaBortPartnerFrame.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
     /**
      * @param args the command line arguments
      */
@@ -100,7 +179,7 @@ public class TaBortPartnerFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TaBortPartnerFrame().setVisible(true);
+                //new TaBortPartnerFrame().setVisible(true);
             }
         });
     }

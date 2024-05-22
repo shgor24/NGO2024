@@ -201,9 +201,9 @@ public class AdministratorMeny extends javax.swing.JFrame {
     private void cbValdPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValdPartnerActionPerformed
         String detValdaAlternativet = (String) cbValdPartner.getSelectedItem();
         if (detValdaAlternativet.equals ("Lägg till partner" + "")){
-            new LaggTillPartnerFrame().setVisible(true);
+            new LaggTillPartnerFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Ta bort partner" + "")){
-            new TaBortPartnerFrame().setVisible(true);
+            new TaBortPartnerFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals( "Ändra uppgifter om en partner" +"")){
             new AndraUppgifterOmEnPartner().setVisible(true);
         }
