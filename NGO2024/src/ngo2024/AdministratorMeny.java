@@ -80,8 +80,13 @@ public class AdministratorMeny extends javax.swing.JFrame {
         });
 
         cbValdAvdelning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till avdelning", "Ändra uppgifter om en avdelning" }));
+        cbValdAvdelning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbValdAvdelningActionPerformed(evt);
+            }
+        });
 
-        cbValdPartner.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till/Ta bort partner", "Ändra uppgifter om en partner" }));
+        cbValdPartner.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till partner", "Ta bort partner", "Ändra uppgifter om en partner" }));
 
         cbValdLand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till land", "Ändra uppgifter för ett land" }));
 
@@ -174,6 +179,16 @@ public class AdministratorMeny extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cbValdProjektActionPerformed
 
+    private void cbValdAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValdAvdelningActionPerformed
+        String detValdaAlternativet = (String) cbValdProjekt.getSelectedItem();
+        if (detValdaAlternativet.equals("Lägg till avdelning" + "")) {
+            new LaggTillAvdelningFrame(idb).setVisible(true);
+       } else if (detValdaAlternativet.equals("Ändra uppgifter om en avdelning" +"")){
+            new AndraUppgifterOmEnAvdelningFrame(idb).setVisible(true);
+       }
+    }//GEN-LAST:event_cbValdAvdelningActionPerformed
+    
+    
     /**
      * @param args the command line arguments
      */
