@@ -172,13 +172,14 @@ public class AdministratorMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_cbValdAnstalldActionPerformed
 
     private void cbValdProjektActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValdProjektActionPerformed
+                                              
         String detValdaAlternativet = (String) cbValdProjekt.getSelectedItem();
         if (detValdaAlternativet.equals("Lägg till projekt" + "")) {
             new LaggTillProjektFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Ta bort projekt" +"")){
             new TaBortProjektFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Ändra uppgifter om ett projekt" + "")) {
-            new AndraUppgifterOmEttProjektFrame(idb).setVisible(true);
+            new AndraUppgifterProjektSelect(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Se uppgifter om projektansvarig" + "")) {
             new SeUppgifterOmEttProjektFrame().setVisible(true);
         }
