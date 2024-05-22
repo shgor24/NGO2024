@@ -32,14 +32,17 @@ public class Validering {
     public static Boolean manadsValidering(String anvInput) {
         Boolean rattFormat = false;
 
-        String angivetManad = anvInput.substring(5, 7);
+        if (!anvInput.isBlank()) {
+            String angivetManad = anvInput.substring(5, 7);
 
-        //Skapar en int variabel av den hämtade månaden
-        int manad = Integer.parseInt(angivetManad);
+            //Skapar en int variabel av den hämtade månaden
+            int manad = Integer.parseInt(angivetManad);
 
-        //Kontrollerar om användaren har skrivit en giltig månad
-        if (manad > 0 && manad <= 12) {
-            rattFormat = true;
+            //Kontrollerar om användaren har skrivit en giltig månad
+            if (manad > 0 && manad <= 12) {
+                rattFormat = true;
+            }
+
         }
 
         return rattFormat;
@@ -48,14 +51,17 @@ public class Validering {
     public static Boolean dagValidering(String anvInput) {
         Boolean rattFormat = false;
 
-        String angivetDag = anvInput.substring(8);
+        if (!anvInput.isBlank()) {
+            String angivetDag = anvInput.substring(8);
 
-        //Skapar en int variabel av den hämtade dagen
-        int dag = Integer.parseInt(angivetDag);
+            //Skapar en int variabel av den hämtade dagen
+            int dag = Integer.parseInt(angivetDag);
 
-        //Kontrollerar om användaren har skrivit en giltig dag
-        if (dag > 0 && dag <= 31) {
-            rattFormat = true;
+            //Kontrollerar om användaren har skrivit en giltig dag
+            if (dag > 0 && dag <= 31) {
+                rattFormat = true;
+            }
+
         }
 
         return rattFormat;

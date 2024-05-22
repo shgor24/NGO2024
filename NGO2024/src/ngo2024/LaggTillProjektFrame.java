@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class LaggTillProjektFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form LaggTillTaBortProjektFrame
+     * Creates new form LaggTillTaProjektFrame
      */
     private InfDB idb;
 
@@ -212,8 +212,6 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
             isValidDate(slutdatum);
             if (!projektnamn.equals("") && !beskrivning.equals("") && !startdatum.equals("") && !slutdatum.equals("") && !kostnad.equals("") && !status.equals("") && !prioritet.equals("") && !projektchef.equals("") && !land.equals("")) {
                 String sqlFraga = "INSERT INTO ngo_2024.projekt (pid, projektnamn, beskrivning, startdatum, slutdatum, kostnad, status, prioritet, projektchef, land) VALUES (" + intIncrement + ", '" + projektnamn + "', '" + beskrivning + "', '" + startdatum + "', '" + slutdatum + "', '" + kostnad + "', '" + status + "', '" + prioritet + "', '" + projektchefId + "', '" + landId + "')";
-                //String sqlFraga2= "INSERT into ngo_2024.projekt where "
-                //System.out.println(sqlFraga);
                 idb.insert(sqlFraga);
                 JOptionPane.showMessageDialog(null, "Nytt projekt är tillagd!", "Information", JOptionPane.INFORMATION_MESSAGE);
                 clearInputFields();

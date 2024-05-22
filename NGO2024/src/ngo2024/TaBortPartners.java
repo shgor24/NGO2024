@@ -35,8 +35,8 @@ public class TaBortPartners extends javax.swing.JFrame {
     {
         try {String sqlFraga = "SELECT partner.namn, partner.kontaktperson, partner.pid " +
                   "FROM partner " +
-                  "LEFT JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid AND projekt_partner.pid = 1 " +
-                  "WHERE projekt_partner.partner_pid IS NULL";
+                  "LEFT JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid AND projekt_partner.pid = 1 ";
+                  //"WHERE projekt_partner.partner_pid IS NULL";
 //            ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
 //
 //            //Skapar en HashMap där alla aid lagras som nycklar och värdena blir för- och efternamn i en ArrayList
@@ -65,7 +65,7 @@ public class TaBortPartners extends javax.swing.JFrame {
 //            }
 //
 //        listaPartners.setModel(lista);
-        ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
+    ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
         
         DefaultListModel<String> lista = new DefaultListModel<>();
         
