@@ -12,7 +12,10 @@ import ngo2024.SeUppgifterOmEttProjektFrame;
 import ngo2024.TaBortAnstalldFrame;
 import ngo2024.TaBortProjektFrame;
 import ngo2024.LaggTillAvdelningFrame;
-import ngo2024.AndraUppgifterOmEttProjektFrame;
+import ngo2024.AndraUppgifterOmEnAvdelningFrame;
+import ngo2024.LaggTillPartnerFrame;
+import ngo2024.TaBortPartnerFrame;
+import ngo2024.AndraUppgifterOmEnPartner;
 import oru.inf.InfDB;
 //import oru.inf.InfException;
 
@@ -89,6 +92,11 @@ public class AdministratorMeny extends javax.swing.JFrame {
         });
 
         cbValdPartner.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till partner", "Ta bort partner", "Ändra uppgifter om en partner" }));
+        cbValdPartner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbValdPartnerActionPerformed(evt);
+            }
+        });
 
         cbValdLand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till land", "Ändra uppgifter för ett land" }));
 
@@ -189,6 +197,17 @@ public class AdministratorMeny extends javax.swing.JFrame {
             new AndraUppgifterOmEnAvdelningFrame().setVisible(true);
        }
     }//GEN-LAST:event_cbValdAvdelningActionPerformed
+
+    private void cbValdPartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValdPartnerActionPerformed
+        String detValdaAlternativet = (String) cbValdPartner.getSelectedItem();
+        if (detValdaAlternativet.equals ("Lägg till partner" + "")){
+            new LaggTillPartnerFrame().setVisible(true);
+        } else if (detValdaAlternativet.equals("Ta bort partner" + "")){
+            new TaBortPartnerFrame().setVisible(true);
+        } else if (detValdaAlternativet.equals( "Ändra uppgifter om en partner" +"")){
+            new AndraUppgifterOmEnPartner().setVisible(true);
+        }
+    }//GEN-LAST:event_cbValdPartnerActionPerformed
     
     
     /**
