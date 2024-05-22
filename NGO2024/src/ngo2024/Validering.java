@@ -32,7 +32,7 @@ public class Validering {
     public static Boolean manadsValidering(String anvInput) {
         Boolean rattFormat = false;
 
-        if (anvInput != null) {
+        if (!anvInput.isBlank()) {
             String angivetManad = anvInput.substring(5, 7);
 
             //Skapar en int variabel av den hämtade månaden
@@ -51,7 +51,7 @@ public class Validering {
     public static Boolean dagValidering(String anvInput) {
         Boolean rattFormat = false;
 
-        if (anvInput != null) {
+        if (!anvInput.isBlank()) {
             String angivetDag = anvInput.substring(8);
 
             //Skapar en int variabel av den hämtade dagen
