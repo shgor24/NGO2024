@@ -207,8 +207,13 @@ public class AdministratorMeny extends javax.swing.JFrame {
 
       private void cbValdLandActionPerformed(java.awt.event.ActionEvent evt) {
           String detValdaAlternativet = (String) cbValdLand.getSelectedItem();
-          if(detValdaAlternativet.equals("Lägg till land" +"")) {
+        if (detValdaAlternativet.equals("Lägg till land" +"")) {
               new ValjLand(idb).setVisble(true);
+          
+          
+        } else if(detValdaAlternativet.equals("Lägg till land" +"")){
+              new LaggTillLand().setVisible(true);
+              
        } else if (detValdaAlternativet.equals ("Ändra uppgifter för ett land" +"")){
            new AndraUppgiftOmEttLand().setVisible(true);
        }
