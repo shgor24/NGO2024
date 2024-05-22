@@ -11,6 +11,8 @@ import ngo2024.LaggTillProjektFrame;
 import ngo2024.SeUppgifterOmEttProjektFrame;
 import ngo2024.TaBortAnstalldFrame;
 import ngo2024.TaBortProjektFrame;
+import ngo2024.LaggTillAvdelningFrame;
+import ngo2024.AndraUppgifterOmEttProjektFrame;
 import oru.inf.InfDB;
 //import oru.inf.InfException;
 
@@ -180,11 +182,11 @@ public class AdministratorMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_cbValdProjektActionPerformed
 
     private void cbValdAvdelningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbValdAvdelningActionPerformed
-        String detValdaAlternativet = (String) cbValdProjekt.getSelectedItem();
+        String detValdaAlternativet = (String) cbValdAvdelning.getSelectedItem();
         if (detValdaAlternativet.equals("Lägg till avdelning" + "")) {
-            new LaggTillAvdelningFrame(idb).setVisible(true);
-       } else if (detValdaAlternativet.equals("Ändra uppgifter om en avdelning" +"")){
-            new AndraUppgifterOmEnAvdelningFrame(idb).setVisible(true);
+            new LaggTillAvdelningFrame().setVisible(true);
+       } else if (detValdaAlternativet.equals("Ändra uppgifter om en avdelning" + "")){
+            new AndraUppgifterOmEnAvdelningFrame().setVisible(true);
        }
     }//GEN-LAST:event_cbValdAvdelningActionPerformed
     

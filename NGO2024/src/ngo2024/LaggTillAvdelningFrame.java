@@ -9,12 +9,12 @@ package ngo2024;
  * @author sheny
  */
 public class LaggTillAvdelningFrame extends javax.swing.JFrame {
-
+  
     /**
      * Creates new form LaggTillAvdelningFrame
      */
     public LaggTillAvdelningFrame() {
-        initComponents();
+        
     }
 
     /**
