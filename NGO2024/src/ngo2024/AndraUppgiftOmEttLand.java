@@ -18,14 +18,16 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
      private InfDB idb;
     private String lid;
 
-    /**
+    /*
      * Creates new form LaggTillLand
      */
     public AndraUppgiftOmEttLand(InfDB idb, String lid) {
         this.idb = idb;
         this.lid = lid;
+        
         initComponents();
         andrauppgift();
+        
         
         
         
@@ -36,8 +38,7 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
                 bnsparaandringarActionPerformed(evt);
             }
         });
-    }
-    
+    }    
     public void andrauppgift() {
         try {
             tfLid.setText(lid);
