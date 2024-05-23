@@ -2,100 +2,85 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ngo2024; 
+package ngo2024;
 
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-/**pack
+/**
+ * pack
  *
  * @author fatimatouray
  */
 public class Projektstatus extends javax.swing.JFrame {
-    
+
     private InfDB idb;
     private String aid;
-    
+
     private javax.swing.JList<String> projekt;
     private String selectedStatus;
-    
-    
 
     /**
      * Creates new form Projektstatus
      */
     public Projektstatus(InfDB idb, String aid) {
-        
-        this.idb = idb;
-        this.aid = "1";
-        
-        initComponents();
-        
-        
-   
 
-        
-        
- 
+        this.idb = idb;
+        this.aid = aid;
+
+        initComponents();
+
         cbstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[]{"Alla", "Pågående", "Avslutad", "Planerat"}));
-        cbstatus.addActionListener(new java.awt.event.ActionListener(){
-        
+        cbstatus.addActionListener(new java.awt.event.ActionListener() {
+
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbstatusActionPerformed(evt);
-                
 
-      
-        }
-    });
+            }
+        });
         cbstatus.setSelectedItem("Alla");
         btnVisastatus = new javax.swing.JButton();
         btnVisastatus.setText("Visa projekt");
         btnVisastatus.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            btnVisastatusActionPerformed(evt);
-            
-        }
-      
-    });
-     
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVisastatusActionPerformed(evt);
+
+            }
+
+        });
 
     }
-    
+
     public void hamtaAllaProjekt() {
-       
+
         try {
             String selectedStatus = (String) cbstatus.getSelectedItem();
             String sqlFraga;
-            if (selectedStatus.equals("Alla")){
+            if (selectedStatus.equals("Alla")) {
 
-             sqlFraga = " select projektnamn from projekt where pid in (select pid from ans_proj where aid in (select aid from anstalld where avdelning in (select avdelning from anstalld where aid = " + aid +")))";
-        } else {
-                sqlFraga = "select projektnamn from projekt where status = '" + selectedStatus + "' AND pid IN (select pid from ans_proj where aid IN (select aid from anstalld where avdelning IN (select avdelning from anstalld where aid = "+aid +"))";
-}
-       ArrayList < String> projektnamn = idb.fetchColumn(sqlFraga);  
-       DefaultListModel <String> lista = new DefaultListModel <> ();
-        
-        for (String namn :projektnamn){
-        
-            lista.addElement(namn);
-        
-        }
-        
-        ltprojekt.setModel (lista);
+                sqlFraga = " select projektnamn from projekt where pid in (select pid from ans_proj where aid in (select aid from anstalld where avdelning in (select avdelning from anstalld where aid = " + aid + ")))";
+            } else {
+                sqlFraga = "select projektnamn from projekt where status = '" + selectedStatus + "' AND pid IN (select pid from ans_proj where aid IN (select aid from anstalld where avdelning IN (select avdelning from anstalld where aid = " + aid + "))";
+            }
+            ArrayList< String> projektnamn = idb.fetchColumn(sqlFraga);
+            DefaultListModel<String> lista = new DefaultListModel<>();
 
-        
-        }
-        
-        catch (InfException ex){
-            
-            System.out.println (ex.getMessage());
-        
+            for (String namn : projektnamn) {
+
+                lista.addElement(namn);
+
+            }
+
+            ltprojekt.setModel(lista);
+
+        } catch (InfException ex) {
+
+            System.out.println(ex.getMessage());
+
         }
     }
-
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -161,122 +146,121 @@ public class Projektstatus extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
+
     private void cbstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbstatusActionPerformed
-  
+
 // Hämta den valda statusen från ComboBoxen
-    selectedStatus = getSelectedStatus();
-       System.out.println("Selected status: " + selectedStatus);
-    
-     if (selectedStatus.equals("Alla")) {
-        hamtaAllaProjekt();
-    
-        // Kolla vilken status som är vald och uppdatera listan över projekt
-       
-    } else if(selectedStatus.equals("Pagaende")){
-                hamtaPagaendeProjekt();
-                
-    } else if(selectedStatus.equals("Avslutad")){
-                hamtaAvslutadeProjekt();
-                
-    } else if(selectedStatus.equals("Planerat")){
-                hamtaPlaneratProjekt();
-                
-              
+        selectedStatus = getSelectedStatus();
+        System.out.println("Selected status: " + selectedStatus);
+
+        if (selectedStatus.equals("Alla")) {
+            hamtaAllaProjekt();
+
+            // Kolla vilken status som är vald och uppdatera listan över projekt
+        } else if (selectedStatus.equals("Pagaende")) {
+            hamtaPagaendeProjekt();
+
+        } else if (selectedStatus.equals("Avslutad")) {
+            hamtaAvslutadeProjekt();
+
+        } else if (selectedStatus.equals("Planerat")) {
+            hamtaPlaneratProjekt();
+
+        }
     }
-}
-    
+
     private String getSelectedStatus() {
         return (String) cbstatus.getSelectedItem();
     }
 
-public void hamtaPagaendeProjekt() {
-    try { String selectedStatus = (String) cbstatus.getSelectedItem();
-        // SQL-fråga för att hämta pågående projekt
-        String sqlFraga = "SELECT projektnamn FROM projekt WHERE status = 'Pågående' AND pid IN (SELECT pid FROM ans_proj WHERE aid IN (SELECT aid FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ")))";
-        ArrayList<String> projektnamn = idb.fetchColumn(sqlFraga);
+    public void hamtaPagaendeProjekt() {
+        try {
+            String selectedStatus = (String) cbstatus.getSelectedItem();
+            // SQL-fråga för att hämta pågående projekt
+            String sqlFraga = "SELECT projektnamn FROM projekt WHERE status = 'Pågående' AND pid IN (SELECT pid FROM ans_proj WHERE aid IN (SELECT aid FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ")))";
+            ArrayList<String> projektnamn = idb.fetchColumn(sqlFraga);
 
-        DefaultListModel<String> lista = new DefaultListModel<>();
+            DefaultListModel<String> lista = new DefaultListModel<>();
 
-        for (String namn : projektnamn) {
-            lista.addElement(namn);
+            for (String namn : projektnamn) {
+                lista.addElement(namn);
+            }
+
+            ltprojekt.setModel(lista);
+
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
         }
-
-        ltprojekt.setModel(lista);
-
-    } catch (InfException ex) {
-        System.out.println(ex.getMessage());
-    }
-}
-
-public void hamtaAvslutadeProjekt() {
-    try {String selectedStatus = (String) cbstatus.getSelectedItem();
-        // SQL-fråga för att hämta avslutade projekt
-        String sqlFraga = "SELECT projektnamn FROM projekt WHERE status = 'Avslutad' AND pid IN (SELECT pid FROM ans_proj WHERE aid IN (SELECT aid FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ")))";;
-        ArrayList<String> projektnamn = idb.fetchColumn(sqlFraga);
-
-        DefaultListModel<String> lista = new DefaultListModel<>();
-
-        for (String namn : projektnamn) {
-            lista.addElement(namn);
-        }
-
-        ltprojekt.setModel(lista);
-
-    } catch (InfException ex) {
-        System.out.println(ex.getMessage());
     }
 
-}
- 
-public void hamtaPlaneratProjekt() {
-    try {String selectedStatus = (String) cbstatus.getSelectedItem();
-        // SQL-fråga för att hämta pågående projekt
-        String sqlFraga = "SELECT projektnamn FROM projekt WHERE status = 'Planerat' AND pid IN (SELECT pid FROM ans_proj WHERE aid IN (SELECT aid FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ")))";;
-        ArrayList<String> projektnamn = idb.fetchColumn(sqlFraga);
+    public void hamtaAvslutadeProjekt() {
+        try {
+            String selectedStatus = (String) cbstatus.getSelectedItem();
+            // SQL-fråga för att hämta avslutade projekt
+            String sqlFraga = "SELECT projektnamn FROM projekt WHERE status = 'Avslutad' AND pid IN (SELECT pid FROM ans_proj WHERE aid IN (SELECT aid FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ")))";;
+            ArrayList<String> projektnamn = idb.fetchColumn(sqlFraga);
 
-        DefaultListModel<String> lista = new DefaultListModel<>();
+            DefaultListModel<String> lista = new DefaultListModel<>();
 
-        for (String namn : projektnamn) {
-            lista.addElement(namn);
+            for (String namn : projektnamn) {
+                lista.addElement(namn);
+            }
+
+            ltprojekt.setModel(lista);
+
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
         }
 
-        ltprojekt.setModel(lista);
-
-    } catch (InfException ex) {
-        System.out.println(ex.getMessage());
     }
-    
+
+    public void hamtaPlaneratProjekt() {
+        try {
+            String selectedStatus = (String) cbstatus.getSelectedItem();
+            // SQL-fråga för att hämta pågående projekt
+            String sqlFraga = "SELECT projektnamn FROM projekt WHERE status = 'Planerat' AND pid IN (SELECT pid FROM ans_proj WHERE aid IN (SELECT aid FROM anstalld WHERE avdelning IN (SELECT avdelning FROM anstalld WHERE aid = " + aid + ")))";;
+            ArrayList<String> projektnamn = idb.fetchColumn(sqlFraga);
+
+            DefaultListModel<String> lista = new DefaultListModel<>();
+
+            for (String namn : projektnamn) {
+                lista.addElement(namn);
+            }
+
+            ltprojekt.setModel(lista);
+
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }//GEN-LAST:event_cbstatusActionPerformed
 
     private void btnVisastatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisastatusActionPerformed
-      
+
         String selectedStatus = (String) cbstatus.getSelectedItem();// TODO add your handling code here:
         // Update the project list based on the selected status
         System.out.println("Selected status: " + selectedStatus);
-        
-         if (selectedStatus.equals("Alla")) {
-        hamtaAllaProjekt();
-    } else if (selectedStatus.equals("Pågående")) {
-        hamtaPagaendeProjekt();
-        
-        
-    } else if (selectedStatus.equals("Avslutad")) {
-        hamtaAvslutadeProjekt();
-        
-    } else if (selectedStatus.equals("Planerat")) {
-        hamtaPlaneratProjekt();
-    } else 
-            hamtaAllaProjekt();
 
-        
-       
-        
+        if (selectedStatus.equals("Alla")) {
+            hamtaAllaProjekt();
+        } else if (selectedStatus.equals("Pågående")) {
+            hamtaPagaendeProjekt();
+
+        } else if (selectedStatus.equals("Avslutad")) {
+            hamtaAvslutadeProjekt();
+
+        } else if (selectedStatus.equals("Planerat")) {
+            hamtaPlaneratProjekt();
+        } else {
+            hamtaAllaProjekt();
+        }
+
+
     }//GEN-LAST:event_btnVisastatusActionPerformed
 
     /**
-     * 
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -305,25 +289,16 @@ public void hamtaPlaneratProjekt() {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-           public void run() {
-        
-        //new Projektstatus().setVisible(true);
+            public void run() {
+
+                //new Projektstatus().setVisible(true);
+            }
+
+        });
+
     }
 
 
-});
-
-}
-
-
-
-            
-        
-               
-           
-                
-
-           
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVisastatus;
     private javax.swing.JComboBox<String> cbstatus;

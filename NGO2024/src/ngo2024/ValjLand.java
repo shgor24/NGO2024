@@ -17,62 +17,58 @@ import javax.swing.event.ListSelectionListener;
  * @author fatimatouray
  */
 public class ValjLand extends javax.swing.JFrame {
-    
+
     private InfDB idb;
-    
 
     /**
      * Creates new form ValjLand
      */
     public ValjLand(InfDB idb) {
         this.idb = idb;
-        
+
         initComponents();
         listener();
         hamtaAllaLander();
-        
+
     }
-    
-    
-    
+
     public void hamtaAllaLander() {
-    try {
-        // SQL-fråga för att hämta alla länder
-        String sqlFraga = "SELECT lid, namn FROM land";
+        try {
+            // SQL-fråga för att hämta alla länder
+            String sqlFraga = "SELECT lid, namn FROM land";
 
-        // Hämta resultaten från databasen
-        ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
+            // Hämta resultaten från databasen
+            ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
 
-        // Skapa en HashMap för land_id och landnamn
-        HashMap<String, String> landLista = new HashMap<>();
+            // Skapa en HashMap för land_id och landnamn
+            HashMap<String, String> landLista = new HashMap<>();
 
-        // Fyll HashMapen landLista med de hämtade land_id som nycklar och landnamnen som värden
-        for (HashMap<String, String> rad : resultatLista) {
-            String lid = rad.get("lid");
-            String namn = rad.get("namn");
-            landLista.put(lid, namn);
+            // Fyll HashMapen landLista med de hämtade land_id som nycklar och landnamnen som värden
+            for (HashMap<String, String> rad : resultatLista) {
+                String lid = rad.get("lid");
+                String namn = rad.get("namn");
+                landLista.put(lid, namn);
+            }
+
+            // Skapa ett objekt av DefaultListModel för att lägga till saker i listan
+            DefaultListModel<String> lista = new DefaultListModel<>();
+
+            // Iterera igenom alla land_id i HashMapen
+            for (String lid : landLista.keySet()) {
+                // Hämta landnamn för ett visst land_id
+                String namn = landLista.get(lid);
+                // Lägg till varje landnamn och land_id i listan för att lättare identifiera varje land
+                lista.addElement(namn + " ID: " + lid);
+            }
+
+            // Sätt listan ovan till modellen för listaLander, vilket ändrar dess innehåll
+            listaLander.setModel(lista);
+
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
         }
-
-        // Skapa ett objekt av DefaultListModel för att lägga till saker i listan
-        DefaultListModel<String> lista = new DefaultListModel<>();
-
-        // Iterera igenom alla land_id i HashMapen
-        for (String lid : landLista.keySet()) {
-            // Hämta landnamn för ett visst land_id
-            String namn = landLista.get(lid);
-            // Lägg till varje landnamn och land_id i listan för att lättare identifiera varje land
-            lista.addElement(namn + " ID: " + lid);
-        }
-
-        // Sätt listan ovan till modellen för listaLander, vilket ändrar dess innehåll
-        listaLander.setModel(lista);
-
-    } catch (InfException ex) {
-        System.out.println(ex.getMessage());
     }
-}
 
-    
     private void listener() {
         listaLander.addListSelectionListener(new ListSelectionListener() {
 
@@ -92,8 +88,8 @@ public class ValjLand extends javax.swing.JFrame {
                         String lid = valtLand.substring(valtLand.lastIndexOf(" ") + 1);
 
                         //Öppnar ett fönster med info om projektet som valts genom ProjektInfo
-                        AndraUppgiftOmEttLand andraUppgiftOmEttLand = new  AndraUppgiftOmEttLand(idb,lid);
-                        
+                        AndraUppgiftOmEttLand andraUppgiftOmEttLand = new AndraUppgiftOmEttLand(idb, lid);
+
                         andraUppgiftOmEttLand.setVisible(true);
 
                     }
@@ -179,7 +175,7 @@ public class ValjLand extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new ValjLand().setVisible(true);
+                // new ValjLand().setVisible(true);
             }
         });
     }

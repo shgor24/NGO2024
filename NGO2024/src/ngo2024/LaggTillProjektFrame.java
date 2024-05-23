@@ -227,7 +227,7 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
-    private void fyllPaComboBoxChef() {
+    private void fyllPaComboBoxChef() { //Denna metod gör en databasfråga för att hämta chefnamn osv och fyller sedan ComboBoxen med dessa info.
         try {
             String projektchefInfo = "SELECT CONCAT(a.fornamn, ' ', a.efternamn, ' (', p.projektchef, ')') AS chef_info " + "FROM ngo_2024.projekt p " + "JOIN ngo_2024.anstalld a ON p.projektchef = a.aid;";
             // String projektchefID = "SELECT CONCAT(a.fornamn, ' ', a.efternamn) AS chef_namn " + "FROM ngo_2024.projekt p " + "JOIN ngo_2024.anstalld a ON p.projektchef = a.aid;";
@@ -240,7 +240,7 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
         }
     }
 
-    private void fyllPaComboBoxLand() {
+    private void fyllPaComboBoxLand() {//Denna metod gör en databasfråga för att hämta landsnamn och fyller sedan ComboBoxen med dessa namn.
         try {
             String landID = "SELECT DISTINCT l.namn AS land_namn FROM ngo_2024.projekt p JOIN ngo_2024.anstalld a ON p.projektchef = a.aid JOIN ngo_2024.land l ON p.land = l.lid;";
             ArrayList<String> landid = idb.fetchColumn(landID);

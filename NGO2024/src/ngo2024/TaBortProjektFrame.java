@@ -36,7 +36,7 @@ public class TaBortProjektFrame extends javax.swing.JFrame {
 
             listModel = new DefaultListModel<>();
             jList1.setModel(listModel);
-            
+
             String[] keyOrder = {"pid", "projektnamn", "beskrivning", "startdatum", "slutdatum", "kostnad", "status", "prioritet", "projektchef", "land"};
 
             for (HashMap<String, String> result : resultSet) {
