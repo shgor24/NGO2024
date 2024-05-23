@@ -191,7 +191,7 @@ public class LaggTillPartnerFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLaggTillActionPerformed
 
-    private void fyllPaComboBoxStad() {
+    private void fyllPaComboBoxStad() {//fyller en kombinationsruta med namn på städer från en databas
         try {
             String stadId = "SELECT DISTINCT s.namn AS stad_namn FROM ngo_2024.partner p JOIN ngo_2024.stad s ON p.stad = s.sid;";
             ArrayList<String> stadid = idb.fetchColumn(stadId);
@@ -202,8 +202,7 @@ public class LaggTillPartnerFrame extends javax.swing.JFrame {
             Logger.getLogger(LaggTillPartnerFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-
+//en metod clearInputFields som rensar innehållet i olika textfält och sätter kombinationsrutan för stad till null.
     private void clearInputFields() {
         namnText.setText("");
         kontaktpersonText.setText("");

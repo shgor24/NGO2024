@@ -227,7 +227,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
             Logger.getLogger(LaggTillAnstalldFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+        //metod används för att rensa olika inmatningsfält
     private void clearInputFields() {
 
         fornamnText.setText("");
@@ -243,11 +243,11 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
     private void btnGenereraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenereraLosenordActionPerformed
 
         ArrayList<Character> tecken = new ArrayList<>();
-        // Add letters A-Z
+        // lägg till bosktäver från A-Z
         for (char bokstaver = 'A'; bokstaver <= 'Z'; bokstaver++) {
             tecken.add(bokstaver);
         }
-        // Add numbers 0-9
+        // lägg till siffror 0-9
         for (int i = 0; i <= 9; i++) {
             tecken.add((char) ('0' + i));
         }
@@ -259,7 +259,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
             int randomIndex = random.nextInt(tecken.size());
             losenord.append(tecken.get(randomIndex));
         }
-        // Convert StringBuilder to String
+        
         String genereratLosenord = losenord.toString();
         losenordText.setText(genereratLosenord);
     }//GEN-LAST:event_btnGenereraLosenordActionPerformed
@@ -300,14 +300,6 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
 //        }
 //        //</editor-fold>
 //        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                // new LaggTillAnstalldFrame().setVisible(true);
-//            }
-//        });
-//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField adressText;
