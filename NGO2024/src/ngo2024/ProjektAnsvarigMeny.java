@@ -46,6 +46,11 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         andrauppgifter.setText("Ändra uppgifter");
+        andrauppgifter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                andrauppgifterActionPerformed(evt);
+            }
+        });
 
         laggtillpartner.setText("Lägg till partner");
         laggtillpartner.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +94,7 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(laggtillpartner, javax.swing.GroupLayout.PREFERRED_SIZE, 119, Short.MAX_VALUE)
+                            .addComponent(laggtillpartner, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                             .addComponent(tabortpartner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(59, 59, 59)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -137,6 +142,11 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
         TaBortPartners taBortpartners=new TaBortPartners (idb, pid,aid);
         taBortpartners.setVisible(true);
     }//GEN-LAST:event_tabortpartnerActionPerformed
+
+    private void andrauppgifterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_andrauppgifterActionPerformed
+        AnsvarigProjektAndraUppgifter andraUppgifter = new AnsvarigProjektAndraUppgifter(idb, pid);
+        andraUppgifter.setVisible(true);
+    }//GEN-LAST:event_andrauppgifterActionPerformed
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,8 @@
  */
 package ngo2024;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
@@ -27,10 +29,35 @@ public class AnsvarigProjektAndraUppgifter extends javax.swing.JFrame {
         this.idb = idb;
         this.pid = pid;
         initComponents();
+        fyllListaLander();
         datumFormat = "    -  -  ";
 
     }
 
+    private void fyllListaLander() {
+        try {
+            String sqlFraga = "select namn, lid from land";
+            ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
+
+            HashMap<String, String> landLista = new HashMap<>();
+
+            for (HashMap<String, String> rad : resultatLista) {
+                String lid = rad.get("lid");
+                String namn = rad.get("namn");
+                landLista.put(lid, namn);
+            }
+
+            for (String lid : landLista.keySet()) {
+                String namn = landLista.get(lid);
+                cbLand.addItem(namn + " ID: " + lid);
+            }
+
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    //En metod som kontrollerar att det/de angivna datum har giltiga värden för dag och månad
     private Boolean kontrollDatumInput() {
 
         Boolean giltig = true;
@@ -58,68 +85,66 @@ public class AnsvarigProjektAndraUppgifter extends javax.swing.JFrame {
         return giltig;
     }
 
-    private Boolean kontrollDatumSpan()
-    {
+    //En metod som kontrollerar att startdatumet är tidigare än slutdatumet
+    private Boolean kontrollDatumSpan() {
         Boolean giltig = true;
-        
-        if(!startdatum.equals(datumFormat) && !slutdatum.equals(datumFormat))
-        {
-            if(!Validering.giltigDatumSpan(startdatum, slutdatum))
-            {
+
+        if (!startdatum.equals(datumFormat) && !slutdatum.equals(datumFormat)) {
+            if (!Validering.giltigDatumSpan(startdatum, slutdatum)) {
                 JOptionPane.showMessageDialog(this, "Felaktigt datumintervall \nVänligen se till att startdatumet är innan slutdatumet");
                 giltig = false;
             }
-        }else if(!startdatum.equals(datumFormat))
-        {
-            try{
+        } else if (!startdatum.equals(datumFormat)) {
+            try {
                 String sqlFraga = "select slutdatum from projekt where pid = " + pid;
                 String hamtadDatum = idb.fetchSingle(sqlFraga);
-                
-                if(!Validering.giltigDatumSpan(startdatum, hamtadDatum))
-                {
+
+                if (!Validering.giltigDatumSpan(startdatum, hamtadDatum)) {
                     JOptionPane.showMessageDialog(this, "Felaktigt datumintervall \nVänligen se till att det angivna startdatumet är innan projektets slutdatum: " + hamtadDatum + "\nEller ändra slutdatumet också");
                     giltig = false;
                 }
-            }catch(InfException ex)
-            {
+            } catch (InfException ex) {
                 System.out.println(ex.getMessage());
                 giltig = false;
             }
-        }else if(!slutdatum.equals(datumFormat))
-        {
-            try{
+        } else if (!slutdatum.equals(datumFormat)) {
+            try {
                 String sqlFraga = "select startdatum from projekt where pid = " + pid;
                 String hamtadDatum = idb.fetchSingle(sqlFraga);
-                
-                if(!Validering.giltigDatumSpan(hamtadDatum, slutdatum))
-                {
+
+                if (!Validering.giltigDatumSpan(hamtadDatum, slutdatum)) {
                     JOptionPane.showMessageDialog(this, "Felaktigt datumintervall \nVänligen se till att det angivna slutdatumet är efter projektets startdatum: " + hamtadDatum + "\nEller ändra startdatumet också");
                     giltig = false;
-                    
+
                 }
-            }catch(InfException ex)
-            {
+            } catch (InfException ex) {
                 System.out.println(ex.getMessage());
                 giltig = false;
             }
         }
-        
+
         return giltig;
     }
 
     private void laggTillAndringar() {
         andraUppgift(tfProjektnamn.getText(), "projektnamn");
         andraUppgift(tfBeskrivning.getText(), "beskrivning");
-        
+
         if (!startdatum.equals(datumFormat)) {
-                andraUppgift(ftfStartdatum.getText(), "startdatum");
-            }
+            andraUppgift(ftfStartdatum.getText(), "startdatum");
+        }
         if (!slutdatum.equals(datumFormat)) {
-                andraUppgift(ftfSlutdatum.getText(), "slutdatum");
-            }
+            andraUppgift(ftfSlutdatum.getText(), "slutdatum");
+        }
         if (!ftfKostnad.getText().equals("00000.00")) {
             andraUppgift(ftfKostnad.getText(), "kostnad");
         }
+
+        andraStatus();
+
+        andraPrioritet();
+        
+        andraLand();
     }
 
     private Boolean andraUppgift(String andradText, String kolumnNamn) {
@@ -135,22 +160,44 @@ public class AnsvarigProjektAndraUppgifter extends javax.swing.JFrame {
 
         return true;
     }
-    
-    private void andraStatus()
-    {
+
+    private void andraStatus() {
         String valdStatus = (String) cbStatus.getSelectedItem();
-        
-        if(valdStatus.equals("Planerat"))
-        {
-            andraUppgift("Planerat", "status");
+
+        if (!valdStatus.isBlank()) {
+
+            if (valdStatus.equals("Planerat")) {
+                andraUppgift("Planerat", "status");
+            } else if (valdStatus.equals("Pågående")) {
+                andraUppgift("Pågående", "status");
+            } else if (valdStatus.equals("Avslutad")) {
+                andraUppgift("Avslutad", "status");
+            }
         }
-        else if(valdStatus.equals("Pågående"))
-        {
-            andraUppgift("Pågående", "status");
+    }
+
+    private void andraPrioritet() {
+        String valdPrioritet = (String) cbPrioritet.getSelectedItem();
+
+        if (!valdPrioritet.isBlank()) {
+
+            if (valdPrioritet.equals("Hög")) {
+                andraUppgift("Hög", "prioritet");
+            } else if (valdPrioritet.equals("Medel")) {
+                andraUppgift("Medel", "prioritet");
+            } else if (valdPrioritet.equals("Låg")) {
+                andraUppgift("Låg", "prioritet");
+            }
         }
-        else if(valdStatus.equals("Avslutad"))
-        {
-            andraUppgift("Avslutad", "status");
+    }
+
+    private void andraLand() {
+        String valtLand = (String) cbLand.getSelectedItem();
+
+        if (!valtLand.isBlank()) {
+            String[] delar = valtLand.split(" ID: ");
+            String namn = delar[1];
+            andraUppgift(namn, "land");
         }
     }
 
@@ -209,14 +256,14 @@ public class AnsvarigProjektAndraUppgifter extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         jLabel8.setText("Status:");
 
-        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Planerat", "Pågående", "Avslutad" }));
+        cbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Planerat", "Pågående", "Avslutad" }));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         jLabel9.setText("Prioritet:");
 
-        cbPrioritet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hög", "Medel", "Låg" }));
+        cbPrioritet.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Hög", "Medel", "Låg" }));
 
-        jButton1.setText("Spara");
+        jButton1.setText("Spara mina ändringar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -233,7 +280,7 @@ public class AnsvarigProjektAndraUppgifter extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         jLabel11.setText("Land:");
 
-        cbLand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbLand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
 
         try {
             ftfSlutdatum.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-##-##")));
@@ -289,17 +336,14 @@ public class AnsvarigProjektAndraUppgifter extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(jButton1))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cbStatus, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbPrioritet, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cbLand, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(30, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(172, 172, 172))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,9 +378,9 @@ public class AnsvarigProjektAndraUppgifter extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(ftfKostnad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(20, 20, 20))
+                .addGap(38, 38, 38))
         );
 
         pack();
@@ -345,13 +389,12 @@ public class AnsvarigProjektAndraUppgifter extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         startdatum = ftfStartdatum.getText();
         slutdatum = ftfSlutdatum.getText();
-        
+
         if (kontrollDatumInput() && kontrollDatumSpan()) {
             int val = JOptionPane.showConfirmDialog(this, "Ändringarna har sparats\nVill du se det uppdaterade projektet?", "Bekräftelse", JOptionPane.OK_CANCEL_OPTION);
 
             laggTillAndringar();
-            andraStatus();
-            
+
             if (val == JOptionPane.OK_OPTION) {
                 ProjektInfo projektInfo = new ProjektInfo(pid, idb);
                 projektInfo.laggTillText();
@@ -385,6 +428,10 @@ public class AnsvarigProjektAndraUppgifter extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AnsvarigProjektAndraUppgifter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

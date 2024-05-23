@@ -74,6 +74,7 @@
                                   <Component id="jLabel8" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="jButton1" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -84,11 +85,6 @@
                   </Group>
               </Group>
               <EmptySpace pref="30" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="172" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -130,9 +126,9 @@
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ftfKostnad" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
+              <EmptySpace pref="56" max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -209,10 +205,11 @@
     <Component class="javax.swing.JComboBox" name="cbStatus">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="Planerat"/>
-            <StringItem index="1" value="P&#xe5;g&#xe5;ende"/>
-            <StringItem index="2" value="Avslutad"/>
+          <StringArray count="4">
+            <StringItem index="0" value=" "/>
+            <StringItem index="1" value="Planerat"/>
+            <StringItem index="2" value="P&#xe5;g&#xe5;ende"/>
+            <StringItem index="3" value="Avslutad"/>
           </StringArray>
         </Property>
       </Properties>
@@ -231,10 +228,11 @@
     <Component class="javax.swing.JComboBox" name="cbPrioritet">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
-            <StringItem index="0" value="H&#xf6;g"/>
-            <StringItem index="1" value="Medel"/>
-            <StringItem index="2" value="L&#xe5;g"/>
+          <StringArray count="4">
+            <StringItem index="0" value=" "/>
+            <StringItem index="1" value="H&#xf6;g"/>
+            <StringItem index="2" value="Medel"/>
+            <StringItem index="3" value="L&#xe5;g"/>
           </StringArray>
         </Property>
       </Properties>
@@ -244,7 +242,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Spara"/>
+        <Property name="text" type="java.lang.String" value="Spara mina &#xe4;ndringar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -269,11 +267,8 @@
     <Component class="javax.swing.JComboBox" name="cbLand">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="1">
+            <StringItem index="0" value=" "/>
           </StringArray>
         </Property>
       </Properties>
