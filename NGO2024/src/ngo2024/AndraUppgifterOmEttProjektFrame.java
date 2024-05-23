@@ -223,8 +223,7 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
     private void btnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaAndringarActionPerformed
 
         HashMap<String, String> data = GetData(value);
-        
-        String valuePid = data.get("pid");
+       
         String projektVal = projektnamnText.getText();
         String beskrivningVal = beskrivningText.getText();
         String startdatumVal = startdatumText.getText();
@@ -232,9 +231,26 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
         String kostnaderVal = kostnaderText.getText();
         Object statusVal = statusComboBox.getSelectedItem();
         Object prioritetVal = prioritetComboBox.getSelectedItem();
-        String projektchefVal = data.get("projektchef");
-        String valueLand = data.get("land");
 
+
+         if (projektVal.isEmpty() || beskrivningVal.isEmpty() || startdatumVal.isEmpty() ||
+        slutdatumVal.isEmpty() || kostnaderVal.isEmpty() || statusVal == null || prioritetVal == null) {
+        JOptionPane.showMessageDialog(null, "Alla fält måste fyllas i!", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+          if (!isValidDate(startdatumVal) || !isValidDate(slutdatumVal)) {
+        return;
+    }
+
+    if (!isNumeric(kostnaderVal)) {
+        JOptionPane.showMessageDialog(null, "Kostnader måste vara ett numeriskt värde!", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+          String valuePid = data.get("pid");
+          String projektchefVal = data.get("projektchef");
+          String valueLand = data.get("land");
+        
+        
         String updateQuery = "UPDATE ngo_2024.projekt SET "
                 + "projektnamn = '" + projektVal + "', "
                 + "beskrivning = '" + beskrivningVal + "', "
@@ -254,21 +270,28 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
-        // KOLLA ATT NÅGON AV JCOMPONENTS HAR BLIVIT ÄNDRADE, ELSE SKA KNAPPEN INTE GÅ ATT KLICKA PÅ!
     }//GEN-LAST:event_btnSparaAndringarActionPerformed
+private boolean isValidDate(String dateString) {
+    if (dateString.matches("\\d{4}-\\d{2}-\\d{2}")) {
+        return true;
+    } else {
+        JOptionPane.showMessageDialog(null, "Datumet är i fel format, vänligen använd YYYY-MM-DD formatet!", "Warning", JOptionPane.WARNING_MESSAGE);
+        return false;
+    }
+}
 
+private boolean isNumeric(String str) {
+    try {
+        Double.parseDouble(str);
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
     private void projektChefTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektChefTextActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_projektChefTextActionPerformed
 
-    private boolean isValidDate(String dateString) {
-        if (dateString.matches("\\d{4}-\\d{2}-\\d{2}")) {
-            return true;
-        } else {
-            JOptionPane.showMessageDialog(null, "Datumet är i fel format, vänligen använd YYYY-MM-DD formatet!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
-    }
 
     private void clearInputFields() {
         projektnamnText.setText("");
