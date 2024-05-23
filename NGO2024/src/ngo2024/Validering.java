@@ -5,6 +5,8 @@
 package ngo2024;
 
 import java.time.LocalDate;
+import javax.swing.*;
+import java.util.List;
 /**
  *
  * @author mikaela nilsson
@@ -72,5 +74,17 @@ public class Validering {
 
         return giltig;
     }
+    
+    
+        public static boolean validerafalt(List<JTextField> fields) {
+        for (JTextField field : fields) {
+            if (field.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Alla fält måste fyllas i.", "Valideringsfel", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+        }
+        return true;
+    }
+  
 
 }
