@@ -203,6 +203,7 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaAndringarActionPerformed
+       
         uppdateraUppgift();
     }//GEN-LAST:event_btnSparaAndringarActionPerformed
     public void andrauppgift() {
@@ -210,7 +211,7 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
         try {
             pid = (String) ValjPartnerComboBox.getSelectedItem();
             sid = (String) stadComboBox.getSelectedItem();
-
+            
             namnText.setText(idb.fetchSingle("SELECT namn FROM partner WHERE pid = '" + pid + "'"));
             kontaktpersonText.setText(idb.fetchSingle("SELECT kontaktperson FROM partner WHERE pid = '" + pid + "'"));
             kontaktepostText.setText(idb.fetchSingle("SELECT kontaktepost FROM partner WHERE pid = '" + pid + "'"));
@@ -228,7 +229,13 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
     }
 
     private void uppdateraUppgift() {
-
+      String telefonVal = telefonText.getText();
+      
+        if (!isNumeric(telefonVal)) {
+        JOptionPane.showMessageDialog(null, "Telefon måste vara ett numeriskt värde!", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+              
         // Skapa en lista med de textfält som behöver valideras
         List<JTextField> fieldsToValidate = Arrays.asList(namnText, kontaktpersonText, kontaktepostText, telefonText, adressText, branchText);
 
@@ -250,8 +257,18 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
             // Om ett fel uppstår, visa felmeddelandet
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
+        
+
     }
 
+    private boolean isNumeric(String str) { // Metod för att kontrollera om en sträng är numerisk
+    try {
+        Double.parseDouble(str);
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
     /**
      * @param args the command line arguments
      */
