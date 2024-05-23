@@ -4,6 +4,7 @@
  */
 package ngo2024;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import oru.inf.InfDB;
@@ -27,6 +28,10 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
             value = entry.getValue();
             System.out.println("Key: " + key + ", Value: " + value);
         }
+        
+        fyllListaLander();
+        fyllListaProjektChef();
+        
     // Hämta data för det valda projektet och fyll i fälten i gränssnittet
         HashMap<String, String> data = GetData(value);
 
@@ -39,21 +44,84 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
             String valueKostnad = data.get("kostnad");
             String valueStatus = data.get("status");
             String valuePrioritet = data.get("prioritet");
-
-            String fornamn = data.get("fornamn");
-            String efternamn = data.get("efternamn");
-            String projektchefNamn = fornamn + " " + efternamn;
+            String lid = data.get("lid");
+            String aid = data.get("projektchef");
 
             // Set the values in the input properties
             projektnamnText.setText(valueProjektnamn);
             beskrivningText.setText(valueBeskrivning);
             startdatumText.setText(valueStartdatum);
             slutdatumText.setText(valueSlutdatum);
-            landText.setText(valueNamn);
             kostnaderText.setText(valueKostnad);
             statusComboBox.setSelectedItem(valueStatus);
             prioritetComboBox.setSelectedItem(valuePrioritet);
-            projektChefText.setText(projektchefNamn);
+            
+            for(int i = 0; i < cbLand.getItemCount(); i++)
+            {
+                String item = cbLand.getItemAt(i);
+                if(item.endsWith(" ID: " + lid))
+                {
+                    cbLand.setSelectedIndex(i);
+                }
+            }
+            
+            for(int i = 0; i < cbProjektChef.getItemCount(); i++)
+            {
+                String item = cbProjektChef.getItemAt(i);
+                if(item.endsWith(" ID: " + aid))
+                {
+                    cbProjektChef.setSelectedIndex(i);
+                }
+            }
+        }
+        
+    }
+    
+        private void fyllListaProjektChef() {
+        try {
+            String sqlFraga = "select aid, fornamn, efternamn from anstalld where aid in (select distinct projektchef from projekt)";
+            ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
+
+            HashMap<String, String> chefLista = new HashMap<>();
+
+            for (HashMap<String, String> rad : resultatLista) {
+                String aid = rad.get("aid");
+                String fornamn = rad.get("fornamn");
+                String efternamn = rad.get("efternamn");
+                String namn = fornamn + " " + efternamn;
+                chefLista.put(aid, namn);
+            }
+
+            for (String aid : chefLista.keySet()) {
+                String namn = chefLista.get(aid);
+                cbProjektChef.addItem(namn + " ID: " + aid);
+            }
+
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+        private void fyllListaLander() {
+        try {
+            String sqlFraga = "select namn, lid from land";
+            ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
+
+            HashMap<String, String> landLista = new HashMap<>();
+
+            for (HashMap<String, String> rad : resultatLista) {
+                String lid = rad.get("lid");
+                String namn = rad.get("namn");
+                landLista.put(lid, namn);
+            }
+
+            for (String lid : landLista.keySet()) {
+                String namn = landLista.get(lid);
+                cbLand.addItem(namn + " ID: " + lid);
+            }
+
+        } catch (InfException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -84,8 +152,8 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
         kostnaderText = new javax.swing.JTextField();
         statusComboBox = new javax.swing.JComboBox<>();
         prioritetComboBox = new javax.swing.JComboBox<>();
-        projektChefText = new javax.swing.JTextField();
-        landText = new javax.swing.JTextField();
+        cbLand = new javax.swing.JComboBox<>();
+        cbProjektChef = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,12 +188,6 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
 
         prioritetComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hög", "Medel", "Låg" }));
 
-        projektChefText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                projektChefTextActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -140,10 +202,10 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
                     .addComponent(lblProjektnamn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(beskrivningText, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(cbLand, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(projektnamnText, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                         .addComponent(startdatumText, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(slutdatumText, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(landText, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(slutdatumText, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(168, 168, 168)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(statusComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -157,7 +219,7 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
                             .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblPrioritet, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(projektChefText))
+                    .addComponent(cbProjektChef, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -200,16 +262,16 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(slutdatumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(projektChefText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbProjektChef, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(btnSparaAndringar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblLand)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(landText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(btnSparaAndringar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(56, 56, 56))
         );
 
@@ -220,6 +282,7 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
 
         HashMap<String, String> data = GetData(value);
        
+        String valuePid = data.get("pid");
         String projektVal = projektnamnText.getText();
         String beskrivningVal = beskrivningText.getText();
         String startdatumVal = startdatumText.getText();
@@ -227,6 +290,9 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
         String kostnaderVal = kostnaderText.getText();
         Object statusVal = statusComboBox.getSelectedItem();
         Object prioritetVal = prioritetComboBox.getSelectedItem();
+        
+        String projektchefVal = ((String) cbProjektChef.getSelectedItem()).split(" ID: ")[1];
+        String landVal = ((String) cbLand.getSelectedItem()).split(" ID: ")[1];
 
 
          if (projektVal.isEmpty() || beskrivningVal.isEmpty() || startdatumVal.isEmpty() ||
@@ -242,17 +308,13 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Kostnader måste vara ett numeriskt värde!", "Warning", JOptionPane.WARNING_MESSAGE);
         return;
     }
-          String valuePid = data.get("pid");
-          String projektchefVal = data.get("projektchef");
-          String valueLand = data.get("land");
-        
         
         String updateQuery = "UPDATE ngo_2024.projekt SET "
                 + "projektnamn = '" + projektVal + "', "
                 + "beskrivning = '" + beskrivningVal + "', "
                 + "startdatum = '" + startdatumVal + "', "
                 + "slutdatum = '" + slutdatumVal + "', "
-                + "land = '" + valueLand + "', "
+                + "land = '" + landVal + "', "
                 + "kostnad = '" + kostnaderVal + "', "
                 + "status = '" + statusVal + "', "
                 + "prioritet = '" + prioritetVal + "', "
@@ -284,10 +346,6 @@ private boolean isNumeric(String str) { // Metod för att kontrollera om en str�
         return false;
     }
 }
-    private void projektChefTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_projektChefTextActionPerformed
-        
-    }//GEN-LAST:event_projektChefTextActionPerformed
-
 
     private void clearInputFields() {
         projektnamnText.setText("");
@@ -295,16 +353,12 @@ private boolean isNumeric(String str) { // Metod för att kontrollera om en str�
         startdatumText.setText("");
         slutdatumText.setText("");
         kostnaderText.setText("");
-        statusComboBox = null;
-        prioritetComboBox = null;
-        landText.setText("");
-        projektChefText.setText("");
     }
 
     private HashMap GetData(String projektnamn) {
         HashMap<String, String> resultat = null;
         try {
-            String sqlFraga = "SELECT p.*, " + "a.fornamn AS projektchef_fornamn, " + "a.efternamn AS projektchef_efternamn, " + "l.namn AS land_namn " + "FROM ngo_2024.projekt p " + "JOIN ngo_2024.anstalld a ON p.projektchef = a.aid " + "JOIN ngo_2024.land l ON p.land = l.lid " + "WHERE p.projektnamn = '" + projektnamn + "'";
+            String sqlFraga = "SELECT p.*, " + "a.fornamn AS projektchef_fornamn, " + "a.efternamn AS projektchef_efternamn, " + "l.namn AS land_namn, " + "p.projektchef AS projektchef_id, " + "l.lid AS land_lid " + "FROM ngo_2024.projekt p " + "JOIN ngo_2024.anstalld a ON p.projektchef = a.aid " + "JOIN ngo_2024.land l ON p.land = l.lid " + "WHERE p.projektnamn = '" + projektnamn + "'";
             resultat = idb.fetchRow(sqlFraga);
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
@@ -351,9 +405,10 @@ private boolean isNumeric(String str) { // Metod för att kontrollera om en str�
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField beskrivningText;
     private javax.swing.JButton btnSparaAndringar;
+    private javax.swing.JComboBox<String> cbLand;
+    private javax.swing.JComboBox<String> cbProjektChef;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField kostnaderText;
-    private javax.swing.JTextField landText;
     private javax.swing.JLabel lblBeskrivning;
     private javax.swing.JLabel lblKostnader;
     private javax.swing.JLabel lblLand;
@@ -364,7 +419,6 @@ private boolean isNumeric(String str) { // Metod för att kontrollera om en str�
     private javax.swing.JLabel lblStartdatum;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JComboBox<String> prioritetComboBox;
-    private javax.swing.JTextField projektChefText;
     private javax.swing.JTextField projektnamnText;
     private javax.swing.JTextField slutdatumText;
     private javax.swing.JTextField startdatumText;
