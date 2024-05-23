@@ -134,12 +134,12 @@ public class ProjektAnsvarigMeny extends javax.swing.JFrame {
     }//GEN-LAST:event_taborthandlaggareActionPerformed
 
     private void laggtillpartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_laggtillpartnerActionPerformed
-        LaggTillPartners laggTillPartners=new LaggTillPartners (idb, pid,aid);
+        LaggTillPartnersProjektLedare laggTillPartners=new LaggTillPartnersProjektLedare (idb, pid,aid);
         laggTillPartners.setVisible(true); 
     }//GEN-LAST:event_laggtillpartnerActionPerformed
 
     private void tabortpartnerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tabortpartnerActionPerformed
-        TaBortPartners taBortpartners=new TaBortPartners (idb, pid,aid);
+        TaBortPartnersProjektLedare taBortpartners=new TaBortPartnersProjektLedare (idb, pid,aid);
         taBortpartners.setVisible(true);
     }//GEN-LAST:event_tabortpartnerActionPerformed
 

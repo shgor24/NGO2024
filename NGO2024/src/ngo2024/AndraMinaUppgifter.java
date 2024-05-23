@@ -7,6 +7,8 @@ package ngo2024;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
+//Det går inte att ändra aid eller avdelning, för att man är handläggare
+
 /**
  *
  * @author fatimatouray
