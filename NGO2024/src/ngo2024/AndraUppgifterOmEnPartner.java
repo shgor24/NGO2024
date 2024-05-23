@@ -30,6 +30,7 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
 
     }
 //metod för vilken partner det gäller, som man ska ändra uppgifter för
+
     private void fillComboBox1() {
         try {
             List<String> partner = idb.fetchColumn("SELECT pid FROM partner");
@@ -43,6 +44,7 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
         }
     }
 //metod för vilken stad man ska välja i rullistan vid ändring
+
     private void fillComboBox2() {
         try {
             String stadID = "SELECT DISTINCT s.sid FROM ngo_2024.stad s JOIN ngo_2024.partner p ON p.stad = s.sid";
@@ -201,10 +203,24 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//Metod som kontrollerar att alla fält behöver vara ifyllda
     private void btnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaAndringarActionPerformed
-       
-        uppdateraUppgift();
+        String namn = namnText.getText();
+        String kontaktperson = kontaktpersonText.getText();
+        String kontaktepost = kontaktepostText.getText();
+        String telefon = telefonText.getText();
+        String adress = adressText.getText();
+        String branch = branchText.getText();
+
+        // Kontrollera om något av fälten är tomt
+        if (namn.isEmpty() || kontaktperson.isEmpty() || kontaktepost.isEmpty() || telefon.isEmpty() || adress.isEmpty() || branch.isEmpty()) {
+            // Visa ett meddelande till användaren om att fylla i alla fält
+            JOptionPane.showMessageDialog(this, "Var god fyll i alla fält.", "Tomma fält", JOptionPane.WARNING_MESSAGE);
+        } else {
+            // Om inga fält är tomma, uppdatera uppgifterna
+            uppdateraUppgift();
+        }
+
     }//GEN-LAST:event_btnSparaAndringarActionPerformed
     ////// Metod för de fält där man kan ändra värdet 
     public void andrauppgift() {
@@ -212,7 +228,7 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
         try {
             pid = (String) ValjPartnerComboBox.getSelectedItem();
             sid = (String) stadComboBox.getSelectedItem();
-            
+
             namnText.setText(idb.fetchSingle("SELECT namn FROM partner WHERE pid = '" + pid + "'"));
             kontaktpersonText.setText(idb.fetchSingle("SELECT kontaktperson FROM partner WHERE pid = '" + pid + "'"));
             kontaktepostText.setText(idb.fetchSingle("SELECT kontaktepost FROM partner WHERE pid = '" + pid + "'"));
@@ -227,13 +243,13 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
     }
 
     private void uppdateraUppgift() {
-      String telefonVal = telefonText.getText();
-      
+        String telefonVal = telefonText.getText();
+
         if (!isNumeric(telefonVal)) {
-        JOptionPane.showMessageDialog(null, "Telefon måste vara ett numeriskt värde!", "Warning", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-              
+            JOptionPane.showMessageDialog(null, "Telefon måste vara ett numeriskt värde!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         // Skapa en lista med de textfält som behöver valideras
         List<JTextField> fieldsToValidate = Arrays.asList(namnText, kontaktpersonText, kontaktepostText, telefonText, adressText, branchText);
 
@@ -255,18 +271,18 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
             // Om ett fel uppstår, visa felmeddelandet
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
-        
 
     }
 
     private boolean isNumeric(String str) { // Metod för att kontrollera om en sträng är numerisk
-    try {
-        Double.parseDouble(str);
-        return true;
-    } catch (NumberFormatException e) {
-        return false;
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
-}
+
     /**
      * @param args the command line arguments
      */

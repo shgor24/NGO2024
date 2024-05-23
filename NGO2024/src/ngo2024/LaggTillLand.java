@@ -7,7 +7,6 @@ package ngo2024;
 import oru.inf.InfDB;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-
 import oru.inf.InfException;
 
 
@@ -47,33 +46,37 @@ public class LaggTillLand extends javax.swing.JFrame {
             String tidszon = tfTidszon.getText();
             String politisk_struktur = tfPS.getText();
             String ekonomi = tfEkonomi.getText();
+            String LID = tfLid.getText();
 
-            // Validera att alla inputfält har ett värde
-            if (!landnamn.isEmpty() && !sprak.isEmpty() && !valuta.isEmpty() && !tidszon.isEmpty() && !politisk_struktur.isEmpty() && !ekonomi.isEmpty()) {
-                // Hämtar senaste lid från Land och incrementerar med 1
+                // Hämtar senaste lid från land och incrementerar med 1
                 String latestLid = "SELECT LID FROM Land ORDER BY LID DESC LIMIT 1";
                 String currentLidNumber = idb.fetchSingle(latestLid);
                 int intIncrement = Integer.parseInt(currentLidNumber);
                 intIncrement++;
 
-                // Skapa SQL-fråga för att lägga till nytt land
-                String sqlFraga = "INSERT INTO Land (LID, namn, sprak, valuta, tidszon, politisk_struktur, ekonomi) VALUES (" + intIncrement + ", '" + landnamn + "', '" + sprak + "', '" + valuta + "', '" + tidszon + "', '" + politisk_struktur + "', '" + ekonomi + "')";
-                idb.insert(sqlFraga);
-                
-                // Visa bekräftelsemeddelande
-                JOptionPane.showMessageDialog(null, "Nytt land har lagts till!", "Information", JOptionPane.INFORMATION_MESSAGE);
-                
-                // Rensa inputfälten
-                clearInputFields();
-            } else {
-                // Visa varning om något fält är tomt
-                JOptionPane.showMessageDialog(null, "Du har inte fyllt i alla fält, vänligen fyll i alla uppgifter", "Warning", JOptionPane.WARNING_MESSAGE);
-            }
+                // // Validera att alla inputfält har ett värde
+                //Skapa SQL-fråga för att lägga till nytt land
+                if (!LID.equals("") && !landnamn.equals("") && !sprak.equals("") && !valuta.equals("") && !tidszon.equals("") && !politisk_struktur.equals("") && !ekonomi.equals("")) {
+                    String sqlFraga = "INSERT INTO Land (LID, namn, sprak, valuta, tidszon, politisk_struktur, ekonomi) VALUES (" + intIncrement + ", '" + landnamn + "', '" + sprak + "', '" + valuta + "', '" + tidszon + "', '" + politisk_struktur + "', '" + ekonomi + "')";
+                    idb.insert(sqlFraga);
+
+                    // Visa bekräftelsemeddelande
+                    JOptionPane.showMessageDialog(null, "Nytt land har lagts till!", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+                    // Rensa inputfälten
+                    clearInputFields();
+                } else {
+                    // Visa varning om något fält är tomt
+                    JOptionPane.showMessageDialog(null, "Du har inte fyllt i alla fält, vänligen fyll i alla uppgifter", "Warning", JOptionPane.WARNING_MESSAGE);
+
+                }
+            
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
     }
-    
+
+
     
        private void clearInputFields() {
         tfNamn.setText("");
@@ -82,6 +85,7 @@ public class LaggTillLand extends javax.swing.JFrame {
         tfTidszon.setText("");
         tfPS.setText("");
         tfEkonomi.setText("");
+        tfLid.setText("");
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

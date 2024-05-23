@@ -227,16 +227,32 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }
-
-    // Metod som anropas när knappen för att spara ändringar klickas p
-    private void bnsparaandringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnsparaandringarActionPerformed
-        uppdateraUppgift();// Anropa metoden för att uppdatera avdelningsuppgifter
-    }//GEN-LAST:event_bnsparaandringarActionPerformed
-
+    
+    
     // Metod som anropas när ComboBox för avdelnings-ID ändras
     private void tfavdidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfavdidActionPerformed
         andrauppgift();// Anropa metoden för att hämta och visa information om den valda avdelningen
     }//GEN-LAST:event_tfavdidActionPerformed
+
+    private void bnsparaandringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnsparaandringarActionPerformed
+        String namn = tfnamn.getText();
+        String beskrivning = tfbeskrivning.getText();
+        String adress = tfadress.getText();
+        String epost = tfepost.getText();
+        String telefonnummer = tftelefonnummer.getText();
+        String stad = tfstad.getText();
+
+        // Kontrollera om något av fälten är tomt
+        if (namn.isEmpty() || beskrivning.isEmpty() || adress.isEmpty() || epost.isEmpty() || telefonnummer.isEmpty() || stad.isEmpty()) {
+            // Visa ett meddelande till användaren om att fylla i alla fält
+            JOptionPane.showMessageDialog(this, "Var god fyll i alla fält.", "Tomma fält", JOptionPane.WARNING_MESSAGE);
+        } else {
+            // Om inga fält är tomma, uppdatera uppgifterna
+            uppdateraUppgift();
+        }
+        
+        
+    }//GEN-LAST:event_bnsparaandringarActionPerformed
 //metoden för validering för numeriska nummer
     private boolean isNumeric(String str) { // Metod för att kontrollera om en sträng är numerisk
         try {
