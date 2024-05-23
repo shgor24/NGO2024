@@ -8,30 +8,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-//import static javax.swing.JOptionPane.showConfirmDialog;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
-/**
- *
- * @author mursalmohammad
- */
-public class LaggTillPartnersProjektLedare extends javax.swing.JFrame {
+
+    public class LaggTillPartnersProjektLedare extends javax.swing.JFrame {
+    
     private InfDB idb;
     private String pid;
     private String aid;
     private DefaultListModel<String> listaModel;//ny
-    /**
-     * Creates new form LaggTillPartners
-     */
+   
+    
     public LaggTillPartnersProjektLedare(InfDB idb, String pid, String aid) { 
-        this.idb = idb;
-        this.pid = pid;
-        this.aid = aid;
-        initComponents();
-        hamtaAllaPartners();
-        listener();
+        
+    this.idb = idb;
+    this.pid = pid;
+    this.aid = aid;
+    initComponents();
+    hamtaAllaPartners();
+    listener();
       
     }
  

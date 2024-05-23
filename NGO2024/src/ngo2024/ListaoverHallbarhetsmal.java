@@ -11,15 +11,10 @@ import javax.swing.DefaultListModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-/**
- *
- * @author mursalmohammad
- */
+
 public class ListaoverHallbarhetsmal extends javax.swing.JFrame {
     private InfDB idb;
-    /**
-     * Creates new form ListaoverHallbarhetsmal
-     */
+
     public ListaoverHallbarhetsmal(InfDB idb) {
         this.idb = idb; 
         initComponents();
