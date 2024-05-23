@@ -4,35 +4,30 @@
  */
 package ngo2024;
 
-
 import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
 
 public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
-    
-     private InfDB idb;
+
+    private InfDB idb;
     private String lid;
 
-   
     public AndraUppgiftOmEttLand(InfDB idb, String lid) {
         this.idb = idb;
         this.lid = lid;
-        
+
         initComponents();
         andrauppgift();
-        
-        
-        
-        
-        
+
         bnsparaandringar.setText("Spara");
         bnsparaandringar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bnsparaandringarActionPerformed(evt);
             }
         });
-    }    
+    }
+    //// Metod för de fält där man kan ändra värdet 
     public void andrauppgift() {
         try {
             tfLid.setText(lid);
@@ -42,24 +37,23 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
             tfTidzon.setText(idb.fetchSingle("SELECT tidszon FROM Land WHERE lid = '" + lid + "'"));
             tfPs.setText(idb.fetchSingle("SELECT politisk_struktur FROM Land WHERE lid = '" + lid + "'"));
             tfEkonomi.setText(idb.fetchSingle("SELECT ekonomi FROM Land WHERE lid = '" + lid + "'"));
-        
-        
+
         } catch (InfException ex) {
-            
+
             System.out.println(ex.getMessage());
-            
+
         }
     }
-    
-    private void uppdateraUppgift() { // Metod för att uppdatera landets uppgifter i databasen
+    //// Metod för att uppdatera landets uppgifter i databasen
+    private void uppdateraUppgift() { 
         try {
             idb.update("UPDATE Land SET namn = '" + tfNamn.getText() + "', sprak = '" + tfSprak.getText() + "', valuta = '" + tfValuta.getText() + "', tidszon = '" + tfTidzon.getText() + "', politisk_struktur = '" + tfPs.getText() + "', ekonomi = '" + tfEkonomi.getText() + "' WHERE lid = '" + lid + "'");
-            
+
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
     }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -103,36 +97,6 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
         lbPs.setText("Politisk struktur");
 
         lbEkonomi.setText("Ekonomi");
-
-        tfLid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfLidActionPerformed(evt);
-            }
-        });
-
-        tfNamn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfNamnActionPerformed(evt);
-            }
-        });
-
-        tfSprak.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfSprakActionPerformed(evt);
-            }
-        });
-
-        tfValuta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfValutaActionPerformed(evt);
-            }
-        });
-
-        tfPs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfPsActionPerformed(evt);
-            }
-        });
 
         bnsparaandringar.setText("Spara");
         bnsparaandringar.addActionListener(new java.awt.event.ActionListener() {
@@ -218,46 +182,26 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfNamnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNamnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfNamnActionPerformed
-
-    private void tfPsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfPsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfPsActionPerformed
-
-    private void tfSprakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSprakActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfSprakActionPerformed
-
-    private void tfValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfValutaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfValutaActionPerformed
- 
 // Metod som hanterar händelsen när användaren klickar på knappen för att spara ändringar
     private void bnsparaandringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnsparaandringarActionPerformed
-      
-    String namn = tfNamn.getText();
-    String sprak = tfSprak.getText();
-    String valuta = tfValuta.getText();
-    String tidzon = tfTidzon.getText();
-    String politiskStruktur = tfPs.getText();
-    String ekonomi = tfEkonomi.getText();
 
-    // Kontrollera om något av fälten är tomt
-    if (namn.isEmpty() || sprak.isEmpty() || valuta.isEmpty() || tidzon.isEmpty() || politiskStruktur.isEmpty() || ekonomi.isEmpty()) {
-        // Visa ett meddelande till användaren om att fylla i alla fält
-        JOptionPane.showMessageDialog(this, "Var god fyll i alla fält.", "Tomma fält", JOptionPane.WARNING_MESSAGE);
-    } else {
-        // Om inga fält är tomma, uppdatera uppgifterna
+        String namn = tfNamn.getText();
+        String sprak = tfSprak.getText();
+        String valuta = tfValuta.getText();
+        String tidzon = tfTidzon.getText();
+        String politiskStruktur = tfPs.getText();
+        String ekonomi = tfEkonomi.getText();
+
+        // Kontrollera om något av fälten är tomt
+        if (namn.isEmpty() || sprak.isEmpty() || valuta.isEmpty() || tidzon.isEmpty() || politiskStruktur.isEmpty() || ekonomi.isEmpty()) {
+            // Visa ett meddelande till användaren om att fylla i alla fält
+            JOptionPane.showMessageDialog(this, "Var god fyll i alla fält.", "Tomma fält", JOptionPane.WARNING_MESSAGE);
+        } else {
+            // Om inga fält är tomma, uppdatera uppgifterna
+            uppdateraUppgift();
+        }
         uppdateraUppgift();
-    }
-        uppdateraUppgift();  
     }//GEN-LAST:event_bnsparaandringarActionPerformed
-
-    private void tfLidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfLidActionPerformed
 
     /**
      * @param args the command line arguments
@@ -290,7 +234,7 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               // new AndraUppgiftOmEttLand().setVisible(true);
+                // new AndraUppgiftOmEttLand().setVisible(true);
             }
         });
     }

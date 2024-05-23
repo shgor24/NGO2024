@@ -153,31 +153,16 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfLid">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfLidActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfNamn">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfNamnActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfSprak">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfSprakActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfValuta">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfValutaActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfTidzon">
     </Component>
     <Component class="javax.swing.JTextField" name="tfPs">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfPsActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfEkonomi">
     </Component>

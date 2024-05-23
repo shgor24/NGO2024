@@ -135,9 +135,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tffornamn">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tffornamnActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbaid">
       <Properties>
@@ -187,23 +184,14 @@
     <Component class="javax.swing.JTextField" name="tfaid">
     </Component>
     <Component class="javax.swing.JTextField" name="tfefternamn">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfefternamnActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfadress">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfadressActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfepost">
     </Component>
     <Component class="javax.swing.JTextField" name="tftelefon">
     </Component>
     <Component class="javax.swing.JTextField" name="tfansdat">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfansdatActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tflosen">
     </Component>

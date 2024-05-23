@@ -29,7 +29,7 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
         andrauppgift();
 
     }
-
+//metod för vilken partner det gäller, som man ska ändra uppgifter för
     private void fillComboBox1() {
         try {
             List<String> partner = idb.fetchColumn("SELECT pid FROM partner");
@@ -42,7 +42,7 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error fetching department IDs: " + ex.getMessage());
         }
     }
-
+//metod för vilken stad man ska välja i rullistan vid ändring
     private void fillComboBox2() {
         try {
             String stadID = "SELECT DISTINCT s.sid FROM ngo_2024.stad s JOIN ngo_2024.partner p ON p.stad = s.sid";
@@ -206,6 +206,7 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
        
         uppdateraUppgift();
     }//GEN-LAST:event_btnSparaAndringarActionPerformed
+    ////// Metod för de fält där man kan ändra värdet 
     public void andrauppgift() {
 
         try {
@@ -218,9 +219,6 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
             telefonText.setText(idb.fetchSingle("SELECT telefon FROM partner WHERE pid = '" + pid + "'"));
             adressText.setText(idb.fetchSingle("SELECT adress FROM partner WHERE pid = '" + pid + "'"));
             branchText.setText(idb.fetchSingle("SELECT branch FROM partner WHERE pid = '" + pid + "'"));
-//            String selectedStad = (String) stadComboBox.getSelectedItem();
-//            String query = "SELECT DISTINCT stad FROM projekt ORDER BY stad";
-//            String stad = idb.fetchSingle(query);
 
         } catch (InfException ex) {
             System.out.println(ex.getMessage());

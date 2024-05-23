@@ -214,7 +214,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnLaggTillActionPerformed
-
+       //metod för
     private void fyllPaComboBox() {
         try {
             //Hämtar namn från avdelning
@@ -227,7 +227,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
             Logger.getLogger(LaggTillAnstalldFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void clearInputFields() {
 
         fornamnText.setText("");
@@ -239,7 +239,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
         losenordText.setText("");
         avdelningIdComboBox = null;
     }
-
+      //metod som genererar ett lösenord
     private void btnGenereraLosenordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenereraLosenordActionPerformed
 
         ArrayList<Character> tecken = new ArrayList<>();
@@ -263,7 +263,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
         String genereratLosenord = losenord.toString();
         losenordText.setText(genereratLosenord);
     }//GEN-LAST:event_btnGenereraLosenordActionPerformed
-
+//metod som kontrollerar att datumet skrivs i rätt format
     private boolean isValidDate(String dateString) {
         if (dateString.matches("\\d{4}-\\d{2}-\\d{2}")) {
             return true;

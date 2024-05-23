@@ -29,7 +29,7 @@ public class AnsvarigProjektAndraUppgifter extends javax.swing.JFrame {
         datumFormat = "    -  -  ";
 
     }
-
+//metod för alternativ av länder  i rullistan att välja mellan
     private void fyllListaLander() {
         try {
             String sqlFraga = "select namn, lid from land";

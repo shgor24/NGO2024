@@ -42,12 +42,6 @@ public class Inloggning extends javax.swing.JFrame {
 
         lblLosenord.setText("Lösenord");
 
-        tfEPost.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfEPostActionPerformed(evt);
-            }
-        });
-
         lblFelmeddelande.setForeground(new java.awt.Color(255, 0, 0));
         lblFelmeddelande.setText("Felaktig epost eller lösenord");
 
@@ -97,13 +91,13 @@ public class Inloggning extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//Metod för att logga in med knappen, genom att ange epost och lösenord 
     private void btnLoggaInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoggaInActionPerformed
         try {
             // Hämta input values
             String ePost = tfEPost.getText();
             String losen = tfLosenord.getText();
-            
+
             // Definiera frågor mot databasen för respektive roller
             String sqlFraga1 = "SELECT losenord FROM anstalld WHERE epost= '" + ePost + "'";
             String sqlFraga2 = "SELECT anstalld.epost, anstalld.losenord, anstalld.aid FROM anstalld JOIN handlaggare ON anstalld.aid = handlaggare.aid and anstalld.epost= '" + ePost + "'";
@@ -111,14 +105,12 @@ public class Inloggning extends javax.swing.JFrame {
             String sqlFraga5 = "SELECT aid from anstalld where epost = '" + ePost + "'";
             String sqlFraga6 = "select projektchef from projekt where projektchef in (select aid from anstalld where epost = '" + ePost + "')";
 
-            
             // Utför anropen mot databasen, returnera värden i variablerna
             String userLosen = idb.fetchSingle(sqlFraga1);
             String isHandlaggare = idb.fetchSingle(sqlFraga2);
             String isAdminstrator = idb.fetchSingle(sqlFraga3);
             String isProjektChef = idb.fetchSingle(sqlFraga6);
-            
-            
+
             // Loggar in som ProjektChef/Ledare (Högst behörighet)
             if (losen.equals(userLosen) && isProjektChef != null) {
                 setVisible(false);
@@ -126,33 +118,29 @@ public class Inloggning extends javax.swing.JFrame {
                 new ProjektledareMeny(idb, aid).setVisible(true);
                 //return;
 //               
+            } else {
+                System.out.print("inte Projektchef");
+
+                //Loggar in som handläggare
+                if (losen.equals(userLosen) && isHandlaggare != null) {
+                    setVisible(false);
+                    String aid = idb.fetchSingle(sqlFraga5);
+                    new HandläggareMeny(aid, idb).setVisible(true);
+                    return;
+                }
+                // Loggar in som administratör
+                if (losen.equals(userLosen) && isAdminstrator != null) {
+                    setVisible(false);
+                    new AdministratorMeny(idb).setVisible(true);
+                } else {
+                    lblFelmeddelande.setVisible(true);
+                }
             }
-            else{ System.out.print("inte Projektchef");
-            
-            //Loggar in som handläggare
-            if (losen.equals(userLosen) && isHandlaggare != null) {
-                setVisible(false);
-                String aid = idb.fetchSingle(sqlFraga5);
-                new HandläggareMeny(aid, idb).setVisible(true);
-                return;
-            }
-            // Loggar in som administratör
-            if (losen.equals(userLosen) && isAdminstrator != null) {
-                setVisible(false);
-                new AdministratorMeny(idb).setVisible(true);
-            }
-            else {
-                lblFelmeddelande.setVisible(true);
-            }
-        }} catch (InfException ex) {
+        } catch (InfException ex) {
             System.out.println(ex.getMessage());
 
         }
     }//GEN-LAST:event_btnLoggaInActionPerformed
-    
-    private void tfEPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEPostActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfEPostActionPerformed
 
     /**
      * @param args the command line arguments

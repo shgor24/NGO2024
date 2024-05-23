@@ -11,12 +11,10 @@ import java.util.List;
 import javax.swing.*;
 import java.util.Arrays;
 
-
 public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
 
     private InfDB idb;
     private String avdid;
-
 
     public AndraUppgifterOmEnAvdelningFrame(InfDB idb) {
 
@@ -31,7 +29,8 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
             }
         });
     }
-     private void fillComboBox() {
+
+    private void fillComboBox() {
         try {
             List<String> avdelningar = idb.fetchColumn("SELECT avdid FROM Avdelning");
             if (avdelningar != null) {
@@ -189,10 +188,11 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+//// Metod för de fält där man kan ändra värdet 
 
     public void andrauppgift() { //tf betyder textfield 
         try {
-            avdid= (String )tfavdid.getSelectedItem();
+            avdid = (String) tfavdid.getSelectedItem();
             tfnamn.setText(idb.fetchSingle("SELECT namn FROM avdelning WHERE avdid = '" + avdid + "'"));
             tfbeskrivning.setText(idb.fetchSingle("SELECT beskrivning FROM avdelning WHERE avdid = '" + avdid + "'"));
             tfadress.setText(idb.fetchSingle("SELECT adress FROM avdelning WHERE avdid = '" + avdid + "'"));
@@ -204,28 +204,30 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
-        private void uppdateraUppgift() {
-         String telefonVal = tftelefonnummer.getText();
-         
-             if (!isNumeric(telefonVal)) {
-        JOptionPane.showMessageDialog(null, "Telefon måste vara ett numeriskt värde!", "Warning", JOptionPane.WARNING_MESSAGE);
-        return;
-    }
-    // Skapa en lista med de textfält som behöver valideras
+// validerar att fältet telefon tar in numeriska värden
+    private void uppdateraUppgift() {
+        String telefonVal = tftelefonnummer.getText();
+
+        if (!isNumeric(telefonVal)) {
+            JOptionPane.showMessageDialog(null, "Telefon måste vara ett numeriskt värde!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        // Skapa en lista med de textfält som behöver valideras
         List<JTextField> fieldsToValidate = Arrays.asList(tfnamn, tfadress, tfepost, tftelefonnummer, tfstad);
-    
-    // Validera fälten
-    if (!Validering.validerafalt(fieldsToValidate)) {
-        // Om valideringen misslyckas, avbryt metodens exekvering
-        return;
-    }
-        try { 
+
+        // Validera fälten
+        if (!Validering.validerafalt(fieldsToValidate)) {
+            // Om valideringen misslyckas, avbryt metodens exekvering
+            return;
+        }
+        try {
             idb.update("UPDATE Avdelning SET namn = '" + tfnamn.getText() + "', adress = '" + tfadress.getText() + "', epost = '" + tfepost.getText() + "', telefon = '" + tftelefonnummer.getText() + "', stad = '" + tfstad.getText() + "' WHERE avdid = '" + avdid + "'");
             JOptionPane.showMessageDialog(null, "Ändringarna har sparats.");
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
-    } }
-        
+        }
+    }
+
     // Metod som anropas när knappen för att spara ändringar klickas p
     private void bnsparaandringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnsparaandringarActionPerformed
         uppdateraUppgift();// Anropa metoden för att uppdatera avdelningsuppgifter
@@ -233,17 +235,18 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
 
     // Metod som anropas när ComboBox för avdelnings-ID ändras
     private void tfavdidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfavdidActionPerformed
-       andrauppgift();// Anropa metoden för att hämta och visa information om den valda avdelningen
+        andrauppgift();// Anropa metoden för att hämta och visa information om den valda avdelningen
     }//GEN-LAST:event_tfavdidActionPerformed
-
-     private boolean isNumeric(String str) { // Metod för att kontrollera om en sträng är numerisk
-    try {
-        Double.parseDouble(str);
-        return true;
-    } catch (NumberFormatException e) {
-        return false;
+//metoden för validering för numeriska nummer
+    private boolean isNumeric(String str) { // Metod för att kontrollera om en sträng är numerisk
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
-}
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

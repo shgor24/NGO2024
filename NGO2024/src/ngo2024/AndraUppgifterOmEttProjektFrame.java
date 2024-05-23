@@ -76,7 +76,7 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
         }
         
     }
-    
+    //Metod för rullistan projektchef, där man väljer förnamn och efternamn på projektchef och dennes aid
         private void fyllListaProjektChef() {
         try {
             String sqlFraga = "select aid, fornamn, efternamn from anstalld where aid in (select distinct projektchef from projekt)";
@@ -101,7 +101,7 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }
-    
+    //metod för rullistan Land, där man väljer namn på land och dennes lid
         private void fyllListaLander() {
         try {
             String sqlFraga = "select namn, lid from land";
