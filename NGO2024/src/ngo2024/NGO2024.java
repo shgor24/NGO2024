@@ -2,6 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
+
+// denna kod initierar en Java-applikation för NGO 2024, möjliggör anslutning till en MySQL-databas och öppnar inloggningsfönstret för användaren.
+
 package ngo2024;
 
 import oru.inf.InfDB;

@@ -32,7 +32,7 @@ import oru.inf.InfException;
       
     }
  
-    private void hamtaAllaPartners(){
+    private void hamtaAllaPartners(){// Hämtar alla partners som ännu inte är kopplade till projektet och fyller listan
         try {
        String sqlFraga = "SELECT partner.namn, partner.kontaktperson, partner.pid " + "FROM partner " + "WHERE partner.pid NOT IN (SELECT partner_pid FROM projekt_partner WHERE pid = " + pid + ")";
 
@@ -60,7 +60,7 @@ import oru.inf.InfException;
         }
     }
 
-    private void listener() {
+    private void listener() {//// Lyssnare för när ett objekt i listan väljs
         listapartners.addListSelectionListener(new ListSelectionListener() {
 
             //När användaren har valt ett projekt i listan kommer detta att köras, tack vare valueChanged() metoden
@@ -91,13 +91,13 @@ import oru.inf.InfException;
             }
         });
     }
- private boolean bekraftaVal(String namn) {
+ private boolean bekraftaVal(String namn) { // Bekräftar valet av partner
         int bekrafta = JOptionPane.showConfirmDialog(this, "Vänligen bekräfta att du vill lägga till " + namn + " till projektet", "Bekräfta", JOptionPane.YES_NO_OPTION);
 
         return bekrafta == JOptionPane.YES_OPTION;
     }
 
-    private void laggTillPartners(String partnerId) {
+    private void laggTillPartners(String partnerId) {// Lägger till vald partner till projektet och uppdaterar listan
         try {
             String sqlFraga = "insert into projekt_partner (pid, partner_pid) values (" + pid + "," + partnerId + ")";
             idb.insert(sqlFraga);
