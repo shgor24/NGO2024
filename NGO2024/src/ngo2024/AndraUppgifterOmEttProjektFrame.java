@@ -10,10 +10,7 @@ import oru.inf.InfDB;
 import javax.swing.JOptionPane;
 import oru.inf.InfException;
 
-/**
- *
- * @author sheny
- */
+
 public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
 
     private InfDB idb;
@@ -28,13 +25,12 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
         for (Map.Entry<String, String> entry : projektnamn.entrySet()) {
             String key = entry.getKey();
             value = entry.getValue();
-            // Now you can use the key-value pairs as needed
             System.out.println("Key: " + key + ", Value: " + value);
         }
-
+    // Hämta data för det valda projektet och fyll i fälten i gränssnittet
         HashMap<String, String> data = GetData(value);
 
-        if (data != null) {
+        if (data != null) {// Hämta projektinformation från hashmapen
             String valueProjektnamn = data.get("projektnamn");
             String valueBeskrivning = data.get("beskrivning");
             String valueStartdatum = data.get("startdatum");
@@ -219,7 +215,7 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+       // Metod för att hantera händelser när knappen för att spara ändringar klickas på
     private void btnSparaAndringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSparaAndringarActionPerformed
 
         HashMap<String, String> data = GetData(value);
@@ -271,7 +267,7 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btnSparaAndringarActionPerformed
-private boolean isValidDate(String dateString) {
+private boolean isValidDate(String dateString) { // Metod för att kontrollera om ett datum är i rätt format
     if (dateString.matches("\\d{4}-\\d{2}-\\d{2}")) {
         return true;
     } else {
@@ -280,7 +276,7 @@ private boolean isValidDate(String dateString) {
     }
 }
 
-private boolean isNumeric(String str) {
+private boolean isNumeric(String str) { // Metod för att kontrollera om en sträng är numerisk
     try {
         Double.parseDouble(str);
         return true;
