@@ -9,7 +9,7 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//skriv siffror på avdid rutan
+//                                                              !!!!!skriv siffror på avdid rutan!!!!
 public class LaggTillAvdelningFrame extends javax.swing.JFrame {
 
     private InfDB idb;
@@ -156,9 +156,9 @@ public class LaggTillAvdelningFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
+    //Metod för att hantera händelsen när användaren klickar på knappen för att lägga till avdelning.
     private void btnlaggtillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlaggtillActionPerformed
-                              
+        // Hämta data från textfälten           
         String avdid = tfavdid.getText();
         String namn = tfnamn.getText();
         String beskrivning = tfbeskrivning.getText();
@@ -166,10 +166,10 @@ public class LaggTillAvdelningFrame extends javax.swing.JFrame {
         String epost = tfepost.getText();
         String telefon = tftelefon.getText();
         
-        String stad = (String) StadComboBox.getSelectedItem();
+        String stad = (String) StadComboBox.getSelectedItem();// Hämta vald stad från komboboxen
         String stadId = stad.replaceAll("\\D+", "");
         
-        String chef = (String) ChefComboBox.getSelectedItem();        
+        String chef = (String) ChefComboBox.getSelectedItem();   // Hämta vald chef från komboboxen     
         String chefId = chef.replaceAll("\\D+", "");
          try {
             String sqlFraga = "INSERT INTO avdelning (avdid, namn, beskrivning, adress, epost, telefon, stad, chef) VALUES ('" + avdid + "', '" + namn + "', '" + beskrivning + "', '" + adress + "', '" + epost + "', '" + telefon + "', '" + stadId + "', '" + chefId + "')";
@@ -184,7 +184,7 @@ public class LaggTillAvdelningFrame extends javax.swing.JFrame {
   
     
  private void fyllPaChefComboBox() {
-        try {
+        try {// SQL-fråga för att hämta namn på anställda och deras ID
             String chefInfoQuery = "SELECT CONCAT(fornamn, ' ', efternamn, ' (', aid, ')') AS chef_info FROM anstalld";
             ArrayList<String> chefInfoList = idb.fetchColumn(chefInfoQuery);
             for (String chefInfo : chefInfoList) {
@@ -196,7 +196,7 @@ public class LaggTillAvdelningFrame extends javax.swing.JFrame {
     }
 
     private void fyllPaStadComboBox() {
-        try {
+        try {// SQL-fråga för att hämta namn på städer och deras ID
             String stadQuery = "SELECT CONCAT(namn, ' (', sid, ')') AS stad_info FROM stad";
             ArrayList<String> stadList = idb.fetchColumn(stadQuery);
             for (String stad : stadList) {

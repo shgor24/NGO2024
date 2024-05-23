@@ -10,10 +10,6 @@ import javax.swing.table.DefaultTableModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-/**
- *
- * @author mikaela nilsson
- */
 public class KostnadsStatistik extends javax.swing.JFrame {
 
     private InfDB idb;

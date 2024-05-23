@@ -14,19 +14,12 @@ import javax.swing.event.ListSelectionListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-/**
- *
- * @author mikaela nilsson
- */
 public class LaggTillHandlaggare extends javax.swing.JFrame {
 
     private InfDB idb;
     private String pid;
     private String aid;
 
-    /**
-     * Creates new form LaggTillHandlaggare
-     */
     public LaggTillHandlaggare(InfDB idb, String pid, String aid) {
         this.idb = idb;
         this.pid = pid;

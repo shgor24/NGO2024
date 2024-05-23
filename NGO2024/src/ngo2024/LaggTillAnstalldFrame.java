@@ -12,15 +12,8 @@ import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-/**
- *
- * @author sheny
- */
 public class LaggTillAnstalldFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LaggTillTaBortAnstalldFrame
-     */
     private InfDB idb;
 
     public LaggTillAnstalldFrame(InfDB idb) {

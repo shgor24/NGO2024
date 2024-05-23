@@ -11,10 +11,6 @@ import javax.swing.JOptionPane;
 import oru.inf.InfException;
 
 
-/**
- *
- * @author fatimatouray
- */
 public class LaggTillLand extends javax.swing.JFrame {
     
      private InfDB idb;
@@ -31,13 +27,7 @@ public class LaggTillLand extends javax.swing.JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLaggTillActionPerformed(evt);
             }
-        });
-        
-        
-      
-        
-        
-        
+        }); 
     }
 
     /**
@@ -94,8 +84,6 @@ public class LaggTillLand extends javax.swing.JFrame {
         tfEkonomi.setText("");
     }
 
-    
-    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
