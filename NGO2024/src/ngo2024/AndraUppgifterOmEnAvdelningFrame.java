@@ -205,6 +205,12 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
         }
     }
         private void uppdateraUppgift() {
+         String telefonVal = tftelefonnummer.getText();
+         
+             if (!isNumeric(telefonVal)) {
+        JOptionPane.showMessageDialog(null, "Telefon måste vara ett numeriskt värde!", "Warning", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
     // Skapa en lista med de textfält som behöver valideras
         List<JTextField> fieldsToValidate = Arrays.asList(tfnamn, tfadress, tfepost, tftelefonnummer, tfstad);
     
@@ -230,6 +236,14 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
        andrauppgift();// Anropa metoden för att hämta och visa information om den valda avdelningen
     }//GEN-LAST:event_tfavdidActionPerformed
 
+     private boolean isNumeric(String str) { // Metod för att kontrollera om en sträng är numerisk
+    try {
+        Double.parseDouble(str);
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
