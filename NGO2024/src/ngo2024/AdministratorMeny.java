@@ -198,9 +198,9 @@ public class AdministratorMeny extends javax.swing.JFrame {
       private void cbValdAvdelningActionPerformed(java.awt.event.ActionEvent evt) {
           String detValdaAlternativet = (String) cbValdAvdelning.getSelectedItem();
           if (detValdaAlternativet.equals("Lägg till avdelning" + "")) {
-            new LaggTillAvdelningFrame().setVisible(true);
+            new LaggTillAvdelningFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Ändra uppgifter om en avdelning" + "")) {
-            new AndraUppgifterOmEnAvdelningFrame().setVisible(true);
+            new AndraUppgifterOmEnAvdelningFrame(idb).setVisible(true);
         }
           
       }

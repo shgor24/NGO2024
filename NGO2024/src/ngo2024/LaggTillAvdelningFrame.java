@@ -9,15 +9,12 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+//skriv siffror på avdid rutan
 public class LaggTillAvdelningFrame extends javax.swing.JFrame {
 
     private InfDB idb;
 
-    /**
-     * Creates new form LaggTillAvdelningFrame
-     * 
-     */
+ 
     public LaggTillAvdelningFrame(InfDB idb) {
         this.idb = idb;
         initComponents();
