@@ -91,8 +91,18 @@ public class AdministratorMeny extends javax.swing.JFrame {
         });
 
         cbValdAvdelning.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till avdelning", "Ändra uppgifter om en avdelning" }));
+        cbValdAvdelning.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbValdAvdelningActionPerformed(evt);
+            }
+        });
 
-        cbValdPartner.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till/Ta bort partner", "Ändra uppgifter om en partner" }));
+        cbValdPartner.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till partner ", "Ta bort partner", "Ändra uppgifter om en partner" }));
+        cbValdPartner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbValdPartnerActionPerformed(evt);
+            }
+        });
 
         cbValdLand.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lägg till land", "Ändra uppgifter för ett land" }));
 
@@ -197,7 +207,7 @@ public class AdministratorMeny extends javax.swing.JFrame {
       
       private void cbValdPartnerActionPerformed(java.awt.event.ActionEvent evt) {
           String detValdaAlternativet = (String) cbValdPartner.getSelectedItem();
-        if(detValdaAlternativet.equals("Lägg till partner" + "")){
+        if (detValdaAlternativet.equals("Lägg till partner" + "")){
               new LaggTillPartnerFrame(idb).setVisible(true);
         } else if (detValdaAlternativet.equals("Ta bort partner" +"")) {
               new TaBortPartnerFrame(idb).setVisible(true);
