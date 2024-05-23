@@ -131,7 +131,7 @@ public class TaBortAnstalldFrame extends javax.swing.JFrame {
                         }
                     }
                     String sqlFraga = "DELETE FROM NGO_2024.Anstalld WHERE aid = '" + aid + "'";
-                    
+
                     btnTaBortAnstalld.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             try {

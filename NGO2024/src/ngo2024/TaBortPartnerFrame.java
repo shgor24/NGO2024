@@ -16,6 +16,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author sheny
@@ -25,7 +26,7 @@ public class TaBortPartnerFrame extends javax.swing.JFrame {
     private InfDB idb;
     private DefaultListModel<String> listModel;
     int pid = -1;
-    
+
     public TaBortPartnerFrame(InfDB idb) {
         initComponents();
         this.idb = idb;
@@ -149,6 +150,7 @@ public class TaBortPartnerFrame extends javax.swing.JFrame {
             }
         });
     }
+
     /**
      * @param args the command line arguments
      */

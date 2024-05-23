@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ngo2024;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.DefaultListModel;
@@ -11,54 +12,57 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
+
 /**
  *
  * @author mursalmohammad
  */
 public class TaBortPartnersProjektLedare extends javax.swing.JFrame {
+
     private InfDB idb;
     private String pid;
     private String aid;
+
     /**
      * Creates new form TaBortPartners
      */
     public TaBortPartnersProjektLedare(InfDB idb, String pid, String aid) {
-         this.idb = idb;
+        this.idb = idb;
         this.pid = pid;
         this.aid = aid;
         initComponents();
         hamtaPartners();
         listener();
     }
-    
-     private void  hamtaPartners()
-    {
-        try {String sqlFraga = "SELECT partner.namn, partner.kontaktperson, partner.pid " + "FROM partner " +"LEFT JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid AND projekt_partner.pid = " + pid + " WHERE projekt_partner.partner_pid IS NOT NULL";
 
-    ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
-        
-        DefaultListModel<String> lista = new DefaultListModel<>();
-        
-        for (HashMap<String, String> rad : resultatLista) {
+    private void hamtaPartners() {
+        try {
+            String sqlFraga = "SELECT partner.namn, partner.kontaktperson, partner.pid " + "FROM partner " + "LEFT JOIN projekt_partner ON partner.pid = projekt_partner.partner_pid AND projekt_partner.pid = " + pid + " WHERE projekt_partner.partner_pid IS NOT NULL";
+
+            ArrayList<HashMap<String, String>> resultatLista = idb.fetchRows(sqlFraga);
+
+            DefaultListModel<String> lista = new DefaultListModel<>();
+
+            for (HashMap<String, String> rad : resultatLista) {
                 String partnerId = rad.get("pid");
                 String namn = rad.get("namn");
                 String kontaktperson = rad.get("kontaktperson");
-                
+
                 String helaNamnet = namn + " " + kontaktperson;
 
                 lista.addElement(helaNamnet + " ID: " + partnerId);
-        }
-        
-        
-        listaPartners.setModel(lista);
+            }
+
+            listaPartners.setModel(lista);
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
         }
     }
-        private void listener() {
+
+    private void listener() {
         listaPartners.addListSelectionListener(new ListSelectionListener() {
 
-            //När användaren har valt ett projekt i listan kommer detta att köras, tack vare valueChanged() metoden
+            //När användaren har valt en partner i listan kommer detta att köras
             public void valueChanged(ListSelectionEvent e) {
 
                 //Anropar en metod från ListSelectionEvent som returnerar true om användaren har valt något i listan
@@ -86,13 +90,14 @@ public class TaBortPartnersProjektLedare extends javax.swing.JFrame {
             }
         });
     }
-     private boolean bekraftaVal(String namn) {
+
+    private boolean bekraftaVal(String namn) {
         int bekrafta = JOptionPane.showConfirmDialog(this, "Vänligen bekräfta att du vill ta bort " + namn + " från projektet", "Bekräfta", JOptionPane.YES_NO_OPTION);
 
         return bekrafta == JOptionPane.YES_OPTION;
     }
-    
- private void taBortpartner(String partnerId) {
+
+    private void taBortpartner(String partnerId) {
         try {
             String sqlFraga = "DELETE FROM projekt_partner WHERE pid = " + pid + " AND partner_pid = " + partnerId;
             idb.delete(sqlFraga);
@@ -103,6 +108,7 @@ public class TaBortPartnersProjektLedare extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -197,7 +203,4 @@ public class TaBortPartnersProjektLedare extends javax.swing.JFrame {
     private javax.swing.JList<String> listaPartners;
     // End of variables declaration//GEN-END:variables
 
-//    private void hamtaProjektetspartner() {
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-//    }
 }

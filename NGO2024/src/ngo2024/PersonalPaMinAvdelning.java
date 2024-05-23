@@ -14,50 +14,41 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 
 class PersonalPa extends javax.swing.JFrame {
-    private final InfDB idb;
-    private final String aid;
-    
-public PersonalPa(InfDB idb, String aid) {
-        this.aid=aid;
-        this.idb =idb;
+
+    private InfDB idb;
+    private String aid;
+
+    public PersonalPa(InfDB idb, String aid) {
+        this.aid = aid;
+        this.idb = idb;
         initComponents();
-        hamtanamnpapersonalen(); 
+        hamtanamnpapersonalen();
     }
-    
-    /**
-     * Creates new form PersonalPaMinAvdelning
-     * @param idb
-     * @param aid
-     */
-    
+    //En metod som hämtar för- och efternamn på alla personal i en viss avdelning
+    public void hamtanamnpapersonalen() {
+        try {
+            String sqlFraga1 = "SELECT avdelning from anstalld where aid =  " + aid;
+            String Avdelning = idb.fetchSingle(sqlFraga1);
+            String sqlFraga2 = "SELECT fornamn, efternamn FROM anstalld WHERE avdelning = " + Avdelning;
 
+            // Det här antar att fetchRows returnerar en lista av HashMap där varje HashMap representerar en rad i resultatet.
+            ArrayList<HashMap<String, String>> personalList = idb.fetchRows(sqlFraga2);
+            DefaultListModel<String> lista = new DefaultListModel<>();
 
-  public void hamtanamnpapersonalen() {
-    try {
-        String sqlFraga1 = "SELECT avdelning from anstalld where aid =  " +aid ;
-        String Avdelning = idb.fetchSingle(sqlFraga1);
-        String sqlFraga2 = "SELECT fornamn, efternamn FROM anstalld WHERE avdelning = " +Avdelning;
+            if (personalList != null) {
+                for (HashMap<String, String> rad : personalList) {
+                    String namn = rad.get("fornamn") + " " + rad.get("efternamn");
+                    lista.addElement(namn);
+                }
+            } else {
+                System.out.println("Ingen personal hittades för avdelningen" + Avdelning);
 
-        // Det här antar att fetchRows returnerar en lista av HashMap där varje HashMap representerar en rad i resultatet.
-        ArrayList<HashMap<String, String>> personalList = idb.fetchRows(sqlFraga2);
-        DefaultListModel<String> lista = new DefaultListModel<>();
-
-        if (personalList !=null){
-        for (HashMap<String, String> rad : personalList) {
-            String namn = rad.get("fornamn") + " " + rad.get("efternamn");
-            lista.addElement(namn);
+            }
+            jList1_listaoverpersonal.setModel(lista);
+        } catch (InfException ex) {
+            System.out.println("Ett fel inträffade:" + ex.getMessage());
         }
-        }
-        else {
-            System.out.println("Ingen personal hittades för avdelningen"+ Avdelning);
-            
-        }
-    jList1_listaoverpersonal.setModel(lista);
-}catch (InfException ex) {
-        System.out.println("Ett fel inträffade:" +ex.getMessage());
     }
-}
-     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,31 +68,37 @@ public PersonalPa(InfDB idb, String aid) {
         lblRubrik.setText("Personal på min avdelning");
 
         jList1_listaoverpersonal.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
+
+            public int getSize() {
+                return strings.length;
+            }
+
+            public String getElementAt(int i) {
+                return strings[i];
+            }
         });
         jScrollPane1.setViewportView(jList1_listaoverpersonal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(97, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(84, 84, 84)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblRubrik, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(97, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(lblRubrik)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(lblRubrik)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         pack();
