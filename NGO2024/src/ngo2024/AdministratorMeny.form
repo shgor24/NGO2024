@@ -138,11 +138,10 @@
     <Component class="javax.swing.JComboBox" name="cbValdProjekt">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
+          <StringArray count="3">
             <StringItem index="0" value="L&#xe4;gg till projekt"/>
             <StringItem index="1" value="Ta bort projekt"/>
-            <StringItem index="2" value="&#xc4;ndra uppgifter om ett projekt"/>
-            <StringItem index="3" value="Se uppgifter om projektansvarig"/>
+            <StringItem index="2" value="Se/&#xc4;ndra uppgifter om ett projekt"/>
           </StringArray>
         </Property>
       </Properties>
