@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 public class LaggTillProjektFrame extends javax.swing.JFrame {
 
     /**
-     * Creates new form LaggTillTaBortProjektFrame
+     * Creates new form LaggTillTaProjektFrame
      */
     private InfDB idb;
 
