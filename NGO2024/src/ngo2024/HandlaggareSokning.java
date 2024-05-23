@@ -9,11 +9,7 @@ import javax.swing.DefaultListModel;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-/**
- *
- * @author fatimatouray
- */
-public class HandlaggareSokning extends javax.swing.JFrame {
+public class HandlaggareSokning extends javax.swing.JFrame { //Klass för att söka efter handläggare
     
     private InfDB idb;
     private String aid;
@@ -21,24 +17,17 @@ public class HandlaggareSokning extends javax.swing.JFrame {
     
     
 
-    /**
-     * Creates new form HandläggareSökning
-     */
+   
     public HandlaggareSokning (InfDB idb, String aid) {
         
         this.idb = idb;
         this.aid = "3";
-        
-        
-        
-        
         initComponents();
-        
-               
-       
+    
         
         btnsokhandlaggare.addActionListener(new java.awt.event.ActionListener() {
     public void actionPerformed(java.awt.event.ActionEvent evt) {
+        
         String searchQuery = tfsokhandlaggare.getText(); // Hämta sökfrågan från textfältet
         hamtaSpecifikHandlaggare(searchQuery); // Anropa metoden för att hämta handläggarna
     }

@@ -9,17 +9,14 @@ import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-/**
- *
- * @author mikaela nilsson
- */
-public class DatumProjektSok extends javax.swing.JFrame {
+
+public class DatumProjektSok extends javax.swing.JFrame {//Klass för att söka efter projekt baserat på start- och slutdatum.
     
     private InfDB idb;
     private String aid;
 
-    /** Creates new form DatumProjektSok */
-    public DatumProjektSok(InfDB idb, String aid) {
+ 
+    public DatumProjektSok(InfDB idb, String aid) {//Skapa ett nytt formobjekt för att söka efter projekt baserat på datum.
         this.idb = idb;
         this.aid = aid;
         initComponents();
