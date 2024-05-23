@@ -13,11 +13,6 @@ import javax.lang.model.SourceVersion;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 
-
-/**
- *
- * @author mursalmohammad
- */
 class PersonalPa extends javax.swing.JFrame {
     private final InfDB idb;
     private final String aid;
@@ -26,7 +21,7 @@ public PersonalPa(InfDB idb, String aid) {
         this.aid=aid;
         this.idb =idb;
         initComponents();
-        hamtanamnpapersonalen(3); // Anropa metoden med avdelnings-ID 3 för att hämta personal från avdelning 3
+        hamtanamnpapersonalen(); 
     }
     
     /**
@@ -37,7 +32,7 @@ public PersonalPa(InfDB idb, String aid) {
     
 
 
-  public void hamtanamnpapersonalen(int avdelning) {
+  public void hamtanamnpapersonalen() {
     try {
         String sqlFraga1 = "SELECT avdelning from anstalld where aid =  " +aid ;
         String Avdelning = idb.fetchSingle(sqlFraga1);
@@ -54,7 +49,7 @@ public PersonalPa(InfDB idb, String aid) {
         }
         }
         else {
-            System.out.println("Ingen personal hittades för avdelningen"+ avdelning);
+            System.out.println("Ingen personal hittades för avdelningen"+ Avdelning);
             
         }
     jList1_listaoverpersonal.setModel(lista);

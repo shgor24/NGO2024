@@ -9,18 +9,12 @@ import oru.inf.InfDB;
 import oru.inf.InfException;
 import javax.swing.JOptionPane;
 
-/** 
- *
- * @author fatimatouray
- */
 public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
     
      private InfDB idb;
     private String lid;
 
-    /*
-     * Creates new form LaggTillLand
-     */
+   
     public AndraUppgiftOmEttLand(InfDB idb, String lid) {
         this.idb = idb;
         this.lid = lid;
@@ -57,7 +51,7 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
         }
     }
     
-    private void uppdateraUppgift() {
+    private void uppdateraUppgift() { // Metod för att uppdatera landets uppgifter i databasen
         try {
             idb.update("UPDATE Land SET namn = '" + tfNamn.getText() + "', sprak = '" + tfSprak.getText() + "', valuta = '" + tfValuta.getText() + "', tidszon = '" + tfTidzon.getText() + "', politisk_struktur = '" + tfPs.getText() + "', ekonomi = '" + tfEkonomi.getText() + "' WHERE lid = '" + lid + "'");
             
@@ -65,15 +59,7 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }
-    
-    
-    
-    
-    
-        
-     
-
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -247,7 +233,8 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
     private void tfValutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfValutaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfValutaActionPerformed
-
+ 
+// Metod som hanterar händelsen när användaren klickar på knappen för att spara ändringar
     private void bnsparaandringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnsparaandringarActionPerformed
       
     String namn = tfNamn.getText();
@@ -265,8 +252,6 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
         // Om inga fält är tomma, uppdatera uppgifterna
         uppdateraUppgift();
     }
-
-        
         uppdateraUppgift();  
     }//GEN-LAST:event_bnsparaandringarActionPerformed
 

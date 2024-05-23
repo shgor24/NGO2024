@@ -43,11 +43,6 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error fetching department IDs: " + ex.getMessage());
         }
     }
-    
-
-    private AndraUppgifterOmEnAvdelningFrame() {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -195,7 +190,7 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void andrauppgift() {
+    public void andrauppgift() { //tf betyder textfield 
         try {
             avdid= (String )tfavdid.getSelectedItem();
             tfnamn.setText(idb.fetchSingle("SELECT namn FROM avdelning WHERE avdid = '" + avdid + "'"));
@@ -204,7 +199,6 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
             tfepost.setText(idb.fetchSingle("SELECT epost FROM avdelning WHERE avdid = '" + avdid + "'"));
             tftelefonnummer.setText(idb.fetchSingle("SELECT telefon FROM Avdelning WHERE avdid = '" + avdid + "'"));
             tfstad.setText(idb.fetchSingle("SELECT stad FROM Avdelning WHERE avdid = '" + avdid + "'"));
-            //tfchef.setText(idb.fetchSingle("SELECT chef FROM Avdelning WHERE avdid = '" + avdid + "'"));
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -225,13 +219,15 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
         } catch (InfException ex) {
             System.out.println(ex.getMessage());
     } }
-
+        
+    // Metod som anropas när knappen för att spara ändringar klickas p
     private void bnsparaandringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnsparaandringarActionPerformed
-        uppdateraUppgift();
+        uppdateraUppgift();// Anropa metoden för att uppdatera avdelningsuppgifter
     }//GEN-LAST:event_bnsparaandringarActionPerformed
 
+    // Metod som anropas när ComboBox för avdelnings-ID ändras
     private void tfavdidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfavdidActionPerformed
-       andrauppgift();
+       andrauppgift();// Anropa metoden för att hämta och visa information om den valda avdelningen
     }//GEN-LAST:event_tfavdidActionPerformed
 
     public static void main(String args[]) {
@@ -277,7 +273,7 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AndraUppgifterOmEnAvdelningFrame().setVisible(true);
+                //new AndraUppgifterOmEnAvdelningFrame().setVisible(true);
             }
         });
     }

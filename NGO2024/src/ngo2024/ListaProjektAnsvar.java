@@ -13,16 +13,11 @@ import javax.swing.event.ListSelectionListener;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-/**
- *
- * @author mikaela nilsson
- */
 public class ListaProjektAnsvar extends javax.swing.JFrame {
     
     private InfDB idb;
     private String aid;
 
-    /** Creates new form ProjektMenyProjektLedare */
     public ListaProjektAnsvar(InfDB idb, String aid) {
         this.idb = idb;
         this.aid = aid;

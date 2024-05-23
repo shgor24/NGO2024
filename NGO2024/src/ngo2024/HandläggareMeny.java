@@ -7,10 +7,7 @@ package ngo2024;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-/**
- *
- * @author sheny
- */
+
 public class HandläggareMeny extends javax.swing.JFrame {
     
     private InfDB idb;
@@ -24,23 +21,11 @@ public class HandläggareMeny extends javax.swing.JFrame {
         this.idb = idb;
         initComponents(); 
         
-                    bnHandAvd.addActionListener(new java.awt.event.ActionListener() {
+                    bnHandAvd.addActionListener(new java.awt.event.ActionListener() { // Lägg till händelselyssnare för knappen för att söka efter handläggare på avdelningen
     public void actionPerformed(java.awt.event.ActionEvent evt) {
         bnHandAvdActionPerformed(evt);
     }
-});
-
-        
-        
-        
-        
-        
-   
-       
-
-        
-        
-  
+});  
     }
     
       
@@ -222,10 +207,9 @@ public class HandläggareMeny extends javax.swing.JFrame {
    
 }
      
-
+    //Metod för att hantera händelsen när användaren klickar på knappen för att söka efter handläggare på avdelningen.
     private void bnHandAvdActionPerformed (java.awt.event.ActionEvent evt) {                                         
     HandlaggareSokning  handlaggaresokning = new HandlaggareSokning(idb, aid);
-    
     handlaggaresokning.setVisible(true);
 
     

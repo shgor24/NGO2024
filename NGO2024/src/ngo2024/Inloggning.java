@@ -7,10 +7,6 @@ package ngo2024;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-/**
- *
- * @author sheny
- */
 public class Inloggning extends javax.swing.JFrame {
 
     private InfDB idb;
@@ -112,7 +108,6 @@ public class Inloggning extends javax.swing.JFrame {
             String sqlFraga1 = "SELECT losenord FROM anstalld WHERE epost= '" + ePost + "'";
             String sqlFraga2 = "SELECT anstalld.epost, anstalld.losenord, anstalld.aid FROM anstalld JOIN handlaggare ON anstalld.aid = handlaggare.aid and anstalld.epost= '" + ePost + "'";
             String sqlFraga3 = "SELECT anstalld.epost, anstalld.losenord, anstalld.aid FROM anstalld JOIN admin ON anstalld.aid = admin.aid and anstalld.epost = '" + ePost + "'";
-            //String sqlFraga4 = "SELECT DISTINCT projekt.projektchef, projekt.projektnamn, projekt.pid, anstalld.epost, anstalld.losenord FROM projekt JOIN handlaggare ON projekt.projektchef = handlaggare.aid JOIN anstalld ON projekt.pid = anstalld.aid and anstalld.ePost = '" + ePost + "'";
             String sqlFraga5 = "SELECT aid from anstalld where epost = '" + ePost + "'";
             String sqlFraga6 = "select projektchef from projekt where projektchef in (select aid from anstalld where epost = '" + ePost + "')";
 

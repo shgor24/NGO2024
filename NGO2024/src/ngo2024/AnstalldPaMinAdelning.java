@@ -12,16 +12,12 @@ import javax.lang.model.SourceVersion;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 
-/**
- *
- * @author mursalmohammad
- */
+
 class AnstalldPaMinAdelning extends javax.swing.JFrame {
     private final InfDB idb;
     private final String aid;
-    /**
-     * Creates new form AnstalldPaMinAdelning
-     */
+   
+    
     public AnstalldPaMinAdelning(InfDB idb, String aid) {
         this.aid=aid;
         this.idb =idb;
@@ -80,12 +76,13 @@ class AnstalldPaMinAdelning extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    
+    //Metod för att hämta namn på personalen på avdelningen och fylla i listan.
      public void hamtanamnpapersonalen() {
-    try {
+    try {// Hämta avdelningen för den aktuella användaren
         String sqlFraga1 = "SELECT avdelning from anstalld where aid =  " +aid ;
         String Avdelning = idb.fetchSingle(sqlFraga1);
-        String sqlFraga2 = "SELECT fornamn, efternamn FROM anstalld WHERE avdelning = " +Avdelning;
+        
+        String sqlFraga2 = "SELECT fornamn, efternamn FROM anstalld WHERE avdelning = " +Avdelning;  // Hämta förnamn och efternamn för alla anställda på avdelningen
 
         // Det här antar att fetchRows returnerar en lista av HashMap där varje HashMap representerar en rad i resultatet.
         ArrayList<HashMap<String, String>> personalList = idb.fetchRows(sqlFraga2);

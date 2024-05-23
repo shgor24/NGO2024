@@ -11,15 +11,8 @@ import oru.inf.InfException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author sheny
- */
 public class LaggTillPartnerFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LaggTillPartnerFrame
-     */
     private InfDB idb;
 
     public LaggTillPartnerFrame(InfDB idb) {

@@ -10,10 +10,6 @@ import javax.swing.JOptionPane;
 import oru.inf.InfDB;
 import oru.inf.InfException;
 
-/**
- *
- * @author mikaela nilsson
- */
 public class AnsvarigProjektAndraUppgifter extends javax.swing.JFrame {
 
     private InfDB idb;

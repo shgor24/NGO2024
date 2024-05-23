@@ -6,10 +6,7 @@ package ngo2024;
 
 import oru.inf.InfDB;
 import oru.inf.InfException;
-/**
- *
- * @author sheny
- */
+
 public class NGO2024 {
     
     private static InfDB idb;
