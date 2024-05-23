@@ -210,7 +210,7 @@ public class AdministratorMeny extends javax.swing.JFrame {
         } else if (detValdaAlternativet.equals("Ta bort partner" +"")) {
               new TaBortPartnerFrame(idb).setVisible(true);
         } else if(detValdaAlternativet.equals("Ändra uppgifter om en partner" +"")){
-            new AndraUppgifterOmEnPartner().setVisible (true);
+            new AndraUppgifterOmEnPartner(idb).setVisible (true);
           }
       }
       
