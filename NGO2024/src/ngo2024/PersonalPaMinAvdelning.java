@@ -30,19 +30,23 @@ public PersonalPa(InfDB idb, String aid) {
      * @param aid
      */
     
-
+     /**
+     * Metod för att hämta och visa namnen på personalen på avdelningen.
+     */
 
   public void hamtanamnpapersonalen() {
     try {
-        String sqlFraga1 = "SELECT avdelning from anstalld where aid =  " +aid ;
+        String sqlFraga1 = "SELECT avdelning from anstalld where aid =  " +aid ;// SQL-fråga för att hämta avdelningen för den aktuella anställda
         String Avdelning = idb.fetchSingle(sqlFraga1);
-        String sqlFraga2 = "SELECT fornamn, efternamn FROM anstalld WHERE avdelning = " +Avdelning;
+        String sqlFraga2 = "SELECT fornamn, efternamn FROM anstalld WHERE avdelning = " +Avdelning;// SQL-fråga för att hämta förnamn och efternamn på anställda på avdelningen
+
 
         // Det här antar att fetchRows returnerar en lista av HashMap där varje HashMap representerar en rad i resultatet.
         ArrayList<HashMap<String, String>> personalList = idb.fetchRows(sqlFraga2);
         DefaultListModel<String> lista = new DefaultListModel<>();
 
-        if (personalList !=null){
+        if (personalList !=null){ // Iterera genom resultaten och lägg till namnen i listan
+
         for (HashMap<String, String> rad : personalList) {
             String namn = rad.get("fornamn") + " " + rad.get("efternamn");
             lista.addElement(namn);
