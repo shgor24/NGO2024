@@ -35,7 +35,7 @@ public class AndraMinaUppgifter extends javax.swing.JFrame {
 
     }
      // Metod för de fält där man kan ändra värdet 
-    public void andrauppgift() {
+    public void andraUppgift() {
         try {
             tfaid.setText(aid);
             tffornamn.setText(idb.fetchSingle("SELECT fornamn FROM Anstalld WHERE aid = '" + aid + "'"));

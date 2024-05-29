@@ -21,7 +21,7 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
         this.idb = idb;
         initComponents();
         fillComboBox();
-        andrauppgift();
+        andraUppgift();
         bnsparaandringar.setText("Spara ändringar");
         bnsparaandringar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,7 +190,7 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 //// Metod för de fält där man kan ändra värdet 
 
-    public void andrauppgift() { //tf betyder textfield 
+    public void andraUppgift() { //tf betyder textfield 
         try {
             avdid = (String) tfavdid.getSelectedItem();
             tfnamn.setText(idb.fetchSingle("SELECT namn FROM avdelning WHERE avdid = '" + avdid + "'"));
@@ -216,7 +216,7 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
         List<JTextField> fieldsToValidate = Arrays.asList(tfnamn, tfadress, tfepost, tftelefonnummer, tfstad);
 
         // Validera fälten
-        if (!Validering.validerafalt(fieldsToValidate)) {
+        if (!Validering.valideraFalt(fieldsToValidate)) {
             // Om valideringen misslyckas, avbryt metodens exekvering
             return;
         }
@@ -231,7 +231,7 @@ public class AndraUppgifterOmEnAvdelningFrame extends javax.swing.JFrame {
     
     // Metod som anropas när ComboBox för avdelnings-ID ändras
     private void tfavdidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfavdidActionPerformed
-        andrauppgift();// Anropa metoden för att hämta och visa information om den valda avdelningen
+        andraUppgift();// Anropa metoden för att hämta och visa information om den valda avdelningen
     }//GEN-LAST:event_tfavdidActionPerformed
 
     private void bnsparaandringarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnsparaandringarActionPerformed

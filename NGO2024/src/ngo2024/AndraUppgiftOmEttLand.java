@@ -18,7 +18,7 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
         this.lid = lid;
 
         initComponents();
-        andrauppgift();
+        andraUppgift();
 
         bnsparaandringar.setText("Spara");
         bnsparaandringar.addActionListener(new java.awt.event.ActionListener() {
@@ -28,7 +28,7 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
         });
     }
     //// Metod för de fält där man kan ändra värdet 
-    public void andrauppgift() {
+    public void andraUppgift() {
         try {
             tfLid.setText(lid);
             tfNamn.setText(idb.fetchSingle("SELECT namn FROM Land WHERE lid = '" + lid + "'"));

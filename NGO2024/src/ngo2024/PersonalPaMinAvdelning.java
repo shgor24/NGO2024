@@ -22,10 +22,10 @@ class PersonalPa extends javax.swing.JFrame {
         this.aid = aid;
         this.idb = idb;
         initComponents();
-        hamtanamnpapersonalen();
+        hamtaNamnPaPersonalen();
     }
     //En metod som hämtar för- och efternamn på alla personal i en viss avdelning
-    public void hamtanamnpapersonalen() {
+    public void hamtaNamnPaPersonalen() {
         try {
             String sqlFraga1 = "SELECT avdelning from anstalld where aid =  " + aid;
             String Avdelning = idb.fetchSingle(sqlFraga1);

@@ -30,7 +30,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="namnText" min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="lblNamn" min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="lblKontaktperson" alignment="0" pref="85" max="32767" attributes="0"/>
+                          <Component id="lblKontaktperson" alignment="0" max="32767" attributes="0"/>
                           <Component id="kontaktpersonText" alignment="0" min="-2" pref="71" max="-2" attributes="0"/>
                           <Component id="lblKontaktepost" alignment="0" max="32767" attributes="0"/>
                       </Group>

@@ -97,7 +97,7 @@ public class Validering {
     }
 
     //En metod som kontrollerar om ett angivet fält är ifyllt
-    public static boolean validerafalt(List<JTextField> fields) {
+    public static boolean valideraFalt(List<JTextField> fields) {
         for (JTextField field : fields) {
             if (field.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Alla fält måste fyllas i.", "Valideringsfel", JOptionPane.ERROR_MESSAGE);

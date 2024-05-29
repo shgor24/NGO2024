@@ -18,9 +18,9 @@ public class ListaoverHallbarhetsmal extends javax.swing.JFrame {
     public ListaoverHallbarhetsmal(InfDB idb) {
         this.idb = idb; 
         initComponents();
-        hamtalistan();
+        hamtaListan();
     }
-    public void hamtalistan(){
+    public void hamtaListan(){
     
     String sqlFraga1 = "select namn from hallbarhetsmal"; //kolla hur man hämtar nummer på målet
             

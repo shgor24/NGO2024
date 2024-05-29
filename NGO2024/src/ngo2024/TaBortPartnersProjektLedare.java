@@ -81,7 +81,7 @@ public class TaBortPartnersProjektLedare extends javax.swing.JFrame {
                         String partnerId = delar[1];
 
                         if (bekraftaVal(helaNamnet)) {
-                            taBortpartner(partnerId);
+                            taBortPartner(partnerId);
                         }
 
                     }
@@ -97,7 +97,7 @@ public class TaBortPartnersProjektLedare extends javax.swing.JFrame {
         return bekrafta == JOptionPane.YES_OPTION;
     }
 
-    private void taBortpartner(String partnerId) {
+    private void taBortPartner(String partnerId) {
         try {
             String sqlFraga = "DELETE FROM projekt_partner WHERE pid = " + pid + " AND partner_pid = " + partnerId;
             idb.delete(sqlFraga);

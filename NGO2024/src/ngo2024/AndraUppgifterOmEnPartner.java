@@ -26,7 +26,7 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
         initComponents();
         fillComboBox1();
         fillComboBox2();
-        andrauppgift();
+        andraUppgift();
 
     }
 //metod för vilken partner det gäller, som man ska ändra uppgifter för
@@ -223,7 +223,7 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSparaAndringarActionPerformed
     ////// Metod för de fält där man kan ändra värdet 
-    public void andrauppgift() {
+    public void andraUppgift() {
 
         try {
             pid = (String) ValjPartnerComboBox.getSelectedItem();
@@ -254,7 +254,7 @@ public class AndraUppgifterOmEnPartner extends javax.swing.JFrame {
         List<JTextField> fieldsToValidate = Arrays.asList(namnText, kontaktpersonText, kontaktepostText, telefonText, adressText, branchText);
 
         // Validera fälten
-        if (!Validering.validerafalt(fieldsToValidate)) {
+        if (!Validering.valideraFalt(fieldsToValidate)) {
             // Om valideringen misslyckas, visa ett meddelande och avbryt metodens exekvering
             JOptionPane.showMessageDialog(null, "Vänligen fyll i alla fält.");
             return;

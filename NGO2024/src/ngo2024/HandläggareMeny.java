@@ -219,7 +219,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
 
     private void bnAnsUppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnAnsUppActionPerformed
        AndraMinaUppgifter andraminauppgifter = new AndraMinaUppgifter(idb, aid);
-       andraminauppgifter.andrauppgift();
+       andraminauppgifter.andraUppgift();
         andraminauppgifter.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_bnAnsUppActionPerformed
 // DefaultListModel<String> lista = new DefaultListModel<>();

@@ -22,7 +22,7 @@ class AnstalldPaMinAdelning extends javax.swing.JFrame {
         this.aid=aid;
         this.idb =idb;
         initComponents();
-        hamtanamnpapersonalen();
+        hamtaNamnPaPersonalen();
     }
 
     /**
@@ -77,7 +77,7 @@ class AnstalldPaMinAdelning extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     //Metod för att hämta namn på personalen på avdelningen och fylla i listan.
-     public void hamtanamnpapersonalen() {
+     public void hamtaNamnPaPersonalen() {
     try {// Hämta avdelningen för den aktuella användaren
         String sqlFraga1 = "SELECT avdelning from anstalld where aid =  " +aid ;
         String Avdelning = idb.fetchSingle(sqlFraga1);
