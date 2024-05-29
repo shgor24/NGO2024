@@ -123,7 +123,7 @@ import oru.inf.InfException;
         jScrollPane1 = new javax.swing.JScrollPane();
         listapartners = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1Rubrik.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         jLabel1Rubrik.setText("Välj en partner att lägga till på det valda projektet:");

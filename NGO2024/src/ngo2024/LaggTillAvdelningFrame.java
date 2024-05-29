@@ -44,7 +44,7 @@ public class LaggTillAvdelningFrame extends javax.swing.JFrame {
         StadComboBox = new javax.swing.JComboBox<>();
         ChefComboBox = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblavdid.setText("Avdid");
 

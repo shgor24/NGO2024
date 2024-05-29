@@ -51,7 +51,7 @@ public class LaggTillAnstalldFrame extends javax.swing.JFrame {
         btnGenereraLosenord = new javax.swing.JButton();
         avdelningIdComboBox = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblFyllIUppgifterForDenNyaAnstallda.setText("Fyll i uppgifter för den nya anställda");
 

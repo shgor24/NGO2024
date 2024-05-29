@@ -47,7 +47,7 @@ public class LaggTillPartnerFrame extends javax.swing.JFrame {
         branchText = new javax.swing.JTextField();
         btnLaggTill = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblNamn.setText("Namn");
 

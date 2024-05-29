@@ -52,7 +52,7 @@ public class LaggTillProjektFrame extends javax.swing.JFrame {
         projektchefComboBox = new javax.swing.JComboBox<>();
         landComboBox = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnLaggTill.setText("Lägg till");
         btnLaggTill.addActionListener(new java.awt.event.ActionListener() {

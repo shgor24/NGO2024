@@ -109,7 +109,7 @@ public class ProjektPartnerInfo extends javax.swing.JFrame {
         lblStad = new javax.swing.JLabel();
         lblLand = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblPartnerNamn.setFont(new java.awt.Font("Segoe UI Black", 0, 14)); // NOI18N
         lblPartnerNamn.setText("jLabel1");

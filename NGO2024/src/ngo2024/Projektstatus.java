@@ -96,7 +96,7 @@ public class Projektstatus extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ltprojekt = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         cbstatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alla", "Pågående", "Avslutad", "Planerat", " " }));
         cbstatus.addActionListener(new java.awt.event.ActionListener() {

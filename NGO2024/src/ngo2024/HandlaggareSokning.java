@@ -68,7 +68,7 @@ public class HandlaggareSokning extends javax.swing.JFrame { //Klass för att s�
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnsokhandlaggare.setText("Sök");
 

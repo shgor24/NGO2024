@@ -155,7 +155,7 @@ public class AndraUppgifterOmEttProjektFrame extends javax.swing.JFrame {
         cbLand = new javax.swing.JComboBox<>();
         cbProjektChef = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Ändra uppgifter om ett projekt");
 

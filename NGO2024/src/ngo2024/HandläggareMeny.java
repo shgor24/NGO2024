@@ -50,7 +50,7 @@ public class HandläggareMeny extends javax.swing.JFrame {
         jButton1ListaOverHalMal = new javax.swing.JButton();
         bnHandAvd = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField1.setText("Detta är handläggare menyn");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {

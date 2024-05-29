@@ -80,7 +80,7 @@ public class AndraUppgiftOmEttLand extends javax.swing.JFrame {
         tfEkonomi = new javax.swing.JTextField();
         bnsparaandringar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Uppgifter om land");
 

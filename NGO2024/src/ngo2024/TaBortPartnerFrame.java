@@ -74,7 +74,7 @@ public class TaBortPartnerFrame extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         btnTaBortPartner = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblValjPartnerSomSkaBliBorttagenText.setText("Välj partner som ska bli borttagen");
 

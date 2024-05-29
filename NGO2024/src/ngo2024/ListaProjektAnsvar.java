@@ -101,7 +101,7 @@ public class ListaProjektAnsvar extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         listaProjekt = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblProjekt.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
         lblProjekt.setText("Projekt jag ansvarar för:");

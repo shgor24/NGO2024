@@ -43,7 +43,7 @@ public class ProjektledareMeny extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         bVisaKostnad = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         bAnsProjekt.setText("Se mina projekt");
         bAnsProjekt.addActionListener(new java.awt.event.ActionListener() {

@@ -61,7 +61,7 @@ public class AdministratorMeny extends javax.swing.JFrame {
         cbValdPartner = new javax.swing.JComboBox<>();
         cbValdLand = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField1.setText("Detta är administrator menyn");
 

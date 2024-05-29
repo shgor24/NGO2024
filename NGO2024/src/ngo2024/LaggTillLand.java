@@ -108,7 +108,7 @@ public class LaggTillLand extends javax.swing.JFrame {
         tfValuta = new javax.swing.JTextField();
         tfEkonomi = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Lägg till nytt land");
 
