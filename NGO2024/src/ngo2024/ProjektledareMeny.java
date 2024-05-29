@@ -42,6 +42,9 @@ public class ProjektledareMeny extends javax.swing.JFrame {
         bSeProjektJagAnsvararFor = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         bVisaKostnad = new javax.swing.JButton();
+        bAvdProj = new javax.swing.JButton();
+        bnAnsUpp = new javax.swing.JButton();
+        bnHandAvd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -97,6 +100,27 @@ public class ProjektledareMeny extends javax.swing.JFrame {
             }
         });
 
+        bAvdProj.setText("Se min avdelnings projekt");
+        bAvdProj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAvdProjActionPerformed(evt);
+            }
+        });
+
+        bnAnsUpp.setText("Mina uppgifter");
+        bnAnsUpp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bnAnsUppActionPerformed(evt);
+            }
+        });
+
+        bnHandAvd.setText("Handläggare på min avdelning");
+        bnHandAvd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bnHandAvdActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,9 +133,6 @@ public class ProjektledareMeny extends javax.swing.JFrame {
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(bSeProjektJagAnsvararFor)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bSeAllaProjektAvd)
                             .addComponent(bSokEfterProjekt)
@@ -121,7 +142,19 @@ public class ProjektledareMeny extends javax.swing.JFrame {
                             .addComponent(bVisaKostnad, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButton1ListaOverHalMal)
                             .addComponent(jButton1SeAnstallda))
-                        .addGap(29, 29, 29))))
+                        .addGap(29, 29, 29))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bSeProjektJagAnsvararFor)
+                            .addComponent(bnAnsUpp, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bnHandAvd, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bAvdProj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(14, 14, 14))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,8 +174,14 @@ public class ProjektledareMeny extends javax.swing.JFrame {
                     .addComponent(bSeAllaProjektAvd)
                     .addComponent(bVisaKostnad))
                 .addGap(18, 18, 18)
-                .addComponent(bSeProjektJagAnsvararFor)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bSeProjektJagAnsvararFor)
+                    .addComponent(bAvdProj))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bnAnsUpp)
+                    .addComponent(bnHandAvd))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
@@ -185,6 +224,25 @@ public class ProjektledareMeny extends javax.swing.JFrame {
         kostnad.setVisible(true);
     }//GEN-LAST:event_bVisaKostnadActionPerformed
 
+    private void bAvdProjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAvdProjActionPerformed
+        Projektstatus projektstatus = new Projektstatus (idb,aid);
+        projektstatus.hamtaAllaProjekt();
+        projektstatus.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bAvdProjActionPerformed
+
+    private void bnAnsUppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnAnsUppActionPerformed
+        AndraMinaUppgifter andraminauppgifter = new AndraMinaUppgifter(idb, aid);
+        andraminauppgifter.andrauppgift();
+        andraminauppgifter.setVisible(true); // TODO add your handling code here:
+    }//GEN-LAST:event_bnAnsUppActionPerformed
+
+    private void bnHandAvdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bnHandAvdActionPerformed
+        HandlaggareSokning  handlaggaresokning = new HandlaggareSokning(idb, aid);
+        handlaggaresokning.setVisible(true);
+    }//GEN-LAST:event_bnHandAvdActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -226,10 +284,13 @@ public class ProjektledareMeny extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAnsProjekt;
+    private javax.swing.JButton bAvdProj;
     private javax.swing.JButton bSeAllaProjektAvd;
     private javax.swing.JButton bSeProjektJagAnsvararFor;
     private javax.swing.JButton bSokEfterProjekt;
     private javax.swing.JButton bVisaKostnad;
+    private javax.swing.JButton bnAnsUpp;
+    private javax.swing.JButton bnHandAvd;
     private javax.swing.JButton jButton1ListaOverHalMal;
     private javax.swing.JButton jButton1SeAnstallda;
     private javax.swing.JLabel jLabel1;

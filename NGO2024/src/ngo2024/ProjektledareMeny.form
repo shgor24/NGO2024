@@ -32,10 +32,6 @@
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="bSeProjektJagAnsvararFor" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="bSeAllaProjektAvd" min="-2" max="-2" attributes="0"/>
                           <Component id="bSokEfterProjekt" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -48,6 +44,23 @@
                           <Component id="jButton1SeAnstallda" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="bSeProjektJagAnsvararFor" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="bnAnsUpp" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="bnHandAvd" min="-2" pref="217" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="bAvdProj" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -74,8 +87,16 @@
                   <Component id="bVisaKostnad" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="bSeProjektJagAnsvararFor" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="98" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="bSeProjektJagAnsvararFor" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bAvdProj" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="bnAnsUpp" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="bnHandAvd" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="53" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -143,6 +164,30 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bVisaKostnadActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bAvdProj">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Se min avdelnings projekt"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAvdProjActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bnAnsUpp">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mina uppgifter"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bnAnsUppActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bnHandAvd">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Handl&#xe4;ggare p&#xe5; min avdelning"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bnHandAvdActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
