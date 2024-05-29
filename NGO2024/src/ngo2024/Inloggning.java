@@ -125,7 +125,7 @@ public class Inloggning extends javax.swing.JFrame {
                 if (losen.equals(userLosen) && isHandlaggare != null) {
                     setVisible(false);
                     String aid = idb.fetchSingle(sqlFraga5);
-                    new HandläggareMeny(aid, idb).setVisible(true);
+                    new HandlaggareMeny(aid, idb).setVisible(true);
                     return;
                 }
                 // Loggar in som administratör
